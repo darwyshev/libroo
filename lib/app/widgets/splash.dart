@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'dart:async';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Delay 3 detik, lalu pindah ke halaman home
+    Timer(Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, '/home');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Color(0xFF1F2334),
-        body: Center(
-          child: Container(
-            width: Get.width * 0.5,
-            height: Get.width * 0.5,
-            child: Image.asset("assets/logo/logo-splash.png"),
-          ),
+    return Scaffold(
+      backgroundColor: Colors.black, // Atau warna sesuai tema kamu
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Ganti dengan logo kamu
+            Image.asset('assets/logo/logo-splash.png', height: 100),
+            SizedBox(height: 20),
+          ],
         ),
       ),
     );
