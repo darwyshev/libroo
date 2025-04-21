@@ -2,6 +2,9 @@
 
 A new Flutter project.
 
+Splash Screen Demonstration :
+https://drive.google.com/file/d/1ar1coVfOWjQqQzTgTTHm1xk15SX1g6xM/view?usp=drive_link
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
