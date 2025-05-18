@@ -1,35 +1,37 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
+import 'package:get/get.dart';
+import '../modules/intro/views/intro_view.dart'; // pastikan ini sesuai path kamu
 
-class SplashScreen extends StatefulWidget {
+class Splash extends StatefulWidget {
+  const Splash({Key? key}) : super(key: key);
+
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<Splash> createState() => _SplashState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
+  late Animation<double> _fadeAnimation;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      precacheImage(AssetImage('assets/logo/logo-splash.png'), context);
-    });
+
     _controller = AnimationController(
-      duration: Duration(milliseconds: 1200),
-      reverseDuration: Duration(milliseconds: 900),
       vsync: this,
+      duration: Duration(seconds: 2),
     );
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
+
+    _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(_controller);
 
     _controller.forward();
 
-    // Delay 3 detik, lalu fade out dan pindah ke halaman home
-    Timer(Duration(seconds: 3), () async {
-      await _controller.reverse();
-      if (mounted) {
-        Navigator.pushReplacementNamed(context, '/home');
+    // Jalankan perpindahan setelah animasi selesai + jeda 2 detik
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Future.delayed(Duration(seconds: 2), () {
+          Get.offAllNamed('/intro');
+        });
       }
     });
   }
@@ -43,17 +45,13 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Atau warna sesuai tema kamu
-      body: FadeTransition(
-        opacity: _animation,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Ganti dengan logo kamu
-              Image.asset('assets/logo/logo-splash.png', height: 100),
-              SizedBox(height: 20),
-            ],
+      backgroundColor: Color(0xFF1F2334),
+      body: Center(
+        child: FadeTransition(
+          opacity: _fadeAnimation,
+          child: Image.asset(
+            'assets/logo/logo-splash.png',
+            width: 160,
           ),
         ),
       ),

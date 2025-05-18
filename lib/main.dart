@@ -1,49 +1,21 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'home.dart';
+import 'package:get/get.dart';
+import 'app/routes/app_pages.dart';
 
 void main() {
-  runApp(SplashApp());
+  runApp(const MyApp());
 }
 
-class SplashApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return GetMaterialApp(
       title: 'Libroo',
-      home: SplashScreen(),
-    );
-  }
-}
-
-class SplashScreen extends StatefulWidget {
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-      );
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Image.asset(
-          'assets/logo/logo-splash.png',
-          height: 120,
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      initialRoute: AppPages.INITIAL, // akan ke '/splash'
+      getPages: AppPages.routes,
     );
   }
 }
