@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/intro_controller.dart';
+import '../../../routes/app_pages.dart';
 
 class IntroView extends GetView<IntroController> {
   IntroView({Key? key}) : super(key: key);
@@ -44,6 +45,7 @@ class IntroView extends GetView<IntroController> {
             controller: _pageController,
             itemCount: introData.length,
             onPageChanged: controller.changePage,
+            physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return Stack(
                 fit: StackFit.expand,
@@ -125,8 +127,8 @@ class IntroView extends GetView<IntroController> {
                                 ),
                                 child: Text(
                                   controller.currentPage.value == introData.length - 1
-                                      ? "Get Started"
-                                      : "Next",
+                                      ? "Mulai"
+                                      : "Lanjut",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
@@ -135,7 +137,7 @@ class IntroView extends GetView<IntroController> {
                                 onPressed: () {
                                   if (controller.currentPage.value ==
                                       introData.length - 1) {
-                                    Get.offAllNamed('/home');
+                                    Get.offAllNamed(Routes.REGISTER); // arahkan ke page register
                                   } else {
                                     _pageController.nextPage(
                                       duration: Duration(milliseconds: 400),

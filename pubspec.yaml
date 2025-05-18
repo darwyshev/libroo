@@ -6,6 +6,7 @@ environment:
   sdk: ^3.7.2
 
 dependencies:
+  image_picker: ^1.0.4
   cupertino_icons: ^1.0.8
   get: ^4.7.2
   flutter:
