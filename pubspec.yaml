@@ -21,7 +21,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo/
-    - assets/image/
+    - assets/image/intro-1.webp
+    - assets/image/intro-2.webp
+    - assets/image/intro-3.webp
+    - assets/image/intro-4.webp
+    - assets/image/intro-5.webp
 
 flutter_icons:
   android: true
