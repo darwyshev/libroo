@@ -18,3 +18,4 @@ abstract class _Paths {
   static const REGISTER = '/register';
   static const LOGIN = '/login';
 }
+

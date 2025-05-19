@@ -1,22 +1,102 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
-import '../controllers/login_controller.dart';
+class LoginView extends StatefulWidget {
+  const LoginView({Key? key}) : super(key: key);
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  final TextEditingController emailOrUsernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  bool _obscurePassword = true;
+
+  void togglePasswordVisibility() {
+    setState(() {
+      _obscurePassword = !_obscurePassword;
+    });
+  }
+
+  void login() {
+    // Tambahkan validasi atau API login di sini
+    Get.snackbar("Login", "Berhasil login (simulasi)",
+      backgroundColor: Colors.green,
+      colorText: Colors.white,
+    );
+  }
+
+  void toRegister() {
+    Get.toNamed('/register');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('LoginView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'LoginView is working',
-          style: TextStyle(fontSize: 20),
+      backgroundColor: Color(0xFF1F2334),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Masuk", style: TextStyle(fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold)),
+            SizedBox(height: 32),
+
+            TextField(
+              controller: emailOrUsernameController,
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                labelText: 'Email atau Username',
+                labelStyle: TextStyle(color: Colors.white70),
+                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white38)),
+                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+              ),
+            ),
+
+            SizedBox(height: 20),
+
+            TextField(
+              controller: passwordController,
+              obscureText: _obscurePassword,
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                labelText: 'Password',
+                labelStyle: TextStyle(color: Colors.white70),
+                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white38)),
+                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                suffixIcon: IconButton(
+                  icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility, color: Colors.white54),
+                  onPressed: togglePasswordVisibility,
+                ),
+              ),
+            ),
+
+            SizedBox(height: 32),
+
+            ElevatedButton(
+              onPressed: login,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF6E40F3),
+                minimumSize: Size(double.infinity, 50),
+              ),
+              child: Text("Masuk", style: TextStyle(color: Colors.white)),
+            ),
+
+            SizedBox(height: 20),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Belum punya akun? ", style: TextStyle(color: Colors.white70)),
+                GestureDetector(
+                  onTap: toRegister,
+                  child: Text("Daftar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                )
+              ],
+            )
+          ],
         ),
       ),
     );

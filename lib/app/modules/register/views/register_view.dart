@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:libroo/services/api_services.dart'; // Ganti dengan path yang sesuai
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -66,42 +67,59 @@ class _RegisterViewState extends State<RegisterView> {
     }
   }
 
-  void nextPage() {
-    if (_currentPage < 2) {
-      _controller.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
-      setState(() => _currentPage++);
-    } else {
-      // Submit logic here
-      Get.snackbar(
-        "Sukses", 
-        "Registrasi berhasil!",
-        snackPosition: SnackPosition.TOP,
-        backgroundColor: Colors.green,
-        colorText: Colors.white,
-        margin: EdgeInsets.all(8),
-        borderRadius: 8,
+  void registerUser() async {
+    try {
+      var response = await ApiService.registerUser(
+        username: usernameController.text,
+        email: emailController.text,
+        password: passwordController.text,
       );
+
+      if (response['status'] == 'success') {
+        // Lanjut ke step 2
+        setState(() {
+          _currentPage = 1; // atau sesuai nama variabel step kamu
+        });
+      } else {
+        Get.snackbar('Gagal', response['message']);
+      }
+  } catch (e) {
+      Get.snackbar('Error', 'Terjadi kesalahan saat menghubungi server');
     }
   }
+  
+    void nextPage() {
+      if (_currentPage < 2) {
+        _controller.nextPage(
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+        );
+        setState(() => _currentPage++);
+      } else {
+        registerUser(); // ← kirim data ke backend
+      }
+    }
 
   Widget _buildStepIndicator() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [0, 1, 2].map((index) {
-          return Container(
-            margin: EdgeInsets.symmetric(horizontal: 4),
-            width: 90,
-            height: 5,
-            decoration: BoxDecoration(
-              color: _currentPage >= index 
-                  ? Color(0xFF6E40F3) 
-                  : Colors.grey.shade300,
-              borderRadius: BorderRadius.circular(5),
-            ),
-          );
-        }).toList(),
+        children:
+            [0, 1, 2].map((index) {
+              return Container(
+                margin: EdgeInsets.symmetric(horizontal: 4),
+                width: 90,
+                height: 5,
+                decoration: BoxDecoration(
+                  color:
+                      _currentPage >= index
+                          ? Color(0xFF6E40F3)
+                          : Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              );
+            }).toList(),
       ),
     );
   }
@@ -114,61 +132,47 @@ class _RegisterViewState extends State<RegisterView> {
   }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20.0),
-      child: TextFormField(
+      child: TextField(
         controller: controller,
         obscureText: isPassword,
+        style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           labelText: label,
-          prefixIcon: icon != null ? Icon(icon, color: Color(0xFF6E40F3)) : null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.grey.shade300),
+          labelStyle: TextStyle(color: Colors.white70),
+          prefixIcon: icon != null ? Icon(icon, color: Colors.white54) : null,
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.white38),
           ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.grey.shade300),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Color(0xFF6E40F3), width: 2),
-          ),
-          filled: true,
-          fillColor: Colors.grey.shade50,
-          labelStyle: TextStyle(color: Colors.grey.shade700),
         ),
       ),
     );
   }
 
   Widget _buildButton({required String text, required VoidCallback onPressed}) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      height: 55,
+      height: 50,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Color(0xFF6E40F3),
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          elevation: 0,
+          minimumSize: Size(double.infinity, 50),
         ),
         child: Text(
           text,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
     );
   }
 
   Widget _buildDropdownField({
-    required String hint, 
-    required List<String> items, 
-    required String? value, 
+    required String hint,
+    required List<String> items,
+    required String? value,
     required Function(String?) onChanged,
     required String prefix,
   }) {
@@ -176,30 +180,31 @@ class _RegisterViewState extends State<RegisterView> {
       padding: const EdgeInsets.only(bottom: 20.0),
       child: DropdownButtonFormField<String>(
         value: value,
-        hint: Text(hint),
+        dropdownColor: Color(0xFF23263A),
+        hint: Text(hint, style: TextStyle(color: Colors.white70)),
+        style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.grey.shade300),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.white38),
           ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.grey.shade300),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Color(0xFF6E40F3), width: 2),
-          ),
-          filled: true,
-          fillColor: Colors.grey.shade50,
         ),
-        items: items.map((item) => 
-          DropdownMenuItem(
-            value: item, 
-            child: Text('$prefix $item')
-          )
-        ).toList(),
+        items:
+            items
+                .map(
+                  (item) => DropdownMenuItem(
+                    value: item,
+                    child: Text(
+                      '$prefix $item',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                )
+                .toList(),
         onChanged: onChanged,
+        iconEnabledColor: Colors.white70,
       ),
     );
   }
@@ -210,14 +215,17 @@ class _RegisterViewState extends State<RegisterView> {
       appBar: AppBar(
         title: Text(
           'Pendaftaran Siswa',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white, // Changed for contrast
+          ),
         ),
-        backgroundColor: Color(0xFF6E40F3),
+        backgroundColor: Color(0xFF6E40F3), // Primary color
         elevation: 0,
         centerTitle: true,
       ),
       body: Container(
-        color: Colors.white,
+        color: Color(0xFF1F2334), // Background color
         child: Column(
           children: [
             _buildStepIndicator(),
@@ -238,7 +246,7 @@ class _RegisterViewState extends State<RegisterView> {
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF1F2334),
+                              color: Colors.white,
                             ),
                           ),
                           SizedBox(height: 8),
@@ -246,28 +254,53 @@ class _RegisterViewState extends State<RegisterView> {
                             'Silakan masukkan detail informasi akun Anda',
                             style: TextStyle(
                               fontSize: 16,
-                              color: Colors.grey.shade600,
+                              color: Colors.white70,
                             ),
                           ),
                           SizedBox(height: 32),
                           _buildInputField(
-                            controller: usernameController, 
+                            controller: usernameController,
                             label: 'Username',
                             icon: Icons.person,
                           ),
                           _buildInputField(
-                            controller: emailController, 
+                            controller: emailController,
                             label: 'Email',
                             icon: Icons.email,
                           ),
                           _buildInputField(
-                            controller: passwordController, 
+                            controller: passwordController,
                             label: 'Password',
                             isPassword: true,
                             icon: Icons.lock,
                           ),
                           SizedBox(height: 32),
                           _buildButton(text: 'Lanjut', onPressed: nextPage),
+                          SizedBox(height: 24),
+                          Center(
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Sudah memiliki akun?',
+                                  style: TextStyle(color: Colors.white70),
+                                ),
+                                SizedBox(height: 8),
+                                TextButton(
+                                  onPressed: () {
+                                    Get.offAllNamed('/login');
+                                  },
+                                  child: Text(
+                                    'Masuk di sini',
+                                    style: TextStyle(
+                                      color: Color(0xFF6E40F3),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -285,7 +318,7 @@ class _RegisterViewState extends State<RegisterView> {
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF1F2334),
+                              color: Colors.white,
                             ),
                           ),
                           SizedBox(height: 8),
@@ -293,7 +326,7 @@ class _RegisterViewState extends State<RegisterView> {
                             'Silakan lengkapi data diri Anda',
                             style: TextStyle(
                               fontSize: 16,
-                              color: Colors.grey.shade600,
+                              color: Colors.white70,
                             ),
                           ),
                           SizedBox(height: 24),
@@ -313,17 +346,19 @@ class _RegisterViewState extends State<RegisterView> {
                                     ),
                                     child: CircleAvatar(
                                       radius: 60,
-                                      backgroundColor: Colors.grey.shade200,
-                                      backgroundImage: _profileImage != null 
-                                          ? FileImage(_profileImage!) 
-                                          : null,
-                                      child: _profileImage == null 
-                                          ? Icon(
-                                              Icons.person,
-                                              size: 60,
-                                              color: Colors.grey.shade400,
-                                            ) 
-                                          : null,
+                                      backgroundColor: Colors.white,
+                                      backgroundImage:
+                                          _profileImage != null
+                                              ? FileImage(_profileImage!)
+                                              : null,
+                                      child:
+                                          _profileImage == null
+                                              ? Icon(
+                                                Icons.person,
+                                                size: 60,
+                                                color: Colors.grey.shade400,
+                                              )
+                                              : null,
                                     ),
                                   ),
                                   Positioned(
@@ -348,40 +383,50 @@ class _RegisterViewState extends State<RegisterView> {
                           ),
                           SizedBox(height: 32),
                           _buildInputField(
-                            controller: fullNameController, 
+                            controller: fullNameController,
                             label: 'Nama Lengkap',
                             icon: Icons.badge,
                           ),
                           _buildInputField(
-                            controller: nisnController, 
+                            controller: nisnController,
                             label: 'NISN',
                             icon: Icons.numbers,
                           ),
-                          InkWell(
-                            onTap: pickDate,
-                            child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(color: Colors.grey.shade300),
-                                color: Colors.grey.shade50,
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.calendar_today, color: Color(0xFF6E40F3)),
-                                  SizedBox(width: 12),
-                                  Text(
-                                    birthDate == null 
-                                        ? 'Pilih Tanggal Lahir' 
-                                        : '${birthDate!.day}/${birthDate!.month}/${birthDate!.year}',
-                                    style: TextStyle(
-                                      color: birthDate == null 
-                                          ? Colors.grey.shade700 
-                                          : Colors.black,
-                                      fontSize: 16,
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20.0),
+                            child: InkWell(
+                              onTap: pickDate,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 0,
+                                  vertical: 15,
+                                ),
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Colors.white38,
+                                      width: 1,
                                     ),
                                   ),
-                                ],
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.calendar_today,
+                                      color: Colors.white54,
+                                    ),
+                                    SizedBox(width: 12),
+                                    Text(
+                                      birthDate == null
+                                          ? 'Pilih Tanggal Lahir'
+                                          : '${birthDate!.day}/${birthDate!.month}/${birthDate!.year}',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -404,7 +449,7 @@ class _RegisterViewState extends State<RegisterView> {
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF1F2334),
+                              color: Colors.white,
                             ),
                           ),
                           SizedBox(height: 8),
@@ -412,7 +457,7 @@ class _RegisterViewState extends State<RegisterView> {
                             'Silakan pilih kelas Anda',
                             style: TextStyle(
                               fontSize: 16,
-                              color: Colors.grey.shade600,
+                              color: Colors.white70,
                             ),
                           ),
                           SizedBox(height: 32),
@@ -420,44 +465,24 @@ class _RegisterViewState extends State<RegisterView> {
                             hint: 'Pilih Jenjang Kelas',
                             items: ['7', '8', '9'],
                             value: selectedGrade,
-                            onChanged: (val) => setState(() => selectedGrade = val),
+                            onChanged:
+                                (val) => setState(() => selectedGrade = val),
                             prefix: 'Kelas',
                           ),
                           _buildDropdownField(
                             hint: 'Pilih Huruf Kelas',
-                            items: List.generate(10, (i) => String.fromCharCode(65 + i)),
+                            items: List.generate(
+                              10,
+                              (i) => String.fromCharCode(65 + i),
+                            ),
                             value: selectedClass,
-                            onChanged: (val) => setState(() => selectedClass = val),
+                            onChanged:
+                                (val) => setState(() => selectedClass = val),
                             prefix: 'Kelas',
                           ),
                           SizedBox(height: 32),
                           _buildButton(text: 'Daftar', onPressed: nextPage),
                           SizedBox(height: 24),
-                          if (_currentPage == 2)
-                            Center(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Sudah memiliki akun?',
-                                    style: TextStyle(color: Colors.grey.shade700),
-                                  ),
-                                  SizedBox(height: 8),
-                                  TextButton(
-                                    onPressed: () {
-                                      // Navigation to login page would go here
-                                    },
-                                    child: Text(
-                                      'Masuk di sini',
-                                      style: TextStyle(
-                                        color: Color(0xFF6E40F3),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
                         ],
                       ),
                     ),
