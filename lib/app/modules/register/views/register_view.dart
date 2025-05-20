@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:libroo/app/routes/app_pages.dart';
+import 'package:libroo/services/api_services.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -14,6 +15,7 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
+  final _formKey = GlobalKey<FormState>();
   final PageController _controller = PageController();
   int _currentPage = 0;
 
@@ -31,6 +33,8 @@ class _RegisterViewState extends State<RegisterView> {
   // Step 3 - Class Selection
   String? selectedGrade;
   String? selectedClass;
+
+  bool _isLoading = false;
 
   Future<void> pickImage() async {
     final picker = ImagePicker();
@@ -71,21 +75,24 @@ class _RegisterViewState extends State<RegisterView> {
 
   // Fungsi yang diperbaiki untuk mengirim semua data ke database
   Future<void> registerUser() async {
-    // Validasi data
-    if (usernameController.text.isEmpty || 
-        emailController.text.isEmpty || 
-        passwordController.text.isEmpty ||
-        fullNameController.text.isEmpty ||
-        nisnController.text.isEmpty ||
-        birthDate == null ||
-        selectedGrade == null ||
-        selectedClass == null) {
-      
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Semua data harus diisi lengkap'))
-      );
-      return;
-    }
+    if (_formKey.currentState!.validate()) {
+      setState(() => _isLoading = true);
+      // Validasi data
+      if (usernameController.text.isEmpty || 
+          emailController.text.isEmpty || 
+          passwordController.text.isEmpty ||
+          fullNameController.text.isEmpty ||
+          nisnController.text.isEmpty ||
+          birthDate == null ||
+          selectedGrade == null ||
+          selectedClass == null) {
+        
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Semua data harus diisi lengkap'))
+        );
+        setState(() => _isLoading = false);
+        return;
+      }
 
     try {
       // Format tanggal dengan benar
@@ -94,7 +101,7 @@ class _RegisterViewState extends State<RegisterView> {
       // Format kelas lengkap (Grade + Class)
       final fullClass = '$selectedGrade$selectedClass';
 
-      final url = Uri.parse('http://192.168.239.116/backend/register.php');
+      final url = Uri.parse('http://10.0.2.2/backend/register.php');
       final response = await http.post(
         url,
         body: {
@@ -141,6 +148,8 @@ class _RegisterViewState extends State<RegisterView> {
           backgroundColor: Colors.red,
         )
       );
+    } finally {
+      setState(() => _isLoading = false);}
     }
   }
   
@@ -187,7 +196,7 @@ class _RegisterViewState extends State<RegisterView> {
     bool isPassword = false,
     IconData? icon,
   }) {
-    return TextField(
+    return TextFormField(
       controller: controller,
       obscureText: isPassword,
       style: TextStyle(color: Colors.white),
@@ -202,8 +211,21 @@ class _RegisterViewState extends State<RegisterView> {
           borderSide: BorderSide(color: Colors.white),
         ),
       ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return '$label tidak boleh kosong';
+        }
+        if (label == 'Email' && !value.contains('@')) {
+          return 'Email tidak valid';
+        }
+        if (label == 'Password' && value.length < 6) {
+          return 'Password minimal 6 karakter';
+        }
+        return null;
+      },
     );
   }
+
 
   Widget _buildButton({required String text, required VoidCallback onPressed}) {
     return ElevatedButton(
@@ -261,243 +283,253 @@ class _RegisterViewState extends State<RegisterView> {
     return Scaffold(
       backgroundColor: Color(0xFF1F2334),
       body: SafeArea(
-        child: Column(
-          children: [
-            _buildStepIndicator(),
-            Expanded(
-              child: PageView(
-                controller: _controller,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
-                  // Step 1
-                  SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Daftar",
-                            style: TextStyle(
-                              fontSize: 28,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                          SizedBox(height: 32),
-                          _buildInputField(
-                            controller: usernameController,
-                            label: 'Username',
-                            icon: Icons.person,
-                          ),
-                          SizedBox(height: 20),
-                          _buildInputField(
-                            controller: emailController,
-                            label: 'Email',
-                            icon: Icons.email,
-                          ),
-                          SizedBox(height: 20),
-                          _buildInputField(
-                            controller: passwordController,
-                            label: 'Password',
-                            isPassword: true,
-                            icon: Icons.lock,
-                          ),
-                          SizedBox(height: 32),
-                          _buildButton(text: 'Lanjut', onPressed: nextPage),
-                          SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Sudah memiliki akun? ',
-                                style: TextStyle(color: Colors.white70),
+        child: Form(
+        key: _formKey,
+          child: Column(
+            children: [
+              _buildStepIndicator(),
+              Expanded(
+                child: PageView(
+                  controller: _controller,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: [
+                    // Step 1
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Daftar",
+                              style: TextStyle(
+                                fontSize: 28,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  Get.offAllNamed(Routes.LOGIN);
-                                },
-                                child: Text(
-                                  'Masuk',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
+                            ),
+                            SizedBox(height: 32),
+                            _buildInputField(
+                              controller: usernameController,
+                              label: 'Username',
+                              icon: Icons.person,
+                            ),
+                            SizedBox(height: 20),
+                            _buildInputField(
+                              controller: emailController,
+                              label: 'Email',
+                              icon: Icons.email,
+                            ),
+                            SizedBox(height: 20),
+                            _buildInputField(
+                              controller: passwordController,
+                              label: 'Password',
+                              isPassword: true,
+                              icon: Icons.lock,
+                            ),
+                            SizedBox(height: 32),
+                            _buildButton(text: 'Lanjut', onPressed: nextPage),
+                            SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Sudah memiliki akun? ',
+                                  style: TextStyle(color: Colors.white70),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.offAllNamed(Routes.LOGIN);
+                                  },
+                                  child: Text(
+                                    'Masuk',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
 
-                  // Step 2
-                  SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Profil Siswa",
-                            style: TextStyle(
-                              fontSize: 28,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
+                    // Step 2
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Profil Siswa",
+                              style: TextStyle(
+                                fontSize: 28,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 32),
-                          Center(
-                            child: GestureDetector(
-                              onTap: pickImage,
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF6E40F3),
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: Color(0xFF6E40F3),
-                                        width: 3,
-                                      ),
-                                    ),
-                                    child: CircleAvatar(
-                                      radius: 60,
-                                      backgroundColor: Colors.white,
-                                      backgroundImage:
-                                          _profileImage != null
-                                              ? FileImage(_profileImage!)
-                                              : null,
-                                      child:
-                                          _profileImage == null
-                                              ? Icon(
-                                                Icons.person,
-                                                size: 60,
-                                                color: Colors.grey.shade400,
-                                              )
-                                              : null,
-                                    ),
-                                  ),
-                                  Positioned(
-                                    bottom: 0,
-                                    right: 0,
-                                    child: Container(
-                                      padding: EdgeInsets.all(4),
+                            SizedBox(height: 32),
+                            Center(
+                              child: GestureDetector(
+                                onTap: pickImage,
+                                child: Stack(
+                                  children: [
+                                    Container(
                                       decoration: BoxDecoration(
                                         color: Color(0xFF6E40F3),
                                         shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color: Color(0xFF6E40F3),
+                                          width: 3,
+                                        ),
                                       ),
-                                      child: Icon(
-                                        Icons.camera_alt,
-                                        color: Colors.white,
-                                        size: 20,
+                                      child: CircleAvatar(
+                                        radius: 60,
+                                        backgroundColor: Colors.white,
+                                        backgroundImage:
+                                            _profileImage != null
+                                                ? FileImage(_profileImage!)
+                                                : null,
+                                        child:
+                                            _profileImage == null
+                                                ? Icon(
+                                                  Icons.person,
+                                                  size: 60,
+                                                  color: Colors.grey.shade400,
+                                                )
+                                                : null,
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 32),
-                          _buildInputField(
-                            controller: fullNameController,
-                            label: 'Nama Lengkap',
-                            icon: Icons.badge,
-                          ),
-                          SizedBox(height: 20),
-                          _buildInputField(
-                            controller: nisnController,
-                            label: 'NISN',
-                            icon: Icons.numbers,
-                          ),
-                          SizedBox(height: 20),
-                          InkWell(
-                            onTap: pickDate,
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 15,
-                              ),
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Colors.white38,
-                                    width: 1,
-                                  ),
+                                    Positioned(
+                                      bottom: 0,
+                                      right: 0,
+                                      child: Container(
+                                        padding: EdgeInsets.all(4),
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFF6E40F3),
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Icon(
+                                          Icons.camera_alt,
+                                          color: Colors.white,
+                                          size: 20,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.calendar_today,
-                                    color: Colors.white54,
-                                  ),
-                                  SizedBox(width: 12),
-                                  Text(
-                                    birthDate == null
-                                        ? 'Pilih Tanggal Lahir'
-                                        : '${birthDate!.day}/${birthDate!.month}/${birthDate!.year}',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
+                            ),
+                            SizedBox(height: 32),
+                            _buildInputField(
+                              controller: fullNameController,
+                              label: 'Nama Lengkap',
+                              icon: Icons.badge,
+                            ),
+                            SizedBox(height: 20),
+                            _buildInputField(
+                              controller: nisnController,
+                              label: 'NISN',
+                              icon: Icons.numbers,
+                            ),
+                            SizedBox(height: 20),
+                            InkWell(
+                              onTap: pickDate,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 15,
+                                ),
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Colors.white38,
+                                      width: 1,
                                     ),
                                   ),
-                                ],
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.calendar_today,
+                                      color: Colors.white54,
+                                    ),
+                                    SizedBox(width: 12),
+                                    Text(
+                                      birthDate == null
+                                          ? 'Pilih Tanggal Lahir'
+                                          : '${birthDate!.day}/${birthDate!.month}/${birthDate!.year}',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(height: 32),
-                          _buildButton(text: 'Lanjut', onPressed: nextPage),
-                        ],
+                            SizedBox(height: 32),
+                            _buildButton(text: 'Lanjut', onPressed: nextPage),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
 
-                  // Step 3
-                  SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Data Kelas",
-                            style: TextStyle(
-                              fontSize: 28,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
+                    // Step 3
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Data Kelas",
+                              style: TextStyle(
+                                fontSize: 28,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 32),
-                          _buildDropdownField(
-                            hint: 'Pilih Jenjang Kelas',
-                            items: ['7', '8', '9'],
-                            value: selectedGrade,
-                            onChanged: (val) => setState(() => selectedGrade = val),
-                            prefix: 'Kelas',
-                          ),
-                          SizedBox(height: 20),
-                          _buildDropdownField(
-                            hint: 'Pilih Huruf Kelas',
-                            items: List.generate(
-                              10,
-                              (i) => String.fromCharCode(65 + i),
+                            SizedBox(height: 32),
+                            _buildDropdownField(
+                              hint: 'Pilih Jenjang Kelas',
+                              items: ['7', '8', '9'],
+                              value: selectedGrade,
+                              onChanged: (val) => setState(() => selectedGrade = val),
+                              prefix: 'Kelas',
                             ),
-                            value: selectedClass,
-                            onChanged: (val) => setState(() => selectedClass = val),
-                            prefix: 'Kelas',
-                          ),
-                          SizedBox(height: 32),
-                          _buildButton(text: 'Daftar', onPressed: nextPage),
-                        ],
+                            SizedBox(height: 20),
+                            _buildDropdownField(
+                              hint: 'Pilih Huruf Kelas',
+                              items: List.generate(
+                                10,
+                                (i) => String.fromCharCode(65 + i),
+                              ),
+                              value: selectedClass,
+                              onChanged: (val) => setState(() => selectedClass = val),
+                              prefix: 'Kelas',
+                            ),
+                            SizedBox(height: 32),
+                            _buildButton(
+                              text: 'Lanjut',
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  nextPage();
+                                }
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
+        )
       ),
     );
   }

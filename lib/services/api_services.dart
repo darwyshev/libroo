@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ApiService {
-  static const String baseUrl = "http://192.168.239.116/backend"; // ganti dengan IP lokal kamu jika pakai HP fisik
+  static const String baseUrl = "http://10.0.2.2/backend"; // ganti dengan IP lokal kamu jika pakai HP fisik
 
   static Future<Map<String, dynamic>> registerUser({
     required String username,
