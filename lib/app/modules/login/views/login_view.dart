@@ -13,6 +13,7 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController passwordController = TextEditingController();
 
   bool _obscurePassword = true;
+  bool _isLoading = false;
 
   void togglePasswordVisibility() {
     setState(() {
@@ -21,11 +22,27 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void login() {
-    // Tambahkan validasi atau API login di sini
-    Get.snackbar("Login", "Berhasil login (simulasi)",
-      backgroundColor: Colors.green,
-      colorText: Colors.white,
-    );
+    setState(() {
+      _isLoading = true;
+    });
+    
+    // Simulasi proses login
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        _isLoading = false;
+      });
+      
+      // Tampilkan snackbar dan arahkan ke halaman home
+      Get.snackbar(
+        "Login", 
+        "Berhasil login",
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+      
+      // Navigasi ke halaman home
+      Get.offAllNamed('/home');
+    });
   }
 
   void toRegister() {
@@ -76,12 +93,15 @@ class _LoginViewState extends State<LoginView> {
             SizedBox(height: 32),
 
             ElevatedButton(
-              onPressed: login,
+              onPressed: _isLoading ? null : login,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF6E40F3),
                 minimumSize: Size(double.infinity, 50),
+                disabledBackgroundColor: Color(0xFF6E40F3).withOpacity(0.5),
               ),
-              child: Text("Masuk", style: TextStyle(color: Colors.white)),
+              child: _isLoading
+                  ? CircularProgressIndicator(color: Colors.white)
+                  : Text("Masuk", style: TextStyle(color: Colors.white)),
             ),
 
             SizedBox(height: 20),
