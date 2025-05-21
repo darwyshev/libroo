@@ -25,6 +25,7 @@ flutter:
     - assets/logo/
     - assets/image/
     - assets/book/
+    - assets/category/
     - assets/image/intro-1.webp
     - assets/image/intro-2.webp
     - assets/image/intro-3.webp

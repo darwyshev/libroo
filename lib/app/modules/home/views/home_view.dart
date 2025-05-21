@@ -278,7 +278,7 @@ class HomeView extends GetView<HomeController> {
                                     ),
                                   ),
                                   child: Text(
-                                    'Pinjam',
+                                    'Tandai',
                                     style: TextStyle(
                                       color: books[index]['color'],
                                       fontWeight: FontWeight.bold,
