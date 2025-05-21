@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:libroo/app/routes/app_pages.dart';
-import 'package:libroo/services/api_services.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -23,6 +20,7 @@ class _RegisterViewState extends State<RegisterView> {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool _obscurePassword = true; // Untuk fitur lihat password
 
   // Step 2 - Profile Info
   File? _profileImage;
@@ -73,7 +71,6 @@ class _RegisterViewState extends State<RegisterView> {
     }
   }
 
-  // Fungsi yang diperbaiki untuk mengirim semua data ke database
   Future<void> registerUser() async {
     if (_formKey.currentState!.validate()) {
       setState(() => _isLoading = true);
@@ -94,62 +91,28 @@ class _RegisterViewState extends State<RegisterView> {
         return;
       }
 
-    try {
-      // Format tanggal dengan benar
-      final formattedDate = '${birthDate!.year}-${birthDate!.month.toString().padLeft(2, '0')}-${birthDate!.day.toString().padLeft(2, '0')}';
-      
-      // Format kelas lengkap (Grade + Class)
-      final fullClass = '$selectedGrade$selectedClass';
-
-      final url = Uri.parse('http://10.0.2.2/backend/register.php');
-      final response = await http.post(
-        url,
-        body: {
-          // Data dari Step 1
-          'username': usernameController.text,
-          'email': emailController.text,
-          'password': passwordController.text,
-          
-          // Data dari Step 2
-          'full_name': fullNameController.text,
-          'nisn': nisnController.text,
-          'birth_date': formattedDate,
-          
-          // Data dari Step 3
-          'grade': selectedGrade,
-          'class': selectedClass,
-          'full_class': fullClass, // Mengirim format kelas lengkap jika diperlukan
-        },
-      );
-
-      final data = jsonDecode(response.body);
-
-      if (data['status'] == 'success') {
+      try {
+        // Simulasi pendaftaran berhasil
+        await Future.delayed(Duration(seconds: 2)); // Simulasi loading
+        
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Registrasi berhasil!'),
             backgroundColor: Colors.green,
           )
         );
-        // Gunakan Routes konstan dari app_pages.dart untuk konsistensi
+        // Navigasi ke halaman login
         Get.offAllNamed(Routes.LOGIN);
-      } else {
+      } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Gagal: ${data['message']}'),
+            content: Text('Error: Terjadi kesalahan. Coba lagi nanti.'),
             backgroundColor: Colors.red,
           )
         );
+      } finally {
+        setState(() => _isLoading = false);
       }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error: Terjadi kesalahan saat menghubungi server. ${e.toString()}'),
-          backgroundColor: Colors.red,
-        )
-      );
-    } finally {
-      setState(() => _isLoading = false);}
     }
   }
   
@@ -198,12 +161,26 @@ class _RegisterViewState extends State<RegisterView> {
   }) {
     return TextFormField(
       controller: controller,
-      obscureText: isPassword,
+      obscureText: isPassword ? _obscurePassword : false,
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(color: Colors.white70),
         prefixIcon: icon != null ? Icon(icon, color: Colors.white54) : null,
+        // Tambahkan suffix icon untuk password
+        suffixIcon: isPassword
+            ? IconButton(
+                icon: Icon(
+                  _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                  color: Colors.white54,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscurePassword = !_obscurePassword;
+                  });
+                },
+              )
+            : null,
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white38),
         ),
@@ -234,10 +211,12 @@ class _RegisterViewState extends State<RegisterView> {
         backgroundColor: Color(0xFF6E40F3),
         minimumSize: Size(double.infinity, 50),
       ),
-      child: Text(
-        text,
-        style: TextStyle(color: Colors.white),
-      ),
+      child: _isLoading && text == 'Lanjut' && _currentPage == 2
+          ? CircularProgressIndicator(color: Colors.white)
+          : Text(
+              text,
+              style: TextStyle(color: Colors.white),
+            ),
     );
   }
 
