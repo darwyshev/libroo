@@ -220,12 +220,11 @@ class HomeView extends GetView<HomeController> {
                       padding: const EdgeInsets.all(16.0),
                       child: Row(
                         children: [
-                          // Placeholder untuk gambar buku
+                          // Actual book cover image
                           Container(
                             width: 120,
                             height: 160,
                             decoration: BoxDecoration(
-                              color: Colors.grey[300],
                               borderRadius: BorderRadius.circular(8),
                               boxShadow: [
                                 BoxShadow(
@@ -235,11 +234,12 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ],
                             ),
-                            child: Center(
-                              child: Icon(
-                                Icons.book,
-                                size: 40,
-                                color: Colors.grey[600],
+                            // Using actual image from assets
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.asset(
+                                books[index]['image'],
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
@@ -305,24 +305,28 @@ class HomeView extends GetView<HomeController> {
   Widget _buildBestChoices() {
     final List<Map<String, dynamic>> bestBooks = [
       {
-        'title': 'Pulang',
+        'title': 'Sagaras',
         'author': 'Tere Liye',
         'rating': '4.8',
+        'image': 'assets/book/cover-sagaras.webp',
       },
       {
-        'title': 'Filosofi Teras',
-        'author': 'Henry Manampiring',
-        'rating': '4.7',
-      },
-      {
-        'title': 'Sebuah Seni untuk Bersikap Bodo Amat',
-        'author': 'Mark Manson',
-        'rating': '4.6',
-      },
-      {
-        'title': 'Hujan',
+        'title': 'Bumi',
         'author': 'Tere Liye',
+        'rating': '4.7',
+        'image': 'assets/book/cover-bumi.webp',
+      },
+      {
+        'title': 'Dan Hujan Pun Berhenti',
+        'author': 'Farida Susanti',
+        'rating': '4.6',
+        'image': 'assets/book/cover-dhpb.webp',
+      },
+      {
+        'title': 'Senandung Talijiwo',
+        'author': 'Sujiwo Tejo',
         'rating': '4.9',
+        'image': 'assets/book/cover-senandung-talijiwo.webp',
       },
     ];
 
@@ -382,22 +386,19 @@ class HomeView extends GetView<HomeController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Placeholder untuk cover buku
+                // Book cover image
                 ClipRRect(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(16),
                     topRight: Radius.circular(16),
                   ),
                   child: Container(
-                    height: 100, // Slightly reduced height
+                    height: 100,
                     width: double.infinity,
-                    color: Color(0xFF6E40F3).withOpacity(0.2),
-                    child: Center(
-                      child: Icon(
-                        Icons.book,
-                        size: 50,
-                        color: Color(0xFF6E40F3),
-                      ),
+                    // Using actual image instead of placeholder
+                    child: Image.asset(
+                      book['image'],
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -496,7 +497,7 @@ class HomeView extends GetView<HomeController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildNavItem(Icons.home_rounded, 'Home', true),
-            _buildNavItem(Icons.search_rounded, 'Search', false),
+            _buildNavItem(Icons.explore_outlined, 'Eksplor', false), // Changed from Search to Eksplor
             _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false),
             _buildNavItem(Icons.person_outline_rounded, 'Profile', false),
           ],
