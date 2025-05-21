@@ -158,21 +158,21 @@ class HomeView extends GetView<HomeController> {
   Widget _buildRecommendedBooks() {
     final List<Map<String, dynamic>> books = [
       {
-        'title': 'Laskar Pelangi',
-        'author': 'Andrea Hirata',
-        'image': 'assets/books/book1.jpg',
+        'title': 'Janji',
+        'author': 'Tere Liye',
+        'image': 'assets/book/cover-janji.webp',
         'color': Color(0xFF5E35B1),
       },
       {
-        'title': 'Bumi Manusia',
-        'author': 'Pramoedya Ananta Toer',
-        'image': 'assets/books/book2.jpg',
+        'title': 'Laut Bercerita',
+        'author': 'Leila S. Chudori',
+        'image': 'assets/book/cover-laut-bercerita.webp',
         'color': Color(0xFF43A047),
       },
       {
-        'title': 'Negeri 5 Menara',
-        'author': 'Ahmad Fuadi',
-        'image': 'assets/books/book3.jpg',
+        'title': 'Sesuk',
+        'author': 'Tere Liye',
+        'image': 'assets/book/cover-sesuk.webp',
         'color': Color(0xFF1E88E5),
       },
     ];
