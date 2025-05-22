@@ -291,7 +291,7 @@ class BookmarkView extends GetView<BookmarkController> {
                                             ),
                                           ),
                                           child: Text(
-                                            'Baca',
+                                            'Pinjam',
                                             style: TextStyle(
                                               color: recentBooks[index]['color'],
                                               fontWeight: FontWeight.bold,

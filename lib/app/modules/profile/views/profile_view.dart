@@ -155,11 +155,11 @@ class ProfileView extends GetView<ProfileController> {
         Row(
           children: [
             Expanded(
-              child: _buildStatItem('Buku Dibaca', '42', Icons.book_rounded),
+              child: _buildStatItem('Buku Dibaca', '10', Icons.book_rounded),
             ),
             SizedBox(width: 16),
             Expanded(
-              child: _buildStatItem('Halaman', '1,247', Icons.article_rounded),
+              child: _buildStatItem('Halaman', '527', Icons.article_rounded),
             ),
           ],
         ),
@@ -167,7 +167,7 @@ class ProfileView extends GetView<ProfileController> {
         Row(
           children: [
             Expanded(
-              child: _buildStatItem('Bookmark', '18', Icons.bookmark_rounded),
+              child: _buildStatItem('Bookmark', '6', Icons.bookmark_rounded),
             ),
             SizedBox(width: 16),
             Expanded(
