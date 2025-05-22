@@ -478,7 +478,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  // Bottom Navigation Bar
+  // Bottom Navigation Bar - Updated with working navigation
   Widget _buildBottomNav() {
     return Container(
       decoration: BoxDecoration(
@@ -496,19 +496,40 @@ class HomeView extends GetView<HomeController> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildNavItem(Icons.home_rounded, 'Home', true),
-            _buildNavItem(Icons.explore_outlined, 'Explore', false),
-            _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false),
-            _buildNavItem(Icons.person_outline_rounded, 'Profile', false),
+            _buildNavItem(Icons.home_rounded, 'Home', true, () {
+              // Already on Home page, no action needed
+            }),
+            _buildNavItem(Icons.explore_outlined, 'Explore', false, () {
+              Get.toNamed('/explore');
+            }),
+            _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false, () {
+              // Navigate to Bookmarks page when implemented
+              Get.snackbar(
+                'Info', 
+                'Bookmarks page belum tersedia',
+                backgroundColor: Color(0xFF2A2E43),
+                colorText: Colors.white,
+              );
+            }),
+            _buildNavItem(Icons.person_outline_rounded, 'Profile', false, () {
+              // Navigate to Profile page when implemented
+              Get.snackbar(
+                'Info', 
+                'Profile page belum tersedia',
+                backgroundColor: Color(0xFF2A2E43),
+                colorText: Colors.white,
+              );
+            }),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, bool isActive) {
+  Widget _buildNavItem(IconData icon, String label, bool isActive, VoidCallback onTap) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

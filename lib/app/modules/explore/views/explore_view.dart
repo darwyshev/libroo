@@ -60,7 +60,10 @@ class ExploreView extends GetView<ExploreController> {
                 color: Colors.white,
                 size: 26,
               ),
-              onPressed: () {},
+              onPressed: () {
+                // Navigate to search page
+                Get.toNamed('/search');
+              },
             ),
           ),
         ],
@@ -143,75 +146,81 @@ class ExploreView extends GetView<ExploreController> {
 
   // Helper method for recommended book cards
   Widget _buildRecommendedBookCard(Map<String, dynamic> book) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Color(0xFF1F2334),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Book cover image
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(12),
-              topRight: Radius.circular(12),
+    return GestureDetector(
+      onTap: () {
+        // Navigate to book detail page
+        Get.toNamed('/book-detail', arguments: book);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Color(0xFF1F2334),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Book cover image
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12),
+              ),
+              child: Image.asset(
+                book['image'],
+                height: 120,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
-            child: Image.asset(
-              book['image'],
-              height: 120,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  book['title'],
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(height: 2),
-                Text(
-                  book['author'],
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 12,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(height: 4),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                      size: 14,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    book['title'],
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
                     ),
-                    SizedBox(width: 4),
-                    Text(
-                      book['rating'],
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 2),
+                  Text(
+                    book['author'],
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 12,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                        size: 14,
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      SizedBox(width: 4),
+                      Text(
+                        book['rating'],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -263,55 +272,61 @@ class ExploreView extends GetView<ExploreController> {
 
   // Helper method for category cards
   Widget _buildCategoryCard(Map<String, dynamic> category) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.transparent,
-      ),
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          // Category image with gradient overlay
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Image.asset(
-                  category['image'],
-                  fit: BoxFit.cover,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.transparent,
-                        Colors.black.withOpacity(0.7),
-                      ],
+    return GestureDetector(
+      onTap: () {
+        // Navigate to category page
+        Get.toNamed('/category', arguments: category);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.transparent,
+        ),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            // Category image with gradient overlay
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.asset(
+                    category['image'],
+                    fit: BoxFit.cover,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.transparent,
+                          Colors.black.withOpacity(0.7),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          // Category name at bottom
-          Positioned(
-            bottom: 8,
-            left: 0,
-            right: 0,
-            child: Text(
-              category['name'],
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
+                ],
               ),
-              textAlign: TextAlign.center,
             ),
-          ),
-        ],
+            // Category name at bottom
+            Positioned(
+              bottom: 8,
+              left: 0,
+              right: 0,
+              child: Text(
+                category['name'],
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -352,123 +367,133 @@ class ExploreView extends GetView<ExploreController> {
         ),
         SizedBox(height: 16),
         SizedBox(
-          height: 200,
+          height: 200, //PERUBAHAN
           child: ListView.builder(
-            scrollDirection: Axis.horizontal,
+            scrollDirection: Axis.horizontal, 
             itemCount: newBooks.length,
             itemBuilder: (context, index) {
-              return Container(
-                width: 320,
-                margin: EdgeInsets.only(right: 16),
-                decoration: BoxDecoration(
-                  color: newBooks[index]['color'],
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Stack(
-                  children: [
-                    Positioned(
-                      right: -30,
-                      top: -30,
-                      child: Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
-                          shape: BoxShape.circle,
+              return GestureDetector(
+                onTap: () {
+                  // Navigate to book detail page
+                  Get.toNamed('/book-detail', arguments: newBooks[index]);
+                },
+                child: Container(
+                  width: 320,
+                  margin: EdgeInsets.only(right: 16),
+                  decoration: BoxDecoration(
+                    color: newBooks[index]['color'],
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        right: -30,
+                        top: -30,
+                        child: Container(
+                          width: 150,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.1),
+                            shape: BoxShape.circle,
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        children: [
-                          // Book cover image
-                          Container(
-                            width: 120,
-                            height: 160,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  blurRadius: 8,
-                                  offset: Offset(0, 3),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0), // Reduced from 16.0 to 12.0
+                        child: Row(
+                          children: [
+                            // Book cover image
+                            Container(
+                              width: 100, // Reduced from 120 to 100
+                              height: 140, // Reduced from 160 to 140
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    blurRadius: 8,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.asset(
+                                  newBooks[index]['image'],
+                                  fit: BoxFit.cover,
                                 ),
-                              ],
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.asset(
-                                newBooks[index]['image'],
-                                fit: BoxFit.cover,
                               ),
                             ),
-                          ),
-                          SizedBox(width: 16),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.2),
-                                    borderRadius: BorderRadius.circular(20),
+                            SizedBox(width: 12), // Reduced from 16 to 12
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.2),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Text(
+                                      'BARU',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10,
+                                      ),
+                                    ),
                                   ),
-                                  child: Text(
-                                    'BARU',
+                                  SizedBox(height: 8), // Reduced from 12 to 8
+                                  Text(
+                                    newBooks[index]['title'],
                                     style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: 18, // Reduced from 20 to 18
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 10,
                                     ),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                ),
-                                SizedBox(height: 12),
-                                Text(
-                                  newBooks[index]['title'],
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                SizedBox(height: 8),
-                                Text(
-                                  'by ${newBooks[index]['author']}',
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(0.8),
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                SizedBox(height: 16),
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.white,
-                                    padding: EdgeInsets.symmetric(vertical: 10),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    'Baca Sekarang',
+                                  SizedBox(height: 6), // Reduced from 8 to 6
+                                  Text(
+                                    'by ${newBooks[index]['author']}',
                                     style: TextStyle(
-                                      color: newBooks[index]['color'],
-                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white.withOpacity(0.8),
+                                      fontSize: 13, // Reduced from 14 to 13
                                     ),
                                   ),
-                                ),
-                              ],
+                                  SizedBox(height: 12), // Reduced from 16 to 12
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      // Navigate to book reader
+                                      Get.toNamed('/book-reader', arguments: newBooks[index]);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.white,
+                                      padding: EdgeInsets.symmetric(vertical: 8), // Reduced from 10 to 8
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      'Tandai',
+                                      style: TextStyle(
+                                        color: newBooks[index]['color'],
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 13, // Added font size
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             },
@@ -478,7 +503,7 @@ class ExploreView extends GetView<ExploreController> {
     );
   }
 
-  // Bottom Navigation Bar - Same as in home_view.dart
+  // Bottom Navigation Bar - Now with working navigation
   Widget _buildBottomNav() {
     return Container(
       decoration: BoxDecoration(
@@ -496,19 +521,28 @@ class ExploreView extends GetView<ExploreController> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildNavItem(Icons.home_rounded, 'Home', false),
-            _buildNavItem(Icons.explore_outlined, 'Explore', true), // This one is active now
-            _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false),
-            _buildNavItem(Icons.person_outline_rounded, 'Profile', false),
+            _buildNavItem(Icons.home_rounded, 'Home', false, () {
+              Get.offNamed('/home');
+            }),
+            _buildNavItem(Icons.explore_outlined, 'Explore', true, () {
+              // Already on explore page, do nothing
+            }),
+            _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false, () {
+              Get.offNamed('/bookmarks');
+            }),
+            _buildNavItem(Icons.person_outline_rounded, 'Profile', false, () {
+              Get.offNamed('/profile');
+            }),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, bool isActive) {
+  Widget _buildNavItem(IconData icon, String label, bool isActive, VoidCallback onTap) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
