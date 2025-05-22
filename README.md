@@ -38,6 +38,8 @@ flutter pub get
 # Run the project
 flutter run
 
+```
+
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 Splash Screen Demonstration :
