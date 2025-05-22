@@ -528,7 +528,7 @@ class ExploreView extends GetView<ExploreController> {
               // Already on explore page, do nothing
             }),
             _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false, () {
-              Get.offNamed('/bookmarks');
+              Get.offNamed('/bookmark');
             }),
             _buildNavItem(Icons.person_outline_rounded, 'Profile', false, () {
               Get.offNamed('/profile');

@@ -503,13 +503,7 @@ class HomeView extends GetView<HomeController> {
               Get.toNamed('/explore');
             }),
             _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false, () {
-              // Navigate to Bookmarks page when implemented
-              Get.snackbar(
-                'Info', 
-                'Bookmarks page belum tersedia',
-                backgroundColor: Color(0xFF2A2E43),
-                colorText: Colors.white,
-              );
+              Get.toNamed('/bookmark');
             }),
             _buildNavItem(Icons.person_outline_rounded, 'Profile', false, () {
               // Navigate to Profile page when implemented
