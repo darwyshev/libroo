@@ -130,7 +130,6 @@ class IntroView extends GetView<IntroController> {
                                       ? "Mulai"
                                       : "Lanjut",
                                   style: TextStyle(
-                                    fontWeight: FontWeight.bold,
                                     fontSize: 16,
                                   ),
                                 ),

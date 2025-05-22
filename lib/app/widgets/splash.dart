@@ -45,7 +45,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1F2334),
+      backgroundColor: Color(0xFF2A2E43),
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
