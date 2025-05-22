@@ -256,10 +256,10 @@ class ExploreView extends GetView<ExploreController> {
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 5,
+            crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            childAspectRatio: 9/16, // Aspect ratio as specified (9:16)
+            childAspectRatio: 16/9, // Changed to 16:9 aspect ratio
           ),
           itemCount: categories.length,
           itemBuilder: (context, index) {
