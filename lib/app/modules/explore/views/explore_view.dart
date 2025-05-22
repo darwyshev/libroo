@@ -497,7 +497,7 @@ class ExploreView extends GetView<ExploreController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildNavItem(Icons.home_rounded, 'Home', false),
-            _buildNavItem(Icons.explore_outlined, 'Eksplor', true), // This one is active now
+            _buildNavItem(Icons.explore_outlined, 'Explore', true), // This one is active now
             _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false),
             _buildNavItem(Icons.person_outline_rounded, 'Profile', false),
           ],

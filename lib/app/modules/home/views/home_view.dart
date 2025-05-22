@@ -497,7 +497,7 @@ class HomeView extends GetView<HomeController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildNavItem(Icons.home_rounded, 'Home', true),
-            _buildNavItem(Icons.explore_outlined, 'Eksplor', false), // Changed from Search to Eksplor
+            _buildNavItem(Icons.explore_outlined, 'Explore', false),
             _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false),
             _buildNavItem(Icons.person_outline_rounded, 'Profile', false),
           ],
