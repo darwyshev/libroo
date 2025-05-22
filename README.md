@@ -29,8 +29,8 @@ Libroo is a mobile application that enables students to **borrow, search, and ma
 ## **🛠 Installation & Setup**
 ```bash
 # Clone the repository
-git clone https://github.com/darwyshev/Libroo.git
-cd Libroo
+git clone https://github.com/darwyshev/libroo.git
+cd libroo
 
 # Install dependencies
 flutter pub get
