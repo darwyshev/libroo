@@ -130,24 +130,6 @@ class BookmarkView extends GetView<BookmarkController> {
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(height: 12),
-                Row(
-                  children: [
-                    Text(
-                      'Kelola Bookmark',
-                      style: TextStyle(
-                        color: Color(0xFFF7F7F7),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(width: 4),
-                    Icon(
-                      Icons.arrow_forward_rounded,
-                      color: Color(0xFFF7F7F7),
-                      size: 18,
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
