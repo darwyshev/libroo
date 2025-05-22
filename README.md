@@ -29,7 +29,7 @@ Libroo is a mobile application that enables students to **borrow, search, and ma
 ## **🛠 Installation & Setup**
 ```bash
 # Clone the repository
-git clone https://github.com/username/Libroo.git
+git clone https://github.com/darwyshev/Libroo.git
 cd Libroo
 
 # Install dependencies
