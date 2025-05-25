@@ -54,12 +54,12 @@ class AchievementView extends GetView<AchievementController> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Color(0xFF2A2E43),
+              color: Color(0xFF6E40F3).withOpacity(0.2),
               borderRadius: BorderRadius.circular(12),
             ),
             child: IconButton(
               icon: Icon(
-                Icons.arrow_back_rounded,
+                Icons.arrow_back_ios_rounded,
                 color: Color(0xFFF7F7F7),
               ),
               onPressed: () => Get.back(),

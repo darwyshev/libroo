@@ -321,12 +321,7 @@ class ProfileView extends GetView<ProfileController> {
         'subtitle': 'Butuh bantuan? Hubungi kami',
         'icon': Icons.help_outline_rounded,
         'onTap': () {
-          Get.snackbar(
-            'Info', 
-            'Bantuan akan segera tersedia',
-            backgroundColor: Color(0xFF2A2E43),
-            colorText: Color(0xFFF7F7F7),
-          );
+          Get.toNamed('/help');
         },
       },
     ];
