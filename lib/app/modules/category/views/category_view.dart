@@ -51,7 +51,7 @@ class CategoryView extends GetView<CategoryController> {
                 child: IconButton(
                   icon: Icon(
                     Icons.arrow_back_ios_rounded,
-                    color: Colors.white,
+                    color: Color(0xFFF7F7F7),
                     size: 20,
                   ),
                   onPressed: () => Get.back(),
@@ -62,7 +62,7 @@ class CategoryView extends GetView<CategoryController> {
                 child: Text(
                   controller.categoryData?['name'] ?? 'Kategori',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFF7F7F7),
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -76,7 +76,7 @@ class CategoryView extends GetView<CategoryController> {
                 child: IconButton(
                   icon: Icon(
                     Icons.search,
-                    color: Colors.white,
+                    color: Color(0xFFF7F7F7),
                     size: 24,
                   ),
                   onPressed: () {
@@ -130,7 +130,7 @@ class CategoryView extends GetView<CategoryController> {
                         Text(
                           controller.categoryData?['name'] ?? '',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Color(0xFFF7F7F7),
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -188,7 +188,7 @@ class CategoryView extends GetView<CategoryController> {
                       child: Text(
                         filters[index],
                         style: TextStyle(
-                          color: isSelected ? Colors.white : Colors.white70,
+                          color: isSelected ? Color(0xFFF7F7F7) : Colors.white70,
                           fontSize: 14,
                           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                         ),
@@ -216,7 +216,7 @@ class CategoryView extends GetView<CategoryController> {
                       value: controller.selectedSort.value,
                       isExpanded: true,
                       dropdownColor: Color(0xFF2A2E43),
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Color(0xFFF7F7F7)),
                       icon: Icon(Icons.keyboard_arrow_down, color: Colors.white70),
                       items: sortOptions.map((String value) {
                         return DropdownMenuItem<String>(
@@ -340,7 +340,7 @@ class CategoryView extends GetView<CategoryController> {
                     Text(
                       book['title'],
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color(0xFFF7F7F7),
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
@@ -369,7 +369,7 @@ class CategoryView extends GetView<CategoryController> {
                         Text(
                           book['rating'],
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Color(0xFFF7F7F7),
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
                           ),
@@ -401,7 +401,7 @@ class CategoryView extends GetView<CategoryController> {
                         child: Text(
                           'Tandai',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Color(0xFFF7F7F7),
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
                           ),
@@ -460,7 +460,7 @@ class CategoryView extends GetView<CategoryController> {
                   Text(
                     book['title'],
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFFF7F7F7),
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -489,7 +489,7 @@ class CategoryView extends GetView<CategoryController> {
                       Text(
                         book['rating'],
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xFFF7F7F7),
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
@@ -530,7 +530,7 @@ class CategoryView extends GetView<CategoryController> {
                           child: Text(
                             'Tandai',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Color(0xFFF7F7F7),
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),

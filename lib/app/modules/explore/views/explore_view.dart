@@ -44,7 +44,7 @@ class ExploreView extends GetView<ExploreController> {
           Text(
             'Eksplorasi',
             style: TextStyle(
-              color: Colors.white, 
+              color: Color(0xFFF7F7F7),
               fontSize: 28, 
               fontWeight: FontWeight.bold,
             ),
@@ -57,7 +57,7 @@ class ExploreView extends GetView<ExploreController> {
             child: IconButton(
               icon: Icon(
                 Icons.search,
-                color: Colors.white,
+                color: Color(0xFFF7F7F7),
                 size: 26,
               ),
               onPressed: () {
@@ -106,7 +106,7 @@ class ExploreView extends GetView<ExploreController> {
         Text(
           'Kamu Mungkin Suka',
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFFF7F7F7),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -180,7 +180,7 @@ class ExploreView extends GetView<ExploreController> {
                   Text(
                     book['title'],
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFFF7F7F7),
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
@@ -209,7 +209,7 @@ class ExploreView extends GetView<ExploreController> {
                       Text(
                         book['rating'],
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xFFF7F7F7),
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
@@ -246,7 +246,7 @@ class ExploreView extends GetView<ExploreController> {
         Text(
           'Kategori',
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFFF7F7F7),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -318,7 +318,7 @@ class ExploreView extends GetView<ExploreController> {
               child: Text(
                 category['name'],
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFF7F7F7),
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
@@ -360,7 +360,7 @@ class ExploreView extends GetView<ExploreController> {
         Text(
           'Buku Baru',
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFFF7F7F7),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -393,7 +393,7 @@ class ExploreView extends GetView<ExploreController> {
                           width: 150,
                           height: 150,
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.1),
+                            color: Color(0xFFF7F7F7).withOpacity(0.1),
                             shape: BoxShape.circle,
                           ),
                         ),
@@ -433,13 +433,13 @@ class ExploreView extends GetView<ExploreController> {
                                   Container(
                                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                                     decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.2),
+                                      color: Color(0xFFF7F7F7).withOpacity(0.2),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     child: Text(
                                       'BARU',
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: Color(0xFFF7F7F7),
                                         fontWeight: FontWeight.bold,
                                         fontSize: 10,
                                       ),
@@ -449,7 +449,7 @@ class ExploreView extends GetView<ExploreController> {
                                   Text(
                                     newBooks[index]['title'],
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: Color(0xFFF7F7F7),
                                       fontSize: 18, // Reduced from 20 to 18
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -460,7 +460,7 @@ class ExploreView extends GetView<ExploreController> {
                                   Text(
                                     'by ${newBooks[index]['author']}',
                                     style: TextStyle(
-                                      color: Colors.white.withOpacity(0.8),
+                                      color: Color(0xFFF7F7F7).withOpacity(0.8),
                                       fontSize: 13, // Reduced from 14 to 13
                                     ),
                                   ),
@@ -471,7 +471,7 @@ class ExploreView extends GetView<ExploreController> {
                                       Get.toNamed('/book-reader', arguments: newBooks[index]);
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
+                                      backgroundColor: Color(0xFFF7F7F7),
                                       padding: EdgeInsets.symmetric(vertical: 8), // Reduced from 10 to 8
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(25),

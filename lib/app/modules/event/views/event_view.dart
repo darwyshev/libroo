@@ -54,7 +54,7 @@ class EventView extends StatelessWidget {
             child: IconButton(
               icon: Icon(
                 Icons.arrow_back_ios_new_rounded,
-                color: Colors.white,
+                color: Color(0xFFF7F7F7),
                 size: 20,
               ),
               onPressed: () => Get.back(),
@@ -64,7 +64,7 @@ class EventView extends StatelessWidget {
           Text(
             'Detail Event',
             style: TextStyle(
-              color: Colors.white,
+              color: Color(0xFFF7F7F7),
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -78,7 +78,7 @@ class EventView extends StatelessWidget {
             child: IconButton(
               icon: Icon(
                 Icons.share_outlined,
-                color: Colors.white,
+                color: Color(0xFFF7F7F7),
                 size: 22,
               ),
               onPressed: () {
@@ -113,7 +113,7 @@ class EventView extends StatelessWidget {
               width: 200,
               height: 200,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
+                color: Color(0xFFF7F7F7).withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
             ),
@@ -124,7 +124,7 @@ class EventView extends StatelessWidget {
             child: Icon(
               Icons.auto_stories_rounded,
               size: 120,
-              color: Colors.white.withOpacity(0.1),
+              color: Color(0xFFF7F7F7).withOpacity(0.1),
             ),
           ),
           // Content
@@ -137,7 +137,7 @@ class EventView extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Color(0xFFF7F7F7).withOpacity(0.2),
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Row(
@@ -145,14 +145,14 @@ class EventView extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.schedule_rounded,
-                        color: Colors.white,
+                        color: Color(0xFFF7F7F7),
                         size: 16,
                       ),
                       SizedBox(width: 8),
                       Text(
                         '15 Hari Tersisa',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xFFF7F7F7),
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
                         ),
@@ -164,7 +164,7 @@ class EventView extends StatelessWidget {
                 Text(
                   'Lomba Membaca Cepat',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFF7F7F7),
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
                   ),
@@ -173,7 +173,7 @@ class EventView extends StatelessWidget {
                 Text(
                   'Kompetisi membaca dengan hadiah jutaan rupiah!',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.9),
+                    color: Color(0xFFF7F7F7).withOpacity(0.9),
                     fontSize: 16,
                   ),
                 ),
@@ -198,7 +198,7 @@ class EventView extends StatelessWidget {
           Text(
             'Detail Event',
             style: TextStyle(
-              color: Colors.white,
+              color: Color(0xFFF7F7F7),
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -262,7 +262,7 @@ class EventView extends StatelessWidget {
               Text(
                 value,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFF7F7F7),
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
@@ -304,7 +304,7 @@ class EventView extends StatelessWidget {
               Text(
                 'Syarat & Ketentuan',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFF7F7F7),
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -329,7 +329,7 @@ class EventView extends StatelessWidget {
                       child: Text(
                         '${entry.key + 1}',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xFFF7F7F7),
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
@@ -341,7 +341,7 @@ class EventView extends StatelessWidget {
                     child: Text(
                       entry.value,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color(0xFFF7F7F7),
                         fontSize: 14,
                         height: 1.4,
                       ),
@@ -383,7 +383,7 @@ class EventView extends StatelessWidget {
               Text(
                 'Hadiah Pemenang',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFF7F7F7),
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -421,7 +421,7 @@ class EventView extends StatelessWidget {
                       Text(
                         prize['position']!,
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xFFF7F7F7),
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -475,7 +475,7 @@ class EventView extends StatelessWidget {
               Text(
                 'Timeline Event',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFF7F7F7),
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -525,7 +525,7 @@ class EventView extends StatelessWidget {
                         Text(
                           entry.value['event']!,
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Color(0xFFF7F7F7),
                             fontSize: 14,
                           ),
                         ),
@@ -574,14 +574,14 @@ class EventView extends StatelessWidget {
               children: [
                 Icon(
                   Icons.rocket_launch_rounded,
-                  color: Colors.white,
+                  color: Color(0xFFF7F7F7),
                   size: 24,
                 ),
                 SizedBox(width: 12),
                 Text(
                   'Ikut Lomba Sekarang',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFF7F7F7),
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -622,7 +622,7 @@ class EventView extends StatelessWidget {
               Text(
                 'Bergabung dengan Lomba?',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFF7F7F7),
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -678,7 +678,7 @@ class EventView extends StatelessWidget {
                       child: Text(
                         'Ya, Gabung!',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xFFF7F7F7),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -721,7 +721,7 @@ class EventView extends StatelessWidget {
               Text(
                 'Berhasil Bergabung!',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFF7F7F7),
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -754,7 +754,7 @@ class EventView extends StatelessWidget {
                   child: Text(
                     'Mulai Membaca',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFFF7F7F7),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -793,7 +793,7 @@ class EventView extends StatelessWidget {
             Text(
               'Bagikan Event',
               style: TextStyle(
-                color: Colors.white,
+                color: Color(0xFFF7F7F7),
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -822,7 +822,7 @@ class EventView extends StatelessWidget {
           'Berhasil!',
           'Event berhasil dibagikan ke $label',
           backgroundColor: Color(0xFF2A2E43),
-          colorText: Colors.white,
+          colorText: Color(0xFFF7F7F7),
           snackPosition: SnackPosition.BOTTOM,
         );
       },
@@ -844,7 +844,7 @@ class EventView extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              color: Colors.white,
+              color: Color(0xFFF7F7F7),
               fontSize: 12,
             ),
           ),

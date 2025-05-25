@@ -63,7 +63,7 @@ class BookDetailController extends GetxController {
           ? 'Buku berhasil ditambahkan ke daftar bookmark Anda'
           : 'Buku berhasil dihapus dari daftar bookmark Anda',
       backgroundColor: Color(0xFF2A2E43),
-      colorText: Colors.white,
+      colorText: Color(0xFFF7F7F7),
       snackPosition: SnackPosition.BOTTOM,
       margin: EdgeInsets.all(16),
       borderRadius: 8,
@@ -81,12 +81,12 @@ class BookDetailController extends GetxController {
         'Buku Tidak Tersedia',
         'Maaf, buku sedang dipinjam semua. Silakan coba lagi nanti.',
         backgroundColor: Colors.red.shade600,
-        colorText: Colors.white,
+        colorText: Color(0xFFF7F7F7),
         snackPosition: SnackPosition.BOTTOM,
         margin: EdgeInsets.all(16),
         borderRadius: 8,
         duration: Duration(seconds: 2),
-        icon: Icon(Icons.error, color: Colors.white),
+        icon: Icon(Icons.error, color: Color(0xFFF7F7F7)),
       );
       return;
     }
@@ -96,7 +96,7 @@ class BookDetailController extends GetxController {
         backgroundColor: Color(0xFF2A2E43),
         title: Text(
           'Konfirmasi Peminjaman',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Color(0xFFF7F7F7), fontWeight: FontWeight.bold),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -104,12 +104,12 @@ class BookDetailController extends GetxController {
           children: [
             Text(
               'Yakin ingin meminjam buku "${bookData.value['title']}"?',
-              style: TextStyle(color: Colors.white70),
+              style: TextStyle(color: Color(0xFFF7F7F7)),
             ),
             SizedBox(height: 16),
             Text(
               'Pilih tanggal pengembalian:',
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+              style: TextStyle(color: Color(0xFFF7F7F7), fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 8),
             Container(
@@ -131,7 +131,7 @@ class BookDetailController extends GetxController {
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: Text('Batal', style: TextStyle(color: Colors.white70)),
+            child: Text('Batal', style: TextStyle(color: Color(0xFFF7F7F7)),),
           ),
           ElevatedButton(
             onPressed: () {
@@ -141,7 +141,7 @@ class BookDetailController extends GetxController {
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF6E40F3),
             ),
-            child: Text('Pinjam', style: TextStyle(color: Colors.white)),
+            child: Text('Pinjam', style: TextStyle(color: Color(0xFFF7F7F7))),
           ),
         ],
       ),
@@ -186,7 +186,7 @@ class BookDetailController extends GetxController {
       'Peminjaman Berhasil',
       'Buku berhasil dipinjam. Silakan tunjukkan QR Code ke petugas perpustakaan.',
       backgroundColor: Color(0xFF2A2E43),
-      colorText: Colors.white,
+      colorText: Color(0xFFF7F7F7),
       snackPosition: SnackPosition.BOTTOM,
       margin: EdgeInsets.all(16),
       borderRadius: 8,
@@ -212,7 +212,7 @@ class BookDetailController extends GetxController {
         backgroundColor: Color(0xFF2A2E43),
         title: Text(
           'QR Code Peminjaman',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Color(0xFFF7F7F7), fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
         content: Column(
@@ -222,7 +222,7 @@ class BookDetailController extends GetxController {
               width: 200,
               height: 200,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xFFF7F7F7),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
@@ -246,7 +246,7 @@ class BookDetailController extends GetxController {
             SizedBox(height: 16),
             Text(
               'Tunjukkan QR Code ini ke petugas perpustakaan',
-              style: TextStyle(color: Colors.white70, fontSize: 12),
+              style: TextStyle(color: Color(0xFFF7F7F7), fontSize: 12),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 8),
@@ -263,7 +263,7 @@ class BookDetailController extends GetxController {
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF6E40F3),
             ),
-            child: Text('Tutup', style: TextStyle(color: Colors.white)),
+            child: Text('Tutup', style: TextStyle(color: Color(0xFFF7F7F7))),
           ),
         ],
       ),
@@ -278,12 +278,12 @@ class BookDetailController extends GetxController {
         'Belum Meminjam',
         'Anda belum meminjam buku ini. Silakan pinjam terlebih dahulu.',
         backgroundColor: Colors.orange.shade600,
-        colorText: Colors.white,
+        colorText: Color(0xFFF7F7F7),
         snackPosition: SnackPosition.BOTTOM,
         margin: EdgeInsets.all(16),
         borderRadius: 8,
         duration: Duration(seconds: 2),
-        icon: Icon(Icons.info, color: Colors.white),
+        icon: Icon(Icons.info, color: Color(0xFFF7F7F7)),
       );
     }
   }
@@ -297,7 +297,7 @@ class BookDetailController extends GetxController {
       'Berbagi Buku',
       'Link buku telah disalin ke clipboard',
       backgroundColor: Color(0xFF2A2E43),
-      colorText: Colors.white,
+      colorText: Color(0xFFF7F7F7),
       snackPosition: SnackPosition.BOTTOM,
       margin: EdgeInsets.all(16),
       borderRadius: 8,
@@ -317,14 +317,14 @@ class BookDetailController extends GetxController {
         backgroundColor: Color(0xFF2A2E43),
         title: Text(
           'Beri Rating',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Color(0xFFF7F7F7), fontWeight: FontWeight.bold),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               'Bagaimana pendapat Anda tentang buku ini?',
-              style: TextStyle(color: Colors.white70),
+              style: TextStyle(color: Color(0xFFF7F7F7)),
             ),
             SizedBox(height: 16),
             StatefulBuilder(
@@ -353,7 +353,7 @@ class BookDetailController extends GetxController {
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: Text('Batal', style: TextStyle(color: Colors.white70)),
+            child: Text('Batal', style: TextStyle(color: Color(0xFFF7F7F7))),
           ),
           ElevatedButton(
             onPressed: () {
@@ -365,7 +365,7 @@ class BookDetailController extends GetxController {
                 'Rating Tersimpan',
                 'Terima kasih atas rating Anda!',
                 backgroundColor: Color(0xFF2A2E43),
-                colorText: Colors.white,
+                colorText: Color(0xFFF7F7F7),
                 snackPosition: SnackPosition.BOTTOM,
                 margin: EdgeInsets.all(16),
                 borderRadius: 8,
@@ -376,7 +376,7 @@ class BookDetailController extends GetxController {
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF6E40F3),
             ),
-            child: Text('Simpan', style: TextStyle(color: Colors.white)),
+            child: Text('Simpan', style: TextStyle(color: Color(0xFFF7F7F7))),
           ),
         ],
       ),

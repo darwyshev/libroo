@@ -75,7 +75,7 @@ class IntroView extends GetView<IntroController> {
                         Text(
                           introData[index]['title']!,
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Color(0xFFF7F7F7),
                             fontSize: 26,
                             fontWeight: FontWeight.bold,
                           ),
@@ -104,7 +104,7 @@ class IntroView extends GetView<IntroController> {
                                   height: 8,
                                   decoration: BoxDecoration(
                                     color: controller.currentPage.value == i
-                                        ? Colors.white
+                                        ? Color(0xFFF7F7F7)
                                         : Colors.white24,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
@@ -119,7 +119,7 @@ class IntroView extends GetView<IntroController> {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0xFF6E40F3),
-                                  foregroundColor: Colors.white,
+                                  foregroundColor: Color(0xFFF7F7F7),
                                   padding: const EdgeInsets.symmetric(vertical: 16),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),

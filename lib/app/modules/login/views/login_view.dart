@@ -37,7 +37,7 @@ class _LoginViewState extends State<LoginView> {
         "Login", 
         "Berhasil login",
         backgroundColor: Colors.green,
-        colorText: Colors.white,
+        colorText: Color(0xFFF7F7F7),
       );
       
       // Navigasi ke halaman home
@@ -58,17 +58,17 @@ class _LoginViewState extends State<LoginView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Masuk", style: TextStyle(fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold)),
+            Text("Masuk", style: TextStyle(fontSize: 28, color: Color(0xFFF7F7F7), fontWeight: FontWeight.bold)),
             SizedBox(height: 32),
 
             TextField(
               controller: emailOrUsernameController,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Color(0xFFF7F7F7)),
               decoration: InputDecoration(
                 labelText: 'Email atau Username',
                 labelStyle: TextStyle(color: Colors.white70),
                 enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white38)),
-                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xFFF7F7F7))),
               ),
             ),
 
@@ -77,12 +77,12 @@ class _LoginViewState extends State<LoginView> {
             TextField(
               controller: passwordController,
               obscureText: _obscurePassword,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Color(0xFFF7F7F7)),
               decoration: InputDecoration(
                 labelText: 'Password',
                 labelStyle: TextStyle(color: Colors.white70),
                 enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white38)),
-                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xFFF7F7F7))),
                 suffixIcon: IconButton(
                   icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility, color: Colors.white54),
                   onPressed: togglePasswordVisibility,
@@ -100,8 +100,8 @@ class _LoginViewState extends State<LoginView> {
                 disabledBackgroundColor: Color(0xFF6E40F3).withOpacity(0.5),
               ),
               child: _isLoading
-                  ? CircularProgressIndicator(color: Colors.white)
-                  : Text("Masuk", style: TextStyle(color: Colors.white)),
+                  ? CircularProgressIndicator(color: Color(0xFFF7F7F7))
+                  : Text("Masuk", style: TextStyle(color: Color(0xFFF7F7F7))),
             ),
 
             SizedBox(height: 20),
@@ -112,7 +112,7 @@ class _LoginViewState extends State<LoginView> {
                 Text("Belum punya akun? ", style: TextStyle(color: Colors.white70)),
                 GestureDetector(
                   onTap: toRegister,
-                  child: Text("Daftar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                  child: Text("Daftar", style: TextStyle(color: Color(0xFFF7F7F7), fontWeight: FontWeight.bold)),
                 )
               ],
             )

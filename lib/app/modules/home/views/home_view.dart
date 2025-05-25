@@ -43,7 +43,7 @@ class HomeView extends GetView<HomeController> {
           Text(
             'Libroo',
             style: TextStyle(
-              color: Colors.white,
+              color: Color(0xFFF7F7F7),
               fontSize: 28,
               fontWeight: FontWeight.bold,
             ),
@@ -56,7 +56,7 @@ class HomeView extends GetView<HomeController> {
             child: IconButton(
               icon: Icon(
                 Icons.notifications_outlined,
-                color: Colors.white,
+                color: Color(0xFFF7F7F7),
                 size: 26,
               ),
               onPressed: () {
@@ -101,13 +101,13 @@ class HomeView extends GetView<HomeController> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Color(0xFFF7F7F7).withOpacity(0.2),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
                     'Terbaru',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFFF7F7F7),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -116,7 +116,7 @@ class HomeView extends GetView<HomeController> {
                 Text(
                   'Lomba Membaca Cepat',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFF7F7F7),
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -125,7 +125,7 @@ class HomeView extends GetView<HomeController> {
                 Text(
                   'Ikuti lomba membaca cepat dan dapatkan hadiah menarik!',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
+                    color: Color(0xFFF7F7F7).withOpacity(0.8),
                     fontSize: 16,
                   ),
                 ),
@@ -137,12 +137,12 @@ class HomeView extends GetView<HomeController> {
                       Text(
                         'Info Lebih Lanjut',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xFFF7F7F7),
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Icon(Icons.arrow_forward_rounded, color: Colors.white),
+                      Icon(Icons.arrow_forward_rounded, color: Color(0xFFF7F7F7)),
                     ],
                   ),
                 ),
@@ -206,7 +206,7 @@ class HomeView extends GetView<HomeController> {
         Text(
           'Rekomendasi Buku',
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFFF7F7F7),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -234,7 +234,7 @@ class HomeView extends GetView<HomeController> {
                         width: 150,
                         height: 150,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
+                          color: Color(0xFFF7F7F7).withOpacity(0.1),
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -291,7 +291,7 @@ class HomeView extends GetView<HomeController> {
                                   child: Text(
                                     books[index]['title'],
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: Color(0xFFF7F7F7),
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -303,7 +303,7 @@ class HomeView extends GetView<HomeController> {
                                 Text(
                                   'by ${books[index]['author']}',
                                   style: TextStyle(
-                                    color: Colors.white.withOpacity(0.8),
+                                    color: Color(0xFFF7F7F7).withOpacity(0.8),
                                     fontSize: 14,
                                   ),
                                 ),
@@ -316,7 +316,7 @@ class HomeView extends GetView<HomeController> {
                                     );
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.white,
+                                    backgroundColor: Color(0xFFF7F7F7),
                                     padding: EdgeInsets.symmetric(vertical: 10),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(25),
@@ -352,7 +352,7 @@ class HomeView extends GetView<HomeController> {
       'Berhasil Ditandai!',
       'Buku "$bookTitle" telah ditambahkan ke daftar bookmark Anda',
       backgroundColor: Color(0xFF2A2E43),
-      colorText: Colors.white,
+      colorText: Color(0xFFF7F7F7),
       snackPosition: SnackPosition.BOTTOM,
       margin: EdgeInsets.all(16),
       borderRadius: 8,
@@ -437,7 +437,7 @@ class HomeView extends GetView<HomeController> {
         Text(
           'Buku Terbaik',
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFFF7F7F7),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -507,7 +507,7 @@ class HomeView extends GetView<HomeController> {
                         Text(
                           book['title'],
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Color(0xFFF7F7F7),
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -529,7 +529,7 @@ class HomeView extends GetView<HomeController> {
                             Text(
                               book['rating'],
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Color(0xFFF7F7F7),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -553,7 +553,7 @@ class HomeView extends GetView<HomeController> {
                 child: Text(
                   'BEST CHOICE',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFF7F7F7),
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
                   ),

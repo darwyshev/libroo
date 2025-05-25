@@ -66,19 +66,19 @@ class BookDetailView extends GetView<BookDetailController> {
       pinned: true,
       backgroundColor: Color(0xFF1F2334),
       leading: IconButton(
-        icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+        icon: Icon(Icons.arrow_back_ios, color: Color(0xFFF7F7F7)),
         onPressed: () => Get.back(),
       ),
       actions: [
         Obx(() => IconButton(
           icon: Icon(
             controller.isBookmarked.value ? Icons.bookmark : Icons.bookmark_border,
-            color: controller.isBookmarked.value ? Color(0xFF6E40F3) : Colors.white,
+            color: controller.isBookmarked.value ? Color(0xFF6E40F3) : Color(0xFFF7F7F7),
           ),
           onPressed: controller.toggleBookmark,
         )),
         IconButton(
-          icon: Icon(Icons.share, color: Colors.white),
+          icon: Icon(Icons.share, color: Color(0xFFF7F7F7)),
           onPressed: controller.shareBook,
         ),
       ],
@@ -134,7 +134,7 @@ class BookDetailView extends GetView<BookDetailController> {
         Text(
           book['title'] ?? 'Judul Buku',
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFFF7F7F7),
             fontSize: 28,
             fontWeight: FontWeight.bold,
           ),
@@ -155,7 +155,7 @@ class BookDetailView extends GetView<BookDetailController> {
             Text(
               book['rating']?.toString() ?? '4.5',
               style: TextStyle(
-                color: Colors.white,
+                color: Color(0xFFF7F7F7),
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -244,7 +244,7 @@ class BookDetailView extends GetView<BookDetailController> {
               Text(
                 '${controller.availableStock.value}/${controller.totalStock.value}',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFF7F7F7),
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
@@ -309,7 +309,7 @@ class BookDetailView extends GetView<BookDetailController> {
                   controller.isCurrentUserBorrowing.value
                       ? Icons.check
                       : Icons.library_books,
-                  color: Colors.white,
+                  color: Color(0xFFF7F7F7),
                 ),
                 SizedBox(width: 8),
                 Text(
@@ -317,7 +317,7 @@ class BookDetailView extends GetView<BookDetailController> {
                       ? 'Sudah Dipinjam'
                       : 'Pinjam',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFF7F7F7),
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -351,7 +351,7 @@ class BookDetailView extends GetView<BookDetailController> {
         Text(
           'Rating & Ulasan',
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFFF7F7F7),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -371,7 +371,7 @@ class BookDetailView extends GetView<BookDetailController> {
                     Text(
                       book['rating']?.toString() ?? '4.5',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color(0xFFF7F7F7),
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
                       ),
@@ -457,12 +457,12 @@ class BookDetailView extends GetView<BookDetailController> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.star, color: Colors.white, size: 18),
+                              Icon(Icons.star, color: Color(0xFFF7F7F7), size: 18),
                               SizedBox(width: 8),
                               Text(
                                 'Beri Rating',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Color(0xFFF7F7F7),
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -489,7 +489,7 @@ class BookDetailView extends GetView<BookDetailController> {
         Text(
           'Deskripsi',
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFFF7F7F7),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -549,7 +549,7 @@ class BookDetailView extends GetView<BookDetailController> {
           Text(
             'Informasi Buku',
             style: TextStyle(
-              color: Colors.white,
+              color: Color(0xFFF7F7F7),
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -622,7 +622,7 @@ class BookDetailView extends GetView<BookDetailController> {
         Text(
           value,
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFFF7F7F7),
             fontSize: 14,
             fontWeight: FontWeight.bold,
           ),
@@ -659,7 +659,7 @@ class BookDetailView extends GetView<BookDetailController> {
         Text(
           'Buku Serupa',
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFFF7F7F7),
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -704,7 +704,7 @@ class BookDetailView extends GetView<BookDetailController> {
                     Text(
                       book['title']!,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color(0xFFF7F7F7),
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
@@ -729,7 +729,7 @@ class BookDetailView extends GetView<BookDetailController> {
                         Text(
                           book['rating']!,
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Color(0xFFF7F7F7),
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
                           ),

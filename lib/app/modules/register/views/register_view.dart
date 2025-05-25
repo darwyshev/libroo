@@ -55,8 +55,8 @@ class _RegisterViewState extends State<RegisterView> {
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
               primary: Color(0xFF6E40F3),
-              onPrimary: Colors.white,
-              surface: Colors.white,
+              onPrimary: Color(0xFFF7F7F7),
+              surface: Color(0xFFF7F7F7),
               onSurface: Color(0xFF1F2334),
             ),
           ),
@@ -162,7 +162,7 @@ class _RegisterViewState extends State<RegisterView> {
     return TextFormField(
       controller: controller,
       obscureText: isPassword ? _obscurePassword : false,
-      style: TextStyle(color: Colors.white),
+      style: TextStyle(color: Color(0xFFF7F7F7)),
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(color: Colors.white70),
@@ -185,7 +185,7 @@ class _RegisterViewState extends State<RegisterView> {
           borderSide: BorderSide(color: Colors.white38),
         ),
         focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: Color(0xFFF7F7F7)),
         ),
       ),
       validator: (value) {
@@ -212,10 +212,10 @@ class _RegisterViewState extends State<RegisterView> {
         minimumSize: Size(double.infinity, 50),
       ),
       child: _isLoading && text == 'Lanjut' && _currentPage == 2
-          ? CircularProgressIndicator(color: Colors.white)
+          ? CircularProgressIndicator(color: Color(0xFFF7F7F7))
           : Text(
               text,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Color(0xFFF7F7F7)),
             ),
     );
   }
@@ -231,13 +231,13 @@ class _RegisterViewState extends State<RegisterView> {
       value: value,
       dropdownColor: Color(0xFF23263A),
       hint: Text(hint, style: TextStyle(color: Colors.white70)),
-      style: TextStyle(color: Colors.white),
+      style: TextStyle(color: Color(0xFFF7F7F7)),
       decoration: InputDecoration(
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white38),
         ),
         focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: Color(0xFFF7F7F7)),
         ),
       ),
       items:
@@ -247,7 +247,7 @@ class _RegisterViewState extends State<RegisterView> {
                   value: item,
                   child: Text(
                     '$prefix $item',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Color(0xFFF7F7F7))
                   ),
                 ),
               )
@@ -283,7 +283,7 @@ class _RegisterViewState extends State<RegisterView> {
                               "Daftar",
                               style: TextStyle(
                                 fontSize: 28,
-                                color: Colors.white,
+                                color: Color(0xFFF7F7F7),
                                 fontWeight: FontWeight.bold
                               ),
                             ),
@@ -323,7 +323,7 @@ class _RegisterViewState extends State<RegisterView> {
                                   child: Text(
                                     'Masuk',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: Color(0xFFF7F7F7),
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -346,7 +346,7 @@ class _RegisterViewState extends State<RegisterView> {
                               "Profil Siswa",
                               style: TextStyle(
                                 fontSize: 28,
-                                color: Colors.white,
+                                color: Color(0xFFF7F7F7),
                                 fontWeight: FontWeight.bold
                               ),
                             ),
@@ -367,7 +367,7 @@ class _RegisterViewState extends State<RegisterView> {
                                       ),
                                       child: CircleAvatar(
                                         radius: 60,
-                                        backgroundColor: Colors.white,
+                                        backgroundColor: Color(0xFFF7F7F7),
                                         backgroundImage:
                                             _profileImage != null
                                                 ? FileImage(_profileImage!)
@@ -393,7 +393,7 @@ class _RegisterViewState extends State<RegisterView> {
                                         ),
                                         child: Icon(
                                           Icons.camera_alt,
-                                          color: Colors.white,
+                                          color: Color(0xFFF7F7F7),
                                           size: 20,
                                         ),
                                       ),
@@ -441,7 +441,7 @@ class _RegisterViewState extends State<RegisterView> {
                                           ? 'Pilih Tanggal Lahir'
                                           : '${birthDate!.day}/${birthDate!.month}/${birthDate!.year}',
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: Color(0xFFF7F7F7),
                                         fontSize: 16,
                                       ),
                                     ),
@@ -467,7 +467,7 @@ class _RegisterViewState extends State<RegisterView> {
                               "Data Kelas",
                               style: TextStyle(
                                 fontSize: 28,
-                                color: Colors.white,
+                                color: Color(0xFFF7F7F7),
                                 fontWeight: FontWeight.bold
                               ),
                             ),

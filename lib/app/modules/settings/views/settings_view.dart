@@ -169,7 +169,7 @@ class SettingsView extends GetView<SettingsController> {
                   ),
                 ),
                 subtitle: Text(
-                  'Ubah nama, email, dan foto profil',
+                  'Ubah username dan email',
                   style: TextStyle(
                     color: Color(0xFFF7F7F7).withOpacity(0.7),
                     fontSize: 14,
@@ -597,7 +597,7 @@ class SettingsView extends GetView<SettingsController> {
                 controller: nameController,
                 style: TextStyle(color: Color(0xFFF7F7F7)),
                 decoration: InputDecoration(
-                  labelText: 'Nama',
+                  labelText: 'Username',
                   labelStyle: TextStyle(color: Color(0xFFF7F7F7).withOpacity(0.7)),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xFF6E40F3)),

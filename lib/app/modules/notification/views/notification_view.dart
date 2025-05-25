@@ -13,13 +13,13 @@ class NotificationView extends GetView<NotificationController> {
         backgroundColor: Color(0xFF1F2334),
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: Icon(Icons.arrow_back_ios, color: Color(0xFFF7F7F7)),
           onPressed: () => Get.back(),
         ),
         title: Text(
           'Notifikasi',
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFFF7F7F7),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -125,7 +125,7 @@ class NotificationView extends GetView<NotificationController> {
                           child: Text(
                             notification['title'],
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Color(0xFFF7F7F7),
                               fontSize: 16,
                               fontWeight: isRead ? FontWeight.w500 : FontWeight.bold,
                             ),
@@ -186,9 +186,9 @@ class NotificationView extends GetView<NotificationController> {
                       value: 'mark_read',
                       child: Row(
                         children: [
-                          Icon(Icons.check, color: Colors.white, size: 18),
+                          Icon(Icons.check, color: Color(0xFFF7F7F7), size: 18),
                           SizedBox(width: 8),
-                          Text('Tandai Dibaca', style: TextStyle(color: Colors.white)),
+                          Text('Tandai Dibaca', style: TextStyle(color: Color(0xFFF7F7F7))),
                         ],
                       ),
                     ),

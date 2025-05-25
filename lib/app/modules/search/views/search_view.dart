@@ -52,7 +52,7 @@ class SearchView extends StatelessWidget {
       child: Row(
         children: [
           IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
+            icon: Icon(Icons.arrow_back, color: Color(0xFFF7F7F7)),
             onPressed: () => Get.back(),
           ),
           SizedBox(width: 8),
@@ -66,7 +66,7 @@ class SearchView extends StatelessWidget {
               child: TextField(
                 controller: searchTextController,
                 autofocus: true,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Color(0xFFF7F7F7)),
                 decoration: InputDecoration(
                   hintText: 'Cari buku, penulis, atau kategori...',
                   hintStyle: TextStyle(color: Colors.white54),
@@ -116,7 +116,7 @@ class SearchView extends StatelessWidget {
                       Text(
                         'Pencarian Terakhir',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xFFF7F7F7),
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -150,7 +150,7 @@ class SearchView extends StatelessWidget {
           Text(
             'Pencarian Populer',
             style: TextStyle(
-              color: Colors.white,
+              color: Color(0xFFF7F7F7),
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -171,7 +171,7 @@ class SearchView extends StatelessWidget {
           Text(
             'Cari berdasarkan Kategori',
             style: TextStyle(
-              color: Colors.white,
+              color: Color(0xFFF7F7F7),
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -199,7 +199,7 @@ class SearchView extends StatelessWidget {
               },
               child: Text(
                 query,
-                style: TextStyle(color: Colors.white, fontSize: 16),
+                style: TextStyle(color: Color(0xFFF7F7F7), fontSize: 16),
               ),
             ),
           ),
@@ -279,7 +279,7 @@ class SearchView extends StatelessWidget {
               child: Text(
                 categories[index],
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFF7F7F7),
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
                 ),
@@ -326,7 +326,7 @@ class SearchView extends StatelessWidget {
           Text(
             'Tidak ada hasil untuk "$query"',
             style: TextStyle(
-              color: Colors.white,
+              color: Color(0xFFF7F7F7),
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -410,7 +410,7 @@ class SearchView extends StatelessWidget {
                   Text(
                     book['title'],
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFFF7F7F7),
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -450,7 +450,7 @@ class SearchView extends StatelessWidget {
                           Text(
                             book['rating'],
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Color(0xFFF7F7F7),
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
