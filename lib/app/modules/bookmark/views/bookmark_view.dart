@@ -62,7 +62,7 @@ class BookmarkView extends GetView<BookmarkController> {
               ),
               onPressed: () {
                 // Navigate to search bookmarks
-                Get.toNamed('/search-bookmarks');
+                Get.toNamed('/search');
               },
             ),
           ),

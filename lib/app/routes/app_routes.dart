@@ -18,6 +18,7 @@ abstract class Routes {
   static const LOAN_HISTORY = _Paths.LOAN_HISTORY;
   static const HELP = _Paths.HELP;
   static const CATEGORY = _Paths.CATEGORY;
+  static const SEARCH = _Paths.SEARCH;
 }
 
 abstract class _Paths {
@@ -37,4 +38,5 @@ abstract class _Paths {
   static const LOAN_HISTORY = '/loan-history';
   static const HELP = '/help';
   static const CATEGORY = '/category';
+  static const SEARCH = '/search';
 }

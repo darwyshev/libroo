@@ -26,6 +26,8 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/search/bindings/search_binding.dart';
+import '../modules/search/views/search_view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
 import '../widgets/splash.dart';
@@ -111,6 +113,11 @@ class AppPages {
       name: _Paths.CATEGORY,
       page: () => const CategoryView(),
       binding: CategoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH,
+      page: () => const SearchView(),
+      binding: SearchBinding(),
     ),
   ];
 }
