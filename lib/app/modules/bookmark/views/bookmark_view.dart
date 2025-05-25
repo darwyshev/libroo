@@ -281,7 +281,7 @@ class BookmarkView extends GetView<BookmarkController> {
                                         child: ElevatedButton(
                                           onPressed: () {
                                             // Navigate to book reader
-                                            Get.toNamed('/book-reader', arguments: recentBooks[index]);
+                                            Get.toNamed('/book-detail', arguments: recentBooks[index]);
                                           },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: Color(0xFFF7F7F7),

@@ -110,17 +110,26 @@ class SearchController extends GetxController {
       'year': '2024',
       'description': 'Kisah tentang janji yang terucap dan konsekuensinya.',
     },
+    {
+      'title': 'Laut Bercerita',
+      'author': 'Leila S. Chudori',
+      'rating': '4.8',
+      'image': 'assets/book/cover-laut-bercerita.webp',
+      'category': 'Kesusastraan',
+      'year': '2024',
+      'description': 'Novel yang mengisahkan hubungan manusia dengan laut.',
+    },
   ];
 
   final List<String> popularSearches = [
     'Tere Liye',
     'Novel fantasi',
     'Kesusastraan',
-    'Buku baru 2024',
-    'Romance',
+    'Laut Bercerita',
+    'Bumi',
     'Science fiction',
     'Psikologi',
-    'Sejarah Indonesia',
+    'Sagaras',
   ];
 
   @override
