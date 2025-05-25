@@ -229,12 +229,12 @@ class BookDetailController extends GetxController {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.qr_code, size: 100, color: Colors.black),
+                    Icon(Icons.qr_code, size: 100, color: Color(0xFF121212)),
                     SizedBox(height: 8),
                     Text(
                       borrowInfo['qrId']!,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Color(0xFF121212),
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),
