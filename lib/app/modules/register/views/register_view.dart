@@ -56,8 +56,8 @@ class _RegisterViewState extends State<RegisterView> {
             colorScheme: ColorScheme.light(
               primary: Color(0xFF6E40F3),
               onPrimary: Color(0xFFF7F7F7),
-              surface: Color(0xFFF7F7F7),
-              onSurface: Color(0xFF1F2334),
+              surface: Color(0xFF1F2334),
+              onSurface: Color(0xFFF7F7F7),
             ),
           ),
           child: child!,
