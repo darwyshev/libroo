@@ -18,6 +18,8 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/settings/bindings/settings_binding.dart';
+import '../modules/settings/views/settings_view.dart';
 import '../widgets/splash.dart';
 
 part 'app_routes.dart';
@@ -76,6 +78,11 @@ class AppPages {
       name: _Paths.BOOK_DETAIL,
       page: () => const BookDetailView(),
       binding: BookDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETTINGS,
+      page: () => const SettingsView(),
+      binding: SettingsBinding(),
     ),
   ];
 }
