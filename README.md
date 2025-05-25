@@ -227,7 +227,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
+- **Your Name** - *Initial work* - [YourGitHub](https://github.com/darwyshev)
 
 ## 🙏 Acknowledgments
 
@@ -241,7 +241,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you have any questions or need support, please reach out:
 
 - Email: your.email@example.com
-- GitHub Issues: [Create an issue](https://github.com/yourusername/libroo/issues)
+- GitHub Issues: [Create an issue](https://github.com/darwyshev/libroo/issues)
 
 ---
 
