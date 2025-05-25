@@ -23,7 +23,9 @@ class CategoryView extends GetView<CategoryController> {
                     ),
                   );
                 }
-                return _buildBooksList();
+                return controller.isGridView.value 
+                  ? _buildBooksGrid() 
+                  : _buildBooksList();
               }),
             ),
           ],
@@ -135,7 +137,7 @@ class CategoryView extends GetView<CategoryController> {
                         ),
                         SizedBox(height: 4),
                         Obx(() => Text(
-                          '${controller.categoryBooks.length} buku tersedia',
+                          '${controller.filteredBooks.length} buku tersedia',
                           style: TextStyle(
                             color: Colors.white70,
                             fontSize: 14,
@@ -235,7 +237,7 @@ class CategoryView extends GetView<CategoryController> {
                 ),
               ),
               SizedBox(width: 12),
-              Container(
+              Obx(() => Container(
                 decoration: BoxDecoration(
                   color: Color(0xFF2A2E43),
                   borderRadius: BorderRadius.circular(12),
@@ -243,14 +245,16 @@ class CategoryView extends GetView<CategoryController> {
                 ),
                 child: IconButton(
                   icon: Icon(
-                    Icons.grid_view_rounded,
+                    controller.isGridView.value 
+                      ? Icons.grid_view_rounded 
+                      : Icons.view_list_rounded,
                     color: Color(0xFF6E40F3),
                   ),
                   onPressed: () {
-                    // Toggle view mode
+                    controller.toggleViewMode();
                   },
                 ),
-              ),
+              )),
             ],
           ),
         ],
@@ -258,25 +262,37 @@ class CategoryView extends GetView<CategoryController> {
     );
   }
 
-  Widget _buildBooksList() {
+  Widget _buildBooksGrid() {
     return Padding(
       padding: EdgeInsets.all(16),
-      child: GridView.builder(
+      child: Obx(() => GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
           childAspectRatio: 0.45,
         ),
-        itemCount: controller.categoryBooks.length,
+        itemCount: controller.filteredBooks.length,
         itemBuilder: (context, index) {
-          return _buildBookCard(controller.categoryBooks[index]);
+          return _buildBookGridCard(controller.filteredBooks[index]);
         },
-      ),
+      )),
     );
   }
 
-  Widget _buildBookCard(Map<String, dynamic> book) {
+  Widget _buildBooksList() {
+    return Padding(
+      padding: EdgeInsets.all(16),
+      child: Obx(() => ListView.builder(
+        itemCount: controller.filteredBooks.length,
+        itemBuilder: (context, index) {
+          return _buildBookListCard(controller.filteredBooks[index]);
+        },
+      )),
+    );
+  }
+
+  Widget _buildBookGridCard(Map<String, dynamic> book) {
     return GestureDetector(
       onTap: () {
         Get.toNamed('/book-detail', arguments: book);
@@ -394,6 +410,143 @@ class CategoryView extends GetView<CategoryController> {
                     ),
                   ],
                 ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBookListCard(Map<String, dynamic> book) {
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed('/book-detail', arguments: book);
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 16),
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Color(0xFF2A2E43),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 8,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            // Book cover
+            Container(
+              width: 80,
+              height: 120,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  book['image'],
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            SizedBox(width: 16),
+            // Book info
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    book['title'],
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 6),
+                  Text(
+                    book['author'],
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 14,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                        size: 16,
+                      ),
+                      SizedBox(width: 4),
+                      Text(
+                        book['rating'],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 16),
+                      Text(
+                        '${book['pages']} hal',
+                        style: TextStyle(
+                          color: Colors.white54,
+                          fontSize: 12,
+                        ),
+                      ),
+                      Spacer(),
+                      Text(
+                        book['year'],
+                        style: TextStyle(
+                          color: Colors.white54,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Get.toNamed('/bookmark', arguments: book);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFF6E40F3),
+                            padding: EdgeInsets.symmetric(vertical: 8),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: Text(
+                            'Tandai',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 8),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white10,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],

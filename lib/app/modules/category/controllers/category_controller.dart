@@ -6,9 +6,13 @@ class CategoryController extends GetxController {
   
   // Observable list for books in this category
   final RxList<Map<String, dynamic>> categoryBooks = <Map<String, dynamic>>[].obs;
+  final RxList<Map<String, dynamic>> filteredBooks = <Map<String, dynamic>>[].obs;
   
   // Loading state
   final RxBool isLoading = false.obs;
+  
+  // View mode toggle (true = grid, false = list)
+  final RxBool isGridView = true.obs;
   
   // Filter options
   final RxString selectedFilter = 'Semua'.obs;
@@ -36,6 +40,7 @@ class CategoryController extends GetxController {
     
     Future.delayed(Duration(seconds: 1), () {
       categoryBooks.value = _getDummyBooks();
+      applyFiltersAndSort();
       isLoading.value = false;
     });
   }
@@ -49,6 +54,7 @@ class CategoryController extends GetxController {
         'image': 'assets/book/cover-donadona.webp',
         'year': '2005',
         'pages': '529',
+        'isPopular': true,
       },
       {
         'title': 'Laut Bercerita',
@@ -57,6 +63,7 @@ class CategoryController extends GetxController {
         'image': 'assets/book/cover-laut-bercerita.webp',
         'year': '2006',
         'pages': '342',
+        'isPopular': true,
       },
       {
         'title': 'Teman',
@@ -65,6 +72,7 @@ class CategoryController extends GetxController {
         'image': 'assets/book/cover-teman.webp',
         'year': '2003',
         'pages': '268',
+        'isPopular': false,
       },
       {
         'title': 'Hujan',
@@ -73,6 +81,7 @@ class CategoryController extends GetxController {
         'image': 'assets/book/cover-hujan.webp',
         'year': '2004',
         'pages': '418',
+        'isPopular': true,
       },
       {
         'title': '7 Prajurit Bapak',
@@ -81,6 +90,7 @@ class CategoryController extends GetxController {
         'image': 'assets/book/cover-7pb.webp',
         'year': '2009',
         'pages': '456',
+        'isPopular': false,
       },
       {
         'title': 'Dawn',
@@ -89,6 +99,7 @@ class CategoryController extends GetxController {
         'image': 'assets/book/cover-dawn.webp',
         'year': '2009',
         'pages': '423',
+        'isPopular': true,
       },
       {
         'title': 'Life at the Monster Apartment',
@@ -97,6 +108,7 @@ class CategoryController extends GetxController {
         'image': 'assets/book/cover-latma.webp',
         'year': '2010',
         'pages': '312',
+        'isPopular': false,
       },
       {
         'title': 'Border v1',
@@ -105,6 +117,7 @@ class CategoryController extends GetxController {
         'image': 'assets/book/cover-border.webp',
         'year': '2011',
         'pages': '289',
+        'isPopular': true,
       },
       {
         'title': 'Sesuk',
@@ -113,6 +126,7 @@ class CategoryController extends GetxController {
         'image': 'assets/book/cover-sesuk.webp',
         'year': '2012',
         'pages': '378',
+        'isPopular': false,
       },
       {
         'title': 'Rumah Untuk Alie',
@@ -121,6 +135,7 @@ class CategoryController extends GetxController {
         'image': 'assets/book/cover-rua.webp',
         'year': '2013',
         'pages': '450',
+        'isPopular': false,
       },
       {
         'title': "Yang Telah Lama Pergi",
@@ -129,6 +144,7 @@ class CategoryController extends GetxController {
         "image": "assets/book/cover-ytlp.webp",
         "year": "2014",
         "pages": "500",
+        "isPopular": true,
       },
       {
         "title": "Namaku Alam",
@@ -137,17 +153,64 @@ class CategoryController extends GetxController {
         "image": "assets/book/cover-na.webp",
         "year": "2015",
         "pages": "420",
+        "isPopular": true,
       }
     ];
   }
   
+  void toggleViewMode() {
+    isGridView.value = !isGridView.value;
+  }
+  
   void changeFilter(String filter) {
     selectedFilter.value = filter;
-    // Apply filter logic here
+    applyFiltersAndSort();
   }
   
   void changeSort(String sort) {
     selectedSort.value = sort;
-    // Apply sort logic here
+    applyFiltersAndSort();
+  }
+  
+  void applyFiltersAndSort() {
+    List<Map<String, dynamic>> books = List.from(categoryBooks);
+    
+    // Apply filters
+    switch (selectedFilter.value) {
+      case 'Terpopuler':
+        books = books.where((book) => book['isPopular'] == true).toList();
+        break;
+      case 'Rating Tinggi':
+        books = books.where((book) => double.parse(book['rating']) >= 4.6).toList();
+        break;
+      case 'Terbaru':
+        books = books.where((book) => int.parse(book['year']) >= 2010).toList();
+        break;
+      case 'Semua':
+      default:
+        // Show all books
+        break;
+    }
+    
+    // Apply sorting
+    switch (selectedSort.value) {
+      case 'Terbaru':
+        books.sort((a, b) => int.parse(b['year']).compareTo(int.parse(a['year'])));
+        break;
+      case 'Terlama':
+        books.sort((a, b) => int.parse(a['year']).compareTo(int.parse(b['year'])));
+        break;
+      case 'A-Z':
+        books.sort((a, b) => a['title'].toString().compareTo(b['title'].toString()));
+        break;
+      case 'Z-A':
+        books.sort((a, b) => b['title'].toString().compareTo(a['title'].toString()));
+        break;
+      case 'Rating':
+        books.sort((a, b) => double.parse(b['rating']).compareTo(double.parse(a['rating'])));
+        break;
+    }
+    
+    filteredBooks.value = books;
   }
 }

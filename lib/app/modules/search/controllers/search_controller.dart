@@ -74,6 +74,42 @@ class SearchController extends GetxController {
       'year': '2024',
       'description': 'Novel tentang perjuangan lingkungan hidup.',
     },
+    {
+      'title': 'Bumi',
+      'author': 'Tere Liye',
+      'rating': '4.9',
+      'image': 'assets/book/cover-bumi.webp',
+      'category': 'Kesusastraan',
+      'year': '2024',
+      'description': 'Novel yang mengisahkan petualangan di dunia paralel.',
+    },
+    {
+      'title': 'Hujan',
+      'author': 'Tere Liye',
+      'rating': '4.8',
+      'image': 'assets/book/cover-hujan.webp',
+      'category': 'Kesusastraan',
+      'year': '2024',
+      'description': 'Kisah cinta yang terhalang oleh takdir.',
+    },
+    {
+      'title': 'Sagaras',
+      'author': 'Tere Liye',
+      'rating': '4.7',
+      'image': 'assets/book/cover-sagaras.webp',
+      'category': 'Kesusastraan',
+      'year': '2024',
+      'description': 'Novel petualangan yang mengisahkan perjalanan melintasi lautan.',
+    },
+    {
+      'title': 'Janji',
+      'author': 'Tere Liye',
+      'rating': '4.6',
+      'image': 'assets/book/cover-janji.webp',
+      'category': 'Kesusastraan',
+      'year': '2024',
+      'description': 'Kisah tentang janji yang terucap dan konsekuensinya.',
+    },
   ];
 
   final List<String> popularSearches = [
