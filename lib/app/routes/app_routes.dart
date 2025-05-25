@@ -14,7 +14,6 @@ abstract class Routes {
   static const NOTIFICATION = _Paths.NOTIFICATION;
   static const BOOK_DETAIL = _Paths.BOOK_DETAIL;
   static const SETTINGS = _Paths.SETTINGS;
-  static const LOAN_HISTORY = _Paths.LOAN_HISTORY;
   static const ACHIEVEMENT = _Paths.ACHIEVEMENT;
 }
 
