@@ -140,6 +140,7 @@ class SettingsController extends GetxController {
       title: 'Hapus Akun',
       titleStyle: TextStyle(color: Color(0xFFF7F7F7)),
       backgroundColor: Color(0xFF2A2E43),
+      contentPadding: EdgeInsets.all(15),
       middleText: 'Apakah kamu yakin ingin menghapus akun? Tindakan ini tidak dapat dibatalkan.',
       middleTextStyle: TextStyle(color: Color(0xFFF7F7F7)),
       textCancel: 'Batal',
@@ -208,6 +209,7 @@ class SettingsController extends GetxController {
       title: 'Logout',
       titleStyle: TextStyle(color: Color(0xFFF7F7F7)),
       backgroundColor: Color(0xFF2A2E43),
+      contentPadding: EdgeInsets.all(20),
       middleText: 'Apakah kamu yakin ingin keluar dari akun?',
       middleTextStyle: TextStyle(color: Color(0xFFF7F7F7)),
       textCancel: 'Batal',
@@ -226,7 +228,6 @@ class SettingsController extends GetxController {
     );
   }
 
-  // Pay fine
   void payFine() {
     if (totalFine.value > 0) {
       Get.defaultDialog(

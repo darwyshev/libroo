@@ -91,6 +91,61 @@ class SettingsView extends GetView<SettingsController> {
           ),
           child: Column(
             children: [
+              // User Profile Display
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF6E40F3).withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Obx(() => controller.profileImagePath.value.isEmpty
+                          ? Icon(
+                              Icons.person_rounded,
+                              color: Color(0xFF6E40F3),
+                              size: 32,
+                            )
+                          : ClipRounded(
+                              borderRadius: BorderRadius.circular(30),
+                              child: Image.asset(
+                                controller.profileImagePath.value,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                      ),
+                    ),
+                    SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Obx(() => Text(
+                            controller.userName.value,
+                            style: TextStyle(
+                              color: Color(0xFFF7F7F7),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )),
+                          SizedBox(height: 4),
+                          Obx(() => Text(
+                            controller.userEmail.value,
+                            style: TextStyle(
+                              color: Color(0xFFF7F7F7).withOpacity(0.7),
+                              fontSize: 14,
+                            ),
+                          )),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Divider(color: Color(0xFFF7F7F7).withOpacity(0.1), height: 1),
               ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 leading: Container(
@@ -271,7 +326,7 @@ class SettingsView extends GetView<SettingsController> {
         ),
         SizedBox(height: 16),
         Obx(() => Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(30),
           decoration: BoxDecoration(
             color: controller.hasOverdueBooks.value 
                 ? Color(0xFFE57373).withOpacity(0.1)
@@ -353,7 +408,6 @@ class SettingsView extends GetView<SettingsController> {
     );
   }
 
-  // Account Section
   Widget _buildAccountSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -457,7 +511,6 @@ class SettingsView extends GetView<SettingsController> {
     );
   }
 
-  // App Info Section
   Widget _buildAppInfoSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -569,4 +622,203 @@ class SettingsView extends GetView<SettingsController> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xFF6E40F3), width: 2),
-                    borderRadius: BorderRadius.circular
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              SizedBox(height: 24),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () => Get.back(),
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          side: BorderSide(color: Color(0xFF6E40F3)),
+                        ),
+                      ),
+                      child: Text(
+                        'Batal',
+                        style: TextStyle(color: Color(0xFF6E40F3)),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 12),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        controller.updateProfile(
+                          nameController.text,
+                          emailController.text,
+                        );
+                        Get.back();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF6E40F3),
+                        foregroundColor: Color(0xFFF7F7F7),
+                        padding: EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Text('Simpan'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Change Password Dialog
+  void _showChangePasswordDialog() {
+    final currentPasswordController = TextEditingController();
+    final newPasswordController = TextEditingController();
+    final confirmPasswordController = TextEditingController();
+
+    Get.dialog(
+      Dialog(
+        backgroundColor: Color(0xFF2A2E43),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Ganti Kata Sandi',
+                style: TextStyle(
+                  color: Color(0xFFF7F7F7),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                controller: currentPasswordController,
+                obscureText: true,
+                style: TextStyle(color: Color(0xFFF7F7F7)),
+                decoration: InputDecoration(
+                  labelText: 'Password Saat Ini',
+                  labelStyle: TextStyle(color: Color(0xFFF7F7F7).withOpacity(0.7)),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF6E40F3)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF6E40F3), width: 2),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+              TextField(
+                controller: newPasswordController,
+                obscureText: true,
+                style: TextStyle(color: Color(0xFFF7F7F7)),
+                decoration: InputDecoration(
+                  labelText: 'Password Baru',
+                  labelStyle: TextStyle(color: Color(0xFFF7F7F7).withOpacity(0.7)),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF6E40F3)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF6E40F3), width: 2),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+              TextField(
+                controller: confirmPasswordController,
+                obscureText: true,
+                style: TextStyle(color: Color(0xFFF7F7F7)),
+                decoration: InputDecoration(
+                  labelText: 'Konfirmasi Password Baru',
+                  labelStyle: TextStyle(color: Color(0xFFF7F7F7).withOpacity(0.7)),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF6E40F3)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF6E40F3), width: 2),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              SizedBox(height: 24),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () => Get.back(),
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          side: BorderSide(color: Color(0xFF6E40F3)),
+                        ),
+                      ),
+                      child: Text(
+                        'Batal',
+                        style: TextStyle(color: Color(0xFF6E40F3)),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 12),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        controller.changePassword(
+                          currentPasswordController.text,
+                          newPasswordController.text,
+                          confirmPasswordController.text,
+                        );
+                        Get.back();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF6E40F3),
+                        foregroundColor: Color(0xFFF7F7F7),
+                        padding: EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Text('Ubah Password'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Custom ClipRounded widget for profile image
+class ClipRounded extends StatelessWidget {
+  final Widget child;
+  final BorderRadius borderRadius;
+
+  const ClipRounded({
+    Key? key,
+    required this.child,
+    required this.borderRadius,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: borderRadius,
+      child: child,
+    );
+  }
+}

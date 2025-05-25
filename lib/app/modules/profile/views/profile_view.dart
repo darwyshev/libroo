@@ -62,12 +62,7 @@ class ProfileView extends GetView<ProfileController> {
                 size: 26,
               ),
               onPressed: () {
-                Get.snackbar(
-                  'Info', 
-                  'Settings akan segera tersedia',
-                  backgroundColor: Color(0xFF2A2E43),
-                  colorText: Color(0xFFF7F7F7),
-                );
+                Get.toNamed('/settings');
               },
             ),
           ),
