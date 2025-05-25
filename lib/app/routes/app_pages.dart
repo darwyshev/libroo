@@ -8,6 +8,8 @@ import '../modules/bookmark/bindings/bookmark_binding.dart';
 import '../modules/bookmark/views/bookmark_view.dart';
 import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/views/explore_view.dart';
+import '../modules/help/bindings/help_binding.dart';
+import '../modules/help/views/help_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/intro/bindings/intro_binding.dart';
@@ -97,6 +99,11 @@ class AppPages {
       name: _Paths.LOAN_HISTORY,
       page: () => const LoanHistoryView(),
       binding: LoanHistoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.HELP,
+      page: () => const HelpView(),
+      binding: HelpBinding(),
     ),
   ];
 }

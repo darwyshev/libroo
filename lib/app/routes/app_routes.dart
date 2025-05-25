@@ -16,6 +16,7 @@ abstract class Routes {
   static const SETTINGS = _Paths.SETTINGS;
   static const ACHIEVEMENT = _Paths.ACHIEVEMENT;
   static const LOAN_HISTORY = _Paths.LOAN_HISTORY;
+  static const HELP = _Paths.HELP;
 }
 
 abstract class _Paths {
@@ -33,4 +34,5 @@ abstract class _Paths {
   static const SETTINGS = '/settings';
   static const ACHIEVEMENT = '/achievement';
   static const LOAN_HISTORY = '/loan-history';
+  static const HELP = '/help';
 }
