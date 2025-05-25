@@ -6,6 +6,8 @@ import '../modules/book-detail/bindings/book_detail_binding.dart';
 import '../modules/book-detail/views/book_detail_view.dart';
 import '../modules/bookmark/bindings/bookmark_binding.dart';
 import '../modules/bookmark/views/bookmark_view.dart';
+import '../modules/category/bindings/category_binding.dart';
+import '../modules/category/views/category_view.dart';
 import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/views/explore_view.dart';
 import '../modules/help/bindings/help_binding.dart';
@@ -104,6 +106,11 @@ class AppPages {
       name: _Paths.HELP,
       page: () => const HelpView(),
       binding: HelpBinding(),
+    ),
+    GetPage(
+      name: _Paths.CATEGORY,
+      page: () => const CategoryView(),
+      binding: CategoryBinding(),
     ),
   ];
 }
