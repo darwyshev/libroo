@@ -4,7 +4,7 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,8 +43,8 @@ class HomeView extends GetView<HomeController> {
           Text(
             'Libroo',
             style: TextStyle(
-              color: Colors.white, 
-              fontSize: 28, 
+              color: Colors.white,
+              fontSize: 28,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -130,22 +130,21 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ),
                 SizedBox(height: 12),
-                Row(
-                  children: [
-                    Text(
-                      'Info Lebih Lanjut',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                GestureDetector(
+                  onTap: () => Get.toNamed('/event'),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Info Lebih Lanjut',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 4),
-                    Icon(
-                      Icons.arrow_forward_rounded,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                  ],
+                      Icon(Icons.arrow_forward_rounded, color: Colors.white),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -165,7 +164,8 @@ class HomeView extends GetView<HomeController> {
         'color': Color(0xFF5E35B1),
         'rating': '4.8',
         'genre': 'Fiksi',
-        'description': 'Sebuah cerita yang mengharukan tentang janji dan pengorbanan.',
+        'description':
+            'Sebuah cerita yang mengharukan tentang janji dan pengorbanan.',
         'pages': 320,
         'language': 'Indonesia',
         'publisher': 'Gramedia Pustaka Utama',
@@ -178,7 +178,8 @@ class HomeView extends GetView<HomeController> {
         'color': Color(0xFF43A047),
         'rating': '4.7',
         'genre': 'Sejarah',
-        'description': 'Novel yang mengisahkan perjuangan para aktivis di masa Orde Baru.',
+        'description':
+            'Novel yang mengisahkan perjuangan para aktivis di masa Orde Baru.',
         'pages': 394,
         'language': 'Indonesia',
         'publisher': 'Kepustakaan Populer Gramedia',
@@ -246,7 +247,10 @@ class HomeView extends GetView<HomeController> {
                           GestureDetector(
                             onTap: () {
                               // Navigate to book detail
-                              Get.toNamed('/book-detail', arguments: books[index]);
+                              Get.toNamed(
+                                '/book-detail',
+                                arguments: books[index],
+                              );
                             },
                             child: Container(
                               width: 120,
@@ -279,7 +283,10 @@ class HomeView extends GetView<HomeController> {
                                 GestureDetector(
                                   onTap: () {
                                     // Navigate to book detail
-                                    Get.toNamed('/book-detail', arguments: books[index]);
+                                    Get.toNamed(
+                                      '/book-detail',
+                                      arguments: books[index],
+                                    );
                                   },
                                   child: Text(
                                     books[index]['title'],
@@ -304,7 +311,9 @@ class HomeView extends GetView<HomeController> {
                                 ElevatedButton(
                                   onPressed: () {
                                     // Show bookmark notification
-                                    _showBookmarkNotification(books[index]['title']);
+                                    _showBookmarkNotification(
+                                      books[index]['title'],
+                                    );
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.white,
@@ -348,10 +357,7 @@ class HomeView extends GetView<HomeController> {
       margin: EdgeInsets.all(16),
       borderRadius: 8,
       duration: Duration(seconds: 3),
-      icon: Icon(
-        Icons.bookmark_added,
-        color: Color(0xFF6E40F3),
-      ),
+      icon: Icon(Icons.bookmark_added, color: Color(0xFF6E40F3)),
       mainButton: TextButton(
         onPressed: () {
           Get.closeCurrentSnackbar();
@@ -377,7 +383,8 @@ class HomeView extends GetView<HomeController> {
         'rating': '4.8',
         'image': 'assets/book/cover-sagaras.webp',
         'genre': 'Fiksi',
-        'description': 'Petualangan epik di dunia paralel yang menakjubkan.',
+        'description': 
+          'Pertanyaan-pertanyaan seperti “kemana orang tua Ali?”, “Apa orang tua Ali masih hidup?”, atau “dari Klan manakah Ali berasal?” akan terjawab di buku ini. Di buku ke-13 serial BUMI, akhirnya, siapa orang tua Ali dijawab di buku ini. Ali, bertahun-tahun, berusaha memecahkan misteri itu. Kali ini, Ali melupakan sekolah. Sudah 3 hari ia tidak hadir di sekolah, membolos. Raib dan Seli tentu tidak akan membiarkan Ali sendirian memecahkan misteri tersebut, seperti layaknya sahabat sejati. Memulai perjalanannya, mereka berusaha mencari orang tuanya dan letak klan SagaraS. Dan jangan lupakan, Batozar alias Master B, dengan segenap kalimat kasar, seolah tidak peduli, dia selalu siap membela. Diceritakan pula dalam buku ini, alasan mengapa Master B atau Batozoar memiliki wajah yang seram, serta munculnya kedekatan hubungan antara Master B dengan Ali, Seli, dan Raib. Penuh drama, perasaan yang dimainkan di dalam buku ini sangatlah beragam. Tapi bagaimana jika misteri itu terhadang tembok kokoh Sagaras? Dan mereka harus bertarung hidup-mati lima ronde melawan Ksatria SagaraS?',
         'pages': 356,
         'language': 'Indonesia',
         'publisher': 'Gramedia Pustaka Utama',
@@ -389,7 +396,8 @@ class HomeView extends GetView<HomeController> {
         'rating': '4.7',
         'image': 'assets/book/cover-bumi.webp',
         'genre': 'Fiksi',
-        'description': 'Awal dari petualangan Ali, Seli, dan Raib di dunia paralel.',
+        'description':
+          'Tere Liye kembali mengkreasikan imajinasinya kedalam kedalam beberapa rangkaian novel. Bumi, merupakan rangkaian awal dari kisah sekelompok anak remaja berkemampuan istimewa. Menceritakan tentang Raib, Ali, dan Seli yang bertualang ke dunia paralel. Mereka yang istimewa, mampu pergi ke dunia pararel bumi, bertemu dengan klan lain dan berhadapan dengan Tamus yang memiliki ambisi membebaskan si Tanpa Mahkota dan kemudian, menguasai bumi. Perkenalkan, Raib, seorang gadis belia berusia lima belas tahun yang tidak biasa. Dia bisa menghilang. Jangan beritahu siapapun, Itu adalah rahasia terbesar yang tak pernah ia ceritakan pada siapapun, termasuk kedua orangtuanya. Kehidupannya tetap berjalan normal, meskipun untuk dirinya sendiri. Tidak jarang Raib menjahili orang tuanya dengan tiba-tiba menghilang, lalu muncul kembali secara tiba-tiba membuat kaget kedua orangtuanya. Tidak hanya menyuguhkan cerita fantasi, novel ini juga memberikan pesan moral tentang keluarga, dan persahabatan. Tere Liye sukses membangun kisah persahabatan antara Raib, Ali, dan Seli terasa nyata. Hubungan antara Raib dan keluarganya membuat pembaca penasaran sekaligus tersadar akan cara berkomunikasi dengan orang tua. Tere Liye memberikan banyak kejutan di tiap halaman yang direpresentasikan oleh Raib, membuat pembaca dapat menikmati cerita yang seolah tidak akan ada habisnya. Tere Liye berhasil meracik buku ini sebagai bahan baca para pecinta novel sastra maupun fantasi.',
         'pages': 440,
         'language': 'Indonesia',
         'publisher': 'Gramedia Pustaka Utama',
@@ -401,11 +409,12 @@ class HomeView extends GetView<HomeController> {
         'rating': '4.6',
         'image': 'assets/book/cover-dhpb.webp',
         'genre': 'Romance',
-        'description': 'Kisah cinta yang mengharukan di tengah badai kehidupan.',
-        'pages': 298,
+        'description':
+            'Kamu mungkin tidak akan mengerti Leo yang tidak percaya pada siapa pun di dunia ini. Tapi mungkin Spiza, gadis yang mencoba bunuh diri di sekolahnya, bisa.',
+        'pages': 336,
         'language': 'Indonesia',
         'publisher': 'Mizan Pustaka',
-        'year': 2020,
+        'year': 2016,
       },
       {
         'title': 'Senandung Talijiwo',
@@ -413,8 +422,9 @@ class HomeView extends GetView<HomeController> {
         'rating': '4.9',
         'image': 'assets/book/cover-senandung-talijiwo.webp',
         'genre': 'Filosofi',
-        'description': 'Renungan hidup dari seorang dalang filosofis.',
-        'pages': 234,
+        'description': 
+          'Ternyata mencintai bukanlah cara untuk berbahagia. Mencintai tak lain cuma percobaan-percobaan kecil untuk melukai diri agar kelak tabah menghadapi luka-luka yang lebih besar, Kekasih. Cinta bertanya "apa kabar?" kepada benci. Dan, sebaliknya. Setiap saat. Sampai kita tak bisa lagi membedakan, sejatinya siapa yang sedang bertanya kepada siapa, Kekasih. Manusia harus saling mengingatkan kepada kebaikan karena hutan, gunung, sawah, dan lautan hanya bisa mengingatkan kita kepada mantan. Demi itu buku ini ada. Aku mau mengajakmu duduk sebagai teman ngobrol. Sedang tren manusia tak butuh pasangan sesama insan. Ketimbang nanti berantem, ketimbang nanti saling melapor polisi, mending berumah tangga dengan hewan saja. Di beberapa negara Eropa, seperti Inggris, musim itu telah lama tiba. Banyak jalan menuju Roma, tapi setiap jalan menuju takdir. Saat dipamiti adik atau anak ke sekolah, kita menjelma sebagai kakak atau orang tua. Bertemu teman kuliah atau sejawat kantor, mendadak kita menjadi sohib atau saingan. Sepernano detik yang lalu, kamu kekasihnya, dan sekarang sudah menjadi mantannya. Begitulah hidup, selalu bergerak seperti kisah-kisah Talijiwo yang hendak aku obrolkan kepadamu. Aku akan mendengarmu. Dengar aku juga. Siapa tahu setiap kata yang diobrolkan mengandung senandung untuk kita nyanyikan berdua. Please, tak perlu lagi keluh kesah itu. Hidup hanya mengolah keluhan menjadi senandung.',
+        'pages': 236,
         'language': 'Indonesia',
         'publisher': 'Bentang Pustaka',
         'year': 2019,
@@ -442,14 +452,13 @@ class HomeView extends GetView<HomeController> {
               padding: const EdgeInsets.only(bottom: 16.0),
               child: Row(
                 children: [
-                  Expanded(
-                    child: _buildBookCard(bestBooks[rowIndex * 2]),
-                  ),
+                  Expanded(child: _buildBookCard(bestBooks[rowIndex * 2])),
                   SizedBox(width: 16),
                   Expanded(
-                    child: rowIndex * 2 + 1 < bestBooks.length
-                        ? _buildBookCard(bestBooks[rowIndex * 2 + 1])
-                        : Container(),
+                    child:
+                        rowIndex * 2 + 1 < bestBooks.length
+                            ? _buildBookCard(bestBooks[rowIndex * 2 + 1])
+                            : Container(),
                   ),
                 ],
               ),
@@ -487,10 +496,7 @@ class HomeView extends GetView<HomeController> {
                     child: Container(
                       height: 100,
                       width: double.infinity,
-                      child: Image.asset(
-                        book['image'],
-                        fit: BoxFit.cover,
-                      ),
+                      child: Image.asset(book['image'], fit: BoxFit.cover),
                     ),
                   ),
                   Padding(
@@ -511,21 +517,14 @@ class HomeView extends GetView<HomeController> {
                         SizedBox(height: 4),
                         Text(
                           book['author'],
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 12,
-                          ),
+                          style: TextStyle(color: Colors.white70, fontSize: 12),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                         SizedBox(height: 8),
                         Row(
                           children: [
-                            Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                              size: 16,
-                            ),
+                            Icon(Icons.star, color: Colors.amber, size: 16),
                             SizedBox(width: 4),
                             Text(
                               book['rating'],
@@ -546,10 +545,7 @@ class HomeView extends GetView<HomeController> {
               top: 10,
               right: 10,
               child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 5,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
                   color: Color(0xFF6E40F3),
                   borderRadius: BorderRadius.circular(20),
@@ -576,11 +572,7 @@ class HomeView extends GetView<HomeController> {
       decoration: BoxDecoration(
         color: Color(0xFF2A2E43),
         boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 10,
-            spreadRadius: 1,
-          ),
+          BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 1),
         ],
       ),
       child: Padding(
@@ -594,9 +586,14 @@ class HomeView extends GetView<HomeController> {
             _buildNavItem(Icons.explore_outlined, 'Explore', false, () {
               Get.toNamed('/explore');
             }),
-            _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false, () {
-              Get.toNamed('/bookmark');
-            }),
+            _buildNavItem(
+              Icons.bookmark_border_rounded,
+              'Bookmarks',
+              false,
+              () {
+                Get.toNamed('/bookmark');
+              },
+            ),
             _buildNavItem(Icons.person_outline_rounded, 'Profile', false, () {
               Get.toNamed('/profile');
             }),
@@ -606,7 +603,12 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, bool isActive, VoidCallback onTap) {
+  Widget _buildNavItem(
+    IconData icon,
+    String label,
+    bool isActive,
+    VoidCallback onTap,
+  ) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
