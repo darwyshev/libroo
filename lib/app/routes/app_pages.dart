@@ -12,8 +12,6 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/intro/bindings/intro_binding.dart';
 import '../modules/intro/views/intro_view.dart';
-import '../modules/loan-history/bindings/loan_history_binding.dart';
-import '../modules/loan-history/views/loan_history_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/notification/bindings/notification_binding.dart';
@@ -87,11 +85,6 @@ class AppPages {
       name: _Paths.SETTINGS,
       page: () => const SettingsView(),
       binding: SettingsBinding(),
-    ),
-    GetPage(
-      name: _Paths.LOAN_HISTORY,
-      page: () => const LoanHistoryView(),
-      binding: LoanHistoryBinding(),
     ),
     GetPage(
       name: _Paths.ACHIEVEMENT,

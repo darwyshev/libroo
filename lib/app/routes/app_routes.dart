@@ -31,6 +31,5 @@ abstract class _Paths {
   static const NOTIFICATION = '/notification';
   static const BOOK_DETAIL = '/book-detail';
   static const SETTINGS = '/settings';
-  static const LOAN_HISTORY = '/loan-history';
   static const ACHIEVEMENT = '/achievement';
 }
