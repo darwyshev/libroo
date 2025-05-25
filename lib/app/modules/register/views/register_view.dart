@@ -20,7 +20,7 @@ class _RegisterViewState extends State<RegisterView> {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  bool _obscurePassword = true; // Untuk fitur lihat password
+  bool _obscurePassword = true;
 
   // Step 2 - Profile Info
   File? _profileImage;
@@ -33,6 +33,59 @@ class _RegisterViewState extends State<RegisterView> {
   String? selectedClass;
 
   bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Add listeners to text controllers to update UI when text changes
+    usernameController.addListener(() => setState(() {}));
+    emailController.addListener(() => setState(() {}));
+    passwordController.addListener(() => setState(() {}));
+    fullNameController.addListener(() => setState(() {}));
+    nisnController.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    fullNameController.dispose();
+    nisnController.dispose();
+    super.dispose();
+  }
+
+  // Validation methods for each page
+  bool _isPage1Valid() {
+    return usernameController.text.trim().isNotEmpty &&
+           emailController.text.trim().isNotEmpty &&
+           emailController.text.contains('@') &&
+           passwordController.text.trim().isNotEmpty &&
+           passwordController.text.length >= 6;
+  }
+
+  bool _isPage2Valid() {
+    return fullNameController.text.trim().isNotEmpty &&
+           nisnController.text.trim().isNotEmpty &&
+           birthDate != null;
+  }
+
+  bool _isPage3Valid() {
+    return selectedGrade != null && selectedClass != null;
+  }
+
+  bool _canProceed() {
+    switch (_currentPage) {
+      case 0:
+        return _isPage1Valid();
+      case 1:
+        return _isPage2Valid();
+      case 2:
+        return _isPage3Valid();
+      default:
+        return false;
+    }
+  }
 
   Future<void> pickImage() async {
     final picker = ImagePicker();
@@ -74,26 +127,10 @@ class _RegisterViewState extends State<RegisterView> {
   Future<void> registerUser() async {
     if (_formKey.currentState!.validate()) {
       setState(() => _isLoading = true);
-      // Validasi data
-      if (usernameController.text.isEmpty || 
-          emailController.text.isEmpty || 
-          passwordController.text.isEmpty ||
-          fullNameController.text.isEmpty ||
-          nisnController.text.isEmpty ||
-          birthDate == null ||
-          selectedGrade == null ||
-          selectedClass == null) {
-        
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Semua data harus diisi lengkap'))
-        );
-        setState(() => _isLoading = false);
-        return;
-      }
-
+      
       try {
         // Simulasi pendaftaran berhasil
-        await Future.delayed(Duration(seconds: 2)); // Simulasi loading
+        await Future.delayed(Duration(seconds: 2));
         
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -101,7 +138,6 @@ class _RegisterViewState extends State<RegisterView> {
             backgroundColor: Colors.green,
           )
         );
-        // Navigasi ke halaman login
         Get.offAllNamed(Routes.LOGIN);
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -117,6 +153,30 @@ class _RegisterViewState extends State<RegisterView> {
   }
   
   void nextPage() {
+    if (!_canProceed()) {
+      // Show error message based on current page
+      String errorMessage = '';
+      switch (_currentPage) {
+        case 0:
+          errorMessage = 'Mohon lengkapi semua data akun dengan benar';
+          break;
+        case 1:
+          errorMessage = 'Mohon lengkapi semua data profil';
+          break;
+        case 2:
+          errorMessage = 'Mohon pilih kelas Anda';
+          break;
+      }
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(errorMessage),
+          backgroundColor: Colors.orange,
+        )
+      );
+      return;
+    }
+
     if (_currentPage < 2) {
       _controller.nextPage(
         duration: Duration(milliseconds: 300),
@@ -124,7 +184,6 @@ class _RegisterViewState extends State<RegisterView> {
       );
       setState(() => _currentPage++);
     } else {
-      // Panggil registerUser() hanya ketika di halaman terakhir
       registerUser();
     }
   }
@@ -137,7 +196,6 @@ class _RegisterViewState extends State<RegisterView> {
       );
       setState(() => _currentPage--);
     } else {
-      // Jika di halaman pertama, kembali ke halaman sebelumnya
       Get.back();
     }
   }
@@ -148,7 +206,6 @@ class _RegisterViewState extends State<RegisterView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Tombol Back
           Container(
             width: 40,
             height: 40,
@@ -163,7 +220,6 @@ class _RegisterViewState extends State<RegisterView> {
             ),
           ),
           
-          // Progress Indicator
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -183,7 +239,6 @@ class _RegisterViewState extends State<RegisterView> {
             ),
           ),
           
-          // Spacer untuk balance
           SizedBox(width: 60),
         ],
       ),
@@ -204,7 +259,6 @@ class _RegisterViewState extends State<RegisterView> {
         labelText: label,
         labelStyle: TextStyle(color: Colors.white70),
         prefixIcon: icon != null ? Icon(icon, color: Colors.white54) : null,
-        // Tambahkan suffix icon untuk password
         suffixIcon: isPassword
             ? IconButton(
                 icon: Icon(
@@ -240,18 +294,23 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 
-  Widget _buildButton({required String text, required VoidCallback onPressed}) {
+  Widget _buildButton({required String text, required VoidCallback? onPressed}) {
+    bool isEnabled = _canProceed() && !_isLoading;
+    
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: isEnabled ? onPressed : null,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFF6E40F3),
+        backgroundColor: isEnabled ? Color(0xFF6E40F3) : Color(0xFF6E40F3).withOpacity(0.5),
+        disabledBackgroundColor: Color(0xFF6E40F3).withOpacity(0.5),
         minimumSize: Size(double.infinity, 50),
       ),
       child: _isLoading && text == 'Lanjut' && _currentPage == 2
           ? CircularProgressIndicator(color: Color(0xFFF7F7F7))
           : Text(
               text,
-              style: TextStyle(color: Color(0xFFF7F7F7)),
+              style: TextStyle(
+                color: isEnabled ? Color(0xFFF7F7F7) : Color(0xFFF7F7F7).withOpacity(0.7),
+              ),
             ),
     );
   }
@@ -276,18 +335,17 @@ class _RegisterViewState extends State<RegisterView> {
           borderSide: BorderSide(color: Color(0xFFF7F7F7)),
         ),
       ),
-      items:
-          items
-              .map(
-                (item) => DropdownMenuItem(
-                  value: item,
-                  child: Text(
-                    '$prefix $item',
-                    style: TextStyle(color: Color(0xFFF7F7F7))
-                  ),
-                ),
-              )
-              .toList(),
+      items: items
+          .map(
+            (item) => DropdownMenuItem(
+              value: item,
+              child: Text(
+                '$prefix $item',
+                style: TextStyle(color: Color(0xFFF7F7F7))
+              ),
+            ),
+          )
+          .toList(),
       onChanged: onChanged,
       iconEnabledColor: Colors.white70,
     );
@@ -299,7 +357,7 @@ class _RegisterViewState extends State<RegisterView> {
       backgroundColor: Color(0xFF1F2334),
       body: SafeArea(
         child: Form(
-        key: _formKey,
+          key: _formKey,
           child: Column(
             children: [
               _buildStepIndicator(),
@@ -529,11 +587,7 @@ class _RegisterViewState extends State<RegisterView> {
                             SizedBox(height: 32),
                             _buildButton(
                               text: 'Lanjut',
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  nextPage();
-                                }
-                              },
+                              onPressed: nextPage,
                             ),
                           ],
                         ),
@@ -544,7 +598,7 @@ class _RegisterViewState extends State<RegisterView> {
               ),
             ],
           ),
-        )
+        ),
       ),
     );
   }

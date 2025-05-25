@@ -15,6 +15,27 @@ class _LoginViewState extends State<LoginView> {
   bool _obscurePassword = true;
   bool _isLoading = false;
 
+  @override
+  void initState() {
+    super.initState();
+    // Add listeners to text controllers to update UI when text changes
+    emailOrUsernameController.addListener(() => setState(() {}));
+    passwordController.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    emailOrUsernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  // Check if login form is valid
+  bool _isFormValid() {
+    return emailOrUsernameController.text.trim().isNotEmpty &&
+           passwordController.text.trim().isNotEmpty;
+  }
+
   void togglePasswordVisibility() {
     setState(() {
       _obscurePassword = !_obscurePassword;
@@ -22,6 +43,17 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void login() {
+    // Check if form is valid before proceeding
+    if (!_isFormValid()) {
+      Get.snackbar(
+        "Error", 
+        "Mohon isi email/username dan password",
+        backgroundColor: Colors.orange,
+        colorText: Color(0xFFF7F7F7),
+      );
+      return;
+    }
+
     setState(() {
       _isLoading = true;
     });
@@ -51,6 +83,8 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    bool isFormValid = _isFormValid();
+    
     return Scaffold(
       backgroundColor: Color(0xFF1F2334),
       body: Padding(
@@ -58,7 +92,14 @@ class _LoginViewState extends State<LoginView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Masuk", style: TextStyle(fontSize: 28, color: Color(0xFFF7F7F7), fontWeight: FontWeight.bold)),
+            Text(
+              "Masuk", 
+              style: TextStyle(
+                fontSize: 28, 
+                color: Color(0xFFF7F7F7), 
+                fontWeight: FontWeight.bold
+              )
+            ),
             SizedBox(height: 32),
 
             TextField(
@@ -67,8 +108,20 @@ class _LoginViewState extends State<LoginView> {
               decoration: InputDecoration(
                 labelText: 'Email atau Username',
                 labelStyle: TextStyle(color: Colors.white70),
-                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white38)),
-                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xFFF7F7F7))),
+                prefixIcon: Icon(Icons.person, color: Colors.white54),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white38)
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFFF7F7F7))
+                ),
+                // Add error styling when field is empty and user tries to proceed
+                errorBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red)
+                ),
+                focusedErrorBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red)
+                ),
               ),
             ),
 
@@ -81,10 +134,24 @@ class _LoginViewState extends State<LoginView> {
               decoration: InputDecoration(
                 labelText: 'Password',
                 labelStyle: TextStyle(color: Colors.white70),
-                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white38)),
-                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xFFF7F7F7))),
+                prefixIcon: Icon(Icons.lock, color: Colors.white54),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white38)
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFFF7F7F7))
+                ),
+                errorBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red)
+                ),
+                focusedErrorBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red)
+                ),
                 suffixIcon: IconButton(
-                  icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility, color: Colors.white54),
+                  icon: Icon(
+                    _obscurePassword ? Icons.visibility_off : Icons.visibility, 
+                    color: Colors.white54
+                  ),
                   onPressed: togglePasswordVisibility,
                 ),
               ),
@@ -93,15 +160,24 @@ class _LoginViewState extends State<LoginView> {
             SizedBox(height: 32),
 
             ElevatedButton(
-              onPressed: _isLoading ? null : login,
+              onPressed: (isFormValid && !_isLoading) ? login : null,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF6E40F3),
-                minimumSize: Size(double.infinity, 50),
+                backgroundColor: isFormValid 
+                    ? Color(0xFF6E40F3) 
+                    : Color(0xFF6E40F3).withOpacity(0.5),
                 disabledBackgroundColor: Color(0xFF6E40F3).withOpacity(0.5),
+                minimumSize: Size(double.infinity, 50),
               ),
               child: _isLoading
                   ? CircularProgressIndicator(color: Color(0xFFF7F7F7))
-                  : Text("Masuk", style: TextStyle(color: Color(0xFFF7F7F7))),
+                  : Text(
+                      "Masuk", 
+                      style: TextStyle(
+                        color: isFormValid 
+                            ? Color(0xFFF7F7F7) 
+                            : Color(0xFFF7F7F7).withOpacity(0.7),
+                      )
+                    ),
             ),
 
             SizedBox(height: 20),
@@ -109,10 +185,19 @@ class _LoginViewState extends State<LoginView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Belum punya akun? ", style: TextStyle(color: Colors.white70)),
+                Text(
+                  "Belum punya akun? ", 
+                  style: TextStyle(color: Colors.white70)
+                ),
                 GestureDetector(
                   onTap: toRegister,
-                  child: Text("Daftar", style: TextStyle(color: Color(0xFFF7F7F7), fontWeight: FontWeight.bold)),
+                  child: Text(
+                    "Daftar", 
+                    style: TextStyle(
+                      color: Color(0xFFF7F7F7), 
+                      fontWeight: FontWeight.bold
+                    )
+                  ),
                 )
               ],
             )
