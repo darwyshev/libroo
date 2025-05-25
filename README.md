@@ -18,15 +18,7 @@ A modern and elegant Flutter-based mobile application for book lovers, designed 
 - **Interactive Elements**: Engaging animations and visual feedback
 - **Indonesian Language Support**: Localized content for Indonesian readers
 
-<<<<<<< HEAD
 ## 🏗️ Architecture
-=======
-## **Installation & Setup**
-```bash
-# Clone the repository
-git clone https://github.com/darwyshev/libroo.git
-cd libroo
->>>>>>> 4f090003f7edbb24fcaeb10099f222a85276a93a
 
 This project follows the **GetX Pattern** architecture with a clean separation of concerns:
 
