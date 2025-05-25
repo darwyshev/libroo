@@ -19,6 +19,7 @@ abstract class Routes {
   static const HELP = _Paths.HELP;
   static const CATEGORY = _Paths.CATEGORY;
   static const SEARCH = _Paths.SEARCH;
+  static const EVENT = _Paths.EVENT;
 }
 
 abstract class _Paths {
@@ -39,4 +40,5 @@ abstract class _Paths {
   static const HELP = '/help';
   static const CATEGORY = '/category';
   static const SEARCH = '/search';
+  static const EVENT = '/event';
 }

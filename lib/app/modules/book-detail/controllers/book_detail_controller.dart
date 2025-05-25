@@ -35,11 +35,11 @@ class BookDetailController extends GetxController {
         'image': 'assets/book/cover-janji.webp',
         'rating': '4.8',
         'genre': 'Fiksi',
-        'description': 'Sebuah cerita yang mengharukan tentang janji dan pengorbanan. Mengisahkan perjalanan hidup yang penuh dengan lika-liku kehidupan.',
-        'pages': 320,
+        'description': 'Kita semua adalah pengembara di dunia ini. Ada yang kaya, pun ada yang miskin. Ada yang terkenal, ternama, berkuasa, juga ada yang bukan siapa-siapa. Ada yang seolah bisa membeli apapun, melakukan apapun yang dia mau, hebat sekali. Ada yang bahkan bingung besok harus makan apa. Tapi sesungguhnya di manakah kebahagiaan itu hinggap? Di manakah hakikat kehidupan itu tersembunyi? Apakah seperti yang kita lihat dari luar saja? Inilah kisah tentang janji. Kita semua adalah pengembara di dunia ini. Dari hari ke hari. Dari satu tempat ke tempat lain. Dari satu kejadian ke kejadian lain. Terus mengembara. Dan kita pasti akan menggenapkan janji yang satu ini: mati.',
+        'pages': 250,
         'language': 'Indonesia',
         'publisher': 'Gramedia Pustaka Utama',
-        'year': 2023,
+        'year': 2021,
         'totalRatings': 1245,
       };
     }
@@ -48,7 +48,7 @@ class BookDetailController extends GetxController {
     if (bookData.value['title'] == 'Bumi') {
       isAvailable.value = false;
       availableStock.value = 2;
-      borrowedBy.value = 'Ahmad Fauzi';
+      borrowedBy.value = 'Alfa Dimas';
       returnDate.value = DateTime.now().add(Duration(days: 3));
     }
   }

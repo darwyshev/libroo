@@ -8,6 +8,8 @@ import '../modules/bookmark/bindings/bookmark_binding.dart';
 import '../modules/bookmark/views/bookmark_view.dart';
 import '../modules/category/bindings/category_binding.dart';
 import '../modules/category/views/category_view.dart';
+import '../modules/event/bindings/event_binding.dart';
+import '../modules/event/views/event_view.dart';
 import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/views/explore_view.dart';
 import '../modules/help/bindings/help_binding.dart';
@@ -118,6 +120,11 @@ class AppPages {
       name: _Paths.SEARCH,
       page: () => const SearchView(),
       binding: SearchBinding(),
+    ),
+    GetPage(
+      name: _Paths.EVENT,
+      page: () => const EventView(),
+      binding: EventBinding(),
     ),
   ];
 }
