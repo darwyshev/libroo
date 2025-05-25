@@ -497,6 +497,15 @@ class BookDetailView extends GetView<BookDetailController> {
         SizedBox(height: 12),
         Obx(() => AnimatedCrossFade(
           firstChild: Text(
+            description.length > 150 ? 
+            '${description.substring(0, 150)}...' : description,
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 14,
+              height: 1.6,
+            ),
+          ),
+          secondChild: Text(
             description,
             style: TextStyle(
               color: Colors.white70,
@@ -504,8 +513,236 @@ class BookDetailView extends GetView<BookDetailController> {
               height: 1.6,
             ),
           ),
-        )
-      )
-      ]
-    )
-  };
+          crossFadeState: controller.showFullDescription.value
+              ? CrossFadeState.showSecond
+              : CrossFadeState.showFirst,
+          duration: Duration(milliseconds: 300),
+        )),
+        if (description.length > 150) ...[
+          SizedBox(height: 8),
+          GestureDetector(
+            onTap: controller.toggleDescription,
+            child: Obx(() => Text(
+              controller.showFullDescription.value ? 'Tampilkan lebih sedikit' : 'Selengkapnya',
+              style: TextStyle(
+                color: Color(0xFF6E40F3),
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            )),
+          ),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildBookStats(Map<String, dynamic> book) {
+    return Container(
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Color(0xFF2A2E43),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Informasi Buku',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                child: _buildStatItem(
+                  icon: Icons.menu_book,
+                  label: 'Halaman',
+                  value: '${book['pages'] ?? 0}',
+                ),
+              ),
+              Expanded(
+                child: _buildStatItem(
+                  icon: Icons.language,
+                  label: 'Bahasa',
+                  value: book['language'] ?? 'Indonesia',
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                child: _buildStatItem(
+                  icon: Icons.business,
+                  label: 'Penerbit',
+                  value: book['publisher'] ?? '-',
+                ),
+              ),
+              Expanded(
+                child: _buildStatItem(
+                  icon: Icons.calendar_today,
+                  label: 'Tahun',
+                  value: '${book['year'] ?? 0}',
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatItem({
+    required IconData icon,
+    required String label,
+    required String value,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(icon, color: Color(0xFF6E40F3), size: 16),
+            SizedBox(width: 8),
+            Text(
+              label,
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 12,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 4),
+        Text(
+          value,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSimilarBooks() {
+    final similarBooks = [
+      {
+        'title': 'Bumi',
+        'author': 'Tere Liye',
+        'image': 'assets/book/cover-bumi.webp',
+        'rating': '4.7',
+      },
+      {
+        'title': 'Janji',
+        'author': 'Tere Liye',
+        'image': 'assets/book/cover-janji.webp',
+        'rating': '4.6',
+      },
+      {
+        'title': 'Sesuk',
+        'author': 'Tere Liye',
+        'image': 'assets/book/cover-sesuk.webp',
+        'rating': '4.8',
+      },
+    ];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Buku Serupa',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 16),
+        SizedBox(
+          height: 220,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: similarBooks.length,
+            itemBuilder: (context, index) {
+              final book = similarBooks[index];
+              return Container(
+                width: 140,
+                margin: EdgeInsets.only(right: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 8,
+                              offset: Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.asset(
+                            book['image']!,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      book['title']!,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      book['author']!,
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 12,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(Icons.star, color: Colors.amber, size: 12),
+                        SizedBox(width: 4),
+                        Text(
+                          book['rating']!,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
