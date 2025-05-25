@@ -305,7 +305,7 @@ class ProfileView extends GetView<ProfileController> {
         'subtitle': 'Tracking riwayat peminjaman buku kamu',
         'icon': Icons.history_rounded,
         'onTap': () {
-          //Get.toNamed('/loan-history');
+          Get.toNamed('/loan-history');
         },
       },
       {
