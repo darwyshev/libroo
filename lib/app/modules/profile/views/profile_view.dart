@@ -305,12 +305,7 @@ class ProfileView extends GetView<ProfileController> {
         'subtitle': 'Tracking riwayat peminjaman buku kamu',
         'icon': Icons.history_rounded,
         'onTap': () {
-          Get.snackbar(
-            'Info', 
-            'Riwayat Peminjaman akan segera tersedia',
-            backgroundColor: Color(0xFF2A2E43),
-            colorText: Color(0xFFF7F7F7),
-          );
+          Get.toNamed('/loan-history');
         },
       },
       {
@@ -318,12 +313,7 @@ class ProfileView extends GetView<ProfileController> {
         'subtitle': 'Badge dan pencapaian kamu',
         'icon': Icons.emoji_events_rounded,
         'onTap': () {
-          Get.snackbar(
-            'Info', 
-            'Prestasi akan segera tersedia',
-            backgroundColor: Color(0xFF2A2E43),
-            colorText: Color(0xFFF7F7F7),
-          );
+          Get.toNamed('/achievement');
         },
       },
       {
