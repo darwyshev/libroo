@@ -34,8 +34,6 @@ class CategoryController extends GetxController {
   void loadCategoryBooks() {
     isLoading.value = true;
     
-    // Simulate loading books for this category
-    // In real app, this would be an API call
     Future.delayed(Duration(seconds: 1), () {
       categoryBooks.value = _getDummyBooks();
       isLoading.value = false;
@@ -43,7 +41,6 @@ class CategoryController extends GetxController {
   }
   
   List<Map<String, dynamic>> _getDummyBooks() {
-    // Sample books data - in real app this would come from API
     return [
       {
         'title': 'Dona Dona',
@@ -93,6 +90,54 @@ class CategoryController extends GetxController {
         'year': '2009',
         'pages': '423',
       },
+      {
+        'title': 'Life at the Monster Apartment',
+        'author': 'Hinowa Kouzuki',
+        'rating': '4.6',
+        'image': 'assets/book/cover-latma.webp',
+        'year': '2010',
+        'pages': '312',
+      },
+      {
+        'title': 'Border v1',
+        'author': 'Yua Kotegawa',
+        'rating': '4.8',
+        'image': 'assets/book/cover-border.webp',
+        'year': '2011',
+        'pages': '289',
+      },
+      {
+        'title': 'Sesuk',
+        'author': 'Tere Liye',
+        'rating': '4.5',
+        'image': 'assets/book/cover-sesuk.webp',
+        'year': '2012',
+        'pages': '378',
+      },
+      {
+        'title': 'Rumah Untuk Alie',
+        'author': 'Lenn Liu',
+        'rating': '4.4',
+        'image': 'assets/book/cover-rua.webp',
+        'year': '2013',
+        'pages': '450',
+      },
+      {
+        'title': "Yang Telah Lama Pergi",
+        "author": "Tere Liye",
+        "rating": "4.6",
+        "image": "assets/book/cover-ytlp.webp",
+        "year": "2014",
+        "pages": "500",
+      },
+      {
+        "title": "Namaku Alam",
+        "author": "Leila S. Chudori",
+        "rating": "4.7",
+        "image": "assets/book/cover-na.webp",
+        "year": "2015",
+        "pages": "420",
+      }
     ];
   }
   
