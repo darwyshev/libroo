@@ -129,26 +129,63 @@ class _RegisterViewState extends State<RegisterView> {
     }
   }
 
+  void previousPage() {
+    if (_currentPage > 0) {
+      _controller.previousPage(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+      setState(() => _currentPage--);
+    } else {
+      // Jika di halaman pertama, kembali ke halaman sebelumnya
+      Get.back();
+    }
+  }
+
   Widget _buildStepIndicator() {
     return Padding(
       padding: const EdgeInsets.only(top: 60.0, bottom: 24.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children:
-            [0, 1, 2].map((index) {
-              return Container(
-                margin: EdgeInsets.symmetric(horizontal: 4),
-                width: 90,
-                height: 5,
-                decoration: BoxDecoration(
-                  color:
-                      _currentPage >= index
-                          ? Color(0xFF6E40F3)
-                          : Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-              );
-            }).toList(),
+        children: [
+          // Tombol Back
+          Container(
+            width: 40,
+            height: 40,
+            margin: EdgeInsets.only(right: 10, left: 10),
+            child: IconButton(
+              onPressed: previousPage,
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Color(0xFFF7F7F7),
+                size: 20,
+              ),
+            ),
+          ),
+          
+          // Progress Indicator
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [0, 1, 2].map((index) {
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 4),
+                  width: 80,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    color: _currentPage >= index
+                        ? Color(0xFF6E40F3)
+                        : Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+          
+          // Spacer untuk balance
+          SizedBox(width: 60),
+        ],
       ),
     );
   }
@@ -202,7 +239,6 @@ class _RegisterViewState extends State<RegisterView> {
       },
     );
   }
-
 
   Widget _buildButton({required String text, required VoidCallback onPressed}) {
     return ElevatedButton(
