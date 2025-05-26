@@ -19,12 +19,15 @@ A modern and elegant Flutter-based mobile application for book lovers, designed 
 - **Indonesian Language Support**: Localized content for Indonesian readers
 
 ## 🏗️ Architecture
+<<<<<<< HEAD
 ## **Installation & Setup**
 ```bash
 # Clone the repository
 git clone https://github.com/darwyshev/libroo.git
 cd libroo
 >>>>>>> 4f090003f7edbb24fcaeb10099f222a85276a93a
+=======
+>>>>>>> 7cc105f5cf2279dcdc505b198ea7a6cfcfd7ada0
 
 This project follows the **GetX Pattern** architecture with a clean separation of concerns:
 
@@ -225,7 +228,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/darwyshev)
+- **Prayoga Darius Wiryawan** - *Initial work* - [MyGitHub](https://github.com/darwyshev)
 
 ## 🙏 Acknowledgments
 
@@ -238,7 +241,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions or need support, please reach out:
 
-- Email: your.email@example.com
+- Email: prayogadariusw@gmail.com
 - GitHub Issues: [Create an issue](https://github.com/darwyshev/libroo/issues)
 
 ---
