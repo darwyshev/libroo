@@ -143,7 +143,7 @@ class HelpView extends GetView<HelpController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Akses Cepat',
+          'Paling Umum',
           style: TextStyle(
             color: Color(0xFFF7F7F7),
             fontSize: 20,
@@ -430,7 +430,7 @@ class HelpView extends GetView<HelpController> {
                   ),
                   SizedBox(width: 8),
                   Text(
-                    'Jam Operasional Support',
+                    'Jam Operasional Perpustakaan',
                     style: TextStyle(
                       color: Color(0xFFF7F7F7),
                       fontSize: 16,
@@ -441,7 +441,7 @@ class HelpView extends GetView<HelpController> {
               ),
               SizedBox(height: 12),
               Text(
-                'Senin - Jumat: 08:00 - 17:00 WIB\nSabtu - Minggu: 09:00 - 15:00 WIB',
+                'Senin - Jumat: 07:00 - 17:00 WIB\nSabtu - Minggu: 09:00 - 12:00 WIB',
                 style: TextStyle(
                   color: Color(0xFFF7F7F7).withOpacity(0.9),
                   fontSize: 14,
