@@ -35,7 +35,7 @@ class SearchView extends StatelessWidget {
     );
   }
 
-  // Search Header with back button and search field
+  // HEADER WIDGET UNTUK SEARCH BAR
   Widget _buildSearchHeader(my_search.SearchController controller, TextEditingController searchTextController) {
     return Container(
       padding: EdgeInsets.all(16),
@@ -97,14 +97,14 @@ class SearchView extends StatelessWidget {
     );
   }
 
-  // Search suggestions when no query is entered
+  // SEARCH SUGGESTIONS WIDGET
   Widget _buildSearchSuggestions(my_search.SearchController controller, TextEditingController searchTextController) {
     return SingleChildScrollView(
       padding: EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Recent searches
+          // SEARCH TERBARU
           Obx(() {
             if (controller.searchHistory.isNotEmpty) {
               return Column(
@@ -146,7 +146,7 @@ class SearchView extends StatelessWidget {
             return SizedBox.shrink();
           }),
 
-          // Popular searches
+          // SEARCH POPULAR
           Text(
             'Pencarian Populer',
             style: TextStyle(
@@ -167,7 +167,7 @@ class SearchView extends StatelessWidget {
           ),
           SizedBox(height: 24),
 
-          // Categories
+          // KATEGORI
           Text(
             'Cari berdasarkan Kategori',
             style: TextStyle(
@@ -183,7 +183,7 @@ class SearchView extends StatelessWidget {
     );
   }
 
-  // History item widget
+  // ITEM WIDGET UNTUK SEARCH HISTORY
   Widget _buildHistoryItem(String query, my_search.SearchController controller, TextEditingController searchTextController) {
     return Container(
       margin: EdgeInsets.only(bottom: 8),
@@ -212,7 +212,7 @@ class SearchView extends StatelessWidget {
     );
   }
 
-  // Popular search chip
+  // SEARCH CHIP POPULAR
   Widget _buildPopularSearchChip(String search, my_search.SearchController controller, TextEditingController searchTextController) {
     return GestureDetector(
       onTap: () {
@@ -238,7 +238,7 @@ class SearchView extends StatelessWidget {
     );
   }
 
-  // Category grid
+  // GRID KATEGORI
   Widget _buildCategoryGrid(my_search.SearchController controller, TextEditingController searchTextController) {
     final categories = [
       'Kesusastraan',
@@ -292,7 +292,7 @@ class SearchView extends StatelessWidget {
     );
   }
 
-  // Loading state
+  // LOADING STATE WIDGET
   Widget _buildLoadingState() {
     return Center(
       child: Column(
@@ -311,7 +311,7 @@ class SearchView extends StatelessWidget {
     );
   }
 
-  // No results state
+  // TIDAK ADA HASIL
   Widget _buildNoResults(String query) {
     return Center(
       child: Column(
@@ -342,7 +342,7 @@ class SearchView extends StatelessWidget {
     );
   }
 
-  // Search results
+  // HASIL SEARCH
   Widget _buildSearchResults(my_search.SearchController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -371,7 +371,7 @@ class SearchView extends StatelessWidget {
     );
   }
 
-  // Search result item
+  // SEARCH ITEM 
   Widget _buildSearchResultItem(Map<String, dynamic> book) {
     return GestureDetector(
       onTap: () {
@@ -386,7 +386,6 @@ class SearchView extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // Book cover
             Container(
               width: 60,
               height: 80,
@@ -402,7 +401,6 @@ class SearchView extends StatelessWidget {
               ),
             ),
             SizedBox(width: 12),
-            // Book details
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

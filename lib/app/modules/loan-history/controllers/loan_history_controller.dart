@@ -2,14 +2,14 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class LoanHistoryController extends GetxController {
-  // Observable variables
+  // VARIABEL
   final searchController = TextEditingController();
   final searchQuery = ''.obs;
   final selectedFilter = 'Semua'.obs;
   final loanHistory = <Map<String, dynamic>>[].obs;
   final filteredLoanHistory = <Map<String, dynamic>>[].obs;
 
-  // Sample data
+  // DATA SAMPEL
   final List<Map<String, dynamic>> _sampleData = [
     {
       'id': '1',
@@ -91,7 +91,7 @@ class LoanHistoryController extends GetxController {
     loanHistory.value = List.from(_sampleData);
     filteredLoanHistory.value = List.from(_sampleData);
     
-    // Listen to search query changes
+    // INISIALISASI PENCARIAN DAN FILTER
     ever(searchQuery, (_) => _filterLoanHistory());
     ever(selectedFilter, (_) => _filterLoanHistory());
   }
@@ -102,7 +102,7 @@ class LoanHistoryController extends GetxController {
     super.onClose();
   }
 
-  // Search functionality
+  // FUNGSI SEARCH
   void onSearchChanged(String query) {
     searchQuery.value = query;
   }
@@ -112,7 +112,7 @@ class LoanHistoryController extends GetxController {
     searchQuery.value = '';
   }
 
-  // Filter functionality
+  // FUNGSI FILTER
   void setFilter(String filter) {
     selectedFilter.value = filter;
   }
@@ -120,7 +120,7 @@ class LoanHistoryController extends GetxController {
   void _filterLoanHistory() {
     List<Map<String, dynamic>> filtered = List.from(loanHistory);
 
-    // Apply search filter
+    // TERAPKAN PENCARIAN
     if (searchQuery.value.isNotEmpty) {
       filtered = filtered.where((loan) {
         return loan['title'].toLowerCase().contains(searchQuery.value.toLowerCase()) ||
@@ -128,7 +128,7 @@ class LoanHistoryController extends GetxController {
       }).toList();
     }
 
-    // Apply status filter
+    // TERAPKAN FILTER
     if (selectedFilter.value != 'Semua') {
       filtered = filtered.where((loan) {
         switch (selectedFilter.value) {
@@ -147,19 +147,19 @@ class LoanHistoryController extends GetxController {
     filteredLoanHistory.value = filtered;
   }
 
-  // Extension functionality
+  // FUNGSI UNTUK MENGEMBALIKAN BUKU
   void extendLoan(String loanId) {
     final loanIndex = loanHistory.indexWhere((loan) => loan['id'] == loanId);
     if (loanIndex != -1) {
       final loan = loanHistory[loanIndex];
       
       if (loan['canExtend'] && !loan['isExtended']) {
-        // Extend for 2 days
+        // NAMBAH 2 HARI
         loan['daysLeft'] = loan['daysLeft'] + 2;
         loan['isExtended'] = true;
         loan['canExtend'] = false;
         
-        // Update return date (simplified - in real app would use proper date calculation)
+        // UPDATE TANGGAL KEMBALI
         loan['returnDate'] = _addDaysToDate(loan['returnDate'], 2);
         
         loanHistory[loanIndex] = loan;
@@ -192,10 +192,8 @@ class LoanHistoryController extends GetxController {
     }
   }
 
-  // Helper method to add days to date string (simplified)
+  // METODE UNTUK MENAMBAH HARI KE TANGGAL
   String _addDaysToDate(String dateString, int days) {
-    // This is a simplified implementation
-    // In a real app, you would use proper date parsing and calculation
     final parts = dateString.split(' ');
     if (parts.length >= 2) {
       int day = int.tryParse(parts[0]) ?? 1;
@@ -205,17 +203,17 @@ class LoanHistoryController extends GetxController {
     return dateString;
   }
 
-  // Calculate fine amount
+  // KALKULASI DENDA
   int calculateFine(int daysLate) {
     return daysLate > 0 ? daysLate * 2000 : 0;
   }
 
-  // Format currency
+  // FORMAT CURRENCY
   String formatCurrency(int amount) {
     return 'Rp ${amount.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]}.')}';
   }
 
-  // Get summary statistics
+  // DAPATKAN STATISTIK RINGKASAN
   Map<String, int> getSummaryStats() {
     final active = loanHistory.where((loan) => loan['status'] == 'active' && loan['daysLeft'] >= 0).length;
     final completed = loanHistory.where((loan) => loan['status'] == 'completed').length;

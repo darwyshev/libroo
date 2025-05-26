@@ -10,7 +10,7 @@ class NotificationController extends GetxController {
   }
 
   void _loadNotifications() {
-    // Dummy data untuk notifikasi
+    // DATA DUMMY NOTIFIKASI
     notifications.value = [
       {
         'id': 1,

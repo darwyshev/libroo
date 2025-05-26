@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Libroo',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppPages.INITIAL, // akan ke '/splash'
+      initialRoute: AppPages.INITIAL, // LANGSUNG KE SPLASH SCREEN BOLO
       getPages: AppPages.routes,
     );
   }

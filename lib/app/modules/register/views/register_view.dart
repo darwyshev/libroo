@@ -16,19 +16,19 @@ class _RegisterViewState extends State<RegisterView> {
   final PageController _controller = PageController();
   int _currentPage = 0;
 
-  // Step 1 - General Info
+  // INGPO UMUM
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool _obscurePassword = true;
 
-  // Step 2 - Profile Info
+  // INGPO PROFIL
   File? _profileImage;
   final fullNameController = TextEditingController();
   final nisnController = TextEditingController();
   DateTime? birthDate;
 
-  // Step 3 - Class Selection
+  // INGPO KELASS
   String? selectedGrade;
   String? selectedClass;
 
@@ -37,7 +37,7 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   void initState() {
     super.initState();
-    // Add listeners to text controllers to update UI when text changes
+    // addListener UNTUK UPDATE UI SETELAH ADA INGPO BOLO
     usernameController.addListener(() => setState(() {}));
     emailController.addListener(() => setState(() {}));
     passwordController.addListener(() => setState(() {}));
@@ -55,7 +55,7 @@ class _RegisterViewState extends State<RegisterView> {
     super.dispose();
   }
 
-  // Validation methods for each page
+  // VALIDASI FORM
   bool _isPage1Valid() {
     return usernameController.text.trim().isNotEmpty &&
            emailController.text.trim().isNotEmpty &&
@@ -129,7 +129,7 @@ class _RegisterViewState extends State<RegisterView> {
       setState(() => _isLoading = true);
       
       try {
-        // Simulasi pendaftaran berhasil
+        // PENDAFTARAN BERHASIL
         await Future.delayed(Duration(seconds: 2));
         
         ScaffoldMessenger.of(context).showSnackBar(
@@ -154,7 +154,7 @@ class _RegisterViewState extends State<RegisterView> {
   
   void nextPage() {
     if (!_canProceed()) {
-      // Show error message based on current page
+      // PESAN ERROR BERDASARKAN HALAMAN
       String errorMessage = '';
       switch (_currentPage) {
         case 0:
@@ -366,7 +366,7 @@ class _RegisterViewState extends State<RegisterView> {
                   controller: _controller,
                   physics: NeverScrollableScrollPhysics(),
                   children: [
-                    // Step 1
+                    // STEP 1
                     SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
@@ -429,7 +429,7 @@ class _RegisterViewState extends State<RegisterView> {
                       ),
                     ),
 
-                    // Step 2
+                    // STEP 2
                     SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
@@ -550,7 +550,7 @@ class _RegisterViewState extends State<RegisterView> {
                       ),
                     ),
 
-                    // Step 3
+                    // STEP 3
                     SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),

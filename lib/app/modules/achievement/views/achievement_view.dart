@@ -46,7 +46,7 @@ class AchievementView extends GetView<AchievementController> {
     );
   }
 
-  // Top Bar
+  // TOP BAR
   Widget _buildTopBar() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -94,7 +94,7 @@ class AchievementView extends GetView<AchievementController> {
     );
   }
 
-  // Stats Header
+  // STATS HEADER
   Widget _buildStatsHeader() {
     return Obx(() => Container(
       width: double.infinity,
@@ -203,7 +203,7 @@ class AchievementView extends GetView<AchievementController> {
     ));
   }
 
-  // Category Filter
+  // FILTER KATEGORI
   Widget _buildCategoryFilter() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -254,7 +254,7 @@ class AchievementView extends GetView<AchievementController> {
     );
   }
 
-  // Achievements List
+  // LIST ACHIEVEMENTS
   Widget _buildAchievementsList() {
     return Obx(() {
       final filteredAchievements = controller.getFilteredAchievements();
@@ -309,7 +309,7 @@ class AchievementView extends GetView<AchievementController> {
     });
   }
 
-  // Achievement Card
+  // CARD ACHIEVEMENT
   Widget _buildAchievementCard(Map<String, dynamic> achievement) {
     final isUnlocked = achievement['isUnlocked'];
     final progress = controller.getProgressPercentage(achievement);
@@ -329,7 +329,7 @@ class AchievementView extends GetView<AchievementController> {
           children: [
             Row(
               children: [
-                // Achievement Icon
+                // IKON ACHIEVEMENT
                 Container(
                   padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -347,7 +347,7 @@ class AchievementView extends GetView<AchievementController> {
                   ),
                 ),
                 SizedBox(width: 16),
-                // Achievement Info
+                // INGPO ACHIEVEMENT
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -418,7 +418,7 @@ class AchievementView extends GetView<AchievementController> {
                 ),
               ],
             ),
-            // Progress Bar for locked achievements
+            // BAR PROGRESS UNTUK ACHIEVEMENT
             if (!isUnlocked) ...[
               SizedBox(height: 16),
               Column(

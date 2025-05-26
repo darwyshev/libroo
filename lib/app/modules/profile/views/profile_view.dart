@@ -35,7 +35,7 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  // Top Bar dengan Profile dan tombol settings
+  // TOP BAR 
   Widget _buildTopBar() {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
@@ -71,7 +71,7 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  // Profile Header dengan foto dan informasi user
+  // BOX PROFILE HEADER
   Widget _buildProfileHeader() {
     return Container(
       width: double.infinity,
@@ -133,7 +133,7 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  // Stats Card dengan statistik pembacaan
+  // CARD STATISTIK
   Widget _buildStatsCard() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -210,7 +210,7 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  // Recent Activity section
+  // AKTIVITAS TERBARU
   Widget _buildRecentActivity() {
     final List<Map<String, dynamic>> activities = [
       {
@@ -297,7 +297,7 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  // Menu Options
+  // MENU OPTIONS
   Widget _buildMenuOptions() {
     final List<Map<String, dynamic>> menuItems = [
       {
@@ -396,7 +396,7 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  // Bottom Navigation Bar
+  // BAR NAVIGASI BAWAH
   Widget _buildBottomNav() {
     return Container(
       decoration: BoxDecoration(
@@ -424,7 +424,7 @@ class ProfileView extends GetView<ProfileController> {
               Get.toNamed('/bookmark');
             }),
             _buildNavItem(Icons.person_outline_rounded, 'Profile', true, () {
-              // Already on Profile page
+              // TERLANJUR DI HALAMAN INI BOLO
             }),
           ],
         ),

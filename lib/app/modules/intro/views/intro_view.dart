@@ -92,7 +92,7 @@ class IntroView extends GetView<IntroController> {
                         ),
                         const SizedBox(height: 32),
 
-                        // 🟡 Bungkus indikator pakai Obx
+                        // INDIKATOR HALAMAN PAKAI OBX
                         Obx(() => Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: List.generate(
@@ -113,7 +113,7 @@ class IntroView extends GetView<IntroController> {
                             )),
                         const SizedBox(height: 24),
 
-                        // 🟡 Bungkus tombol juga pakai Obx
+                        // BUNGKUS TOMBOL PAKAI OBX
                         Obx(() => SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
@@ -136,7 +136,7 @@ class IntroView extends GetView<IntroController> {
                                 onPressed: () {
                                   if (controller.currentPage.value ==
                                       introData.length - 1) {
-                                    Get.offAllNamed(Routes.REGISTER); // arahkan ke page register
+                                    Get.offAllNamed(Routes.REGISTER);
                                   } else {
                                     _pageController.nextPage(
                                       duration: Duration(milliseconds: 400),

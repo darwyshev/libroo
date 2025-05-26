@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AchievementController extends GetxController {
-  // Observable untuk loading state
+  // OBSERVABLE UNTUK STATUS LOADING
   var isLoading = false.obs;
   
-  // Observable untuk achievement categories
+  // OBVERVABLE UNTUK KATEGORI TERPILIH
   var selectedCategory = 'Semua'.obs;
   
-  // List kategori achievement
+  // LIST KATEGORI ACHIEVEMENT
   final List<String> categories = [
     'Semua',
     'Membaca',
@@ -17,7 +17,7 @@ class AchievementController extends GetxController {
     'Khusus'
   ];
 
-  // List achievements dengan berbagai status
+  // LIST ACHIEVEMENT DENGAN DATA DUMMY
   var achievements = <Map<String, dynamic>>[
     {
       'id': 1,
@@ -131,16 +131,15 @@ class AchievementController extends GetxController {
     loadAchievements();
   }
 
-  // Method untuk load achievements
+  // METODE UNTUK LOAD ACHIEVEMENTS
   void loadAchievements() {
     isLoading.value = true;
-    // Simulate API call
     Future.delayed(Duration(seconds: 1), () {
       isLoading.value = false;
     });
   }
 
-  // Method untuk filter achievements berdasarkan kategori
+  // METODE FILTER ACHIEVEMENTS BERDASARKAN KATEGORI
   List<Map<String, dynamic>> getFilteredAchievements() {
     if (selectedCategory.value == 'Semua') {
       return achievements;
@@ -150,29 +149,29 @@ class AchievementController extends GetxController {
     ).toList();
   }
 
-  // Method untuk mendapatkan total points
+  // METODE UNTUK MENDAPATKAN TOTAL POINTS
   int getTotalPoints() {
     return achievements
         .where((achievement) => achievement['isUnlocked'] == true)
         .fold(0, (sum, achievement) => sum + (achievement['points'] as int));
   }
 
-  // Method untuk mendapatkan jumlah achievement yang sudah unlocked
+  // METODE UNTUK MENDAPATKAN JUMLAH ACHIEVEMENTS YANG TELAH DIUNLOCK
   int getUnlockedCount() {
     return achievements.where((achievement) => achievement['isUnlocked'] == true).length;
   }
 
-  // Method untuk mendapatkan progress percentage
+  // METODE UNTUK MENDAPATKAN PERSENTASE PROGRESS
   double getProgressPercentage(Map<String, dynamic> achievement) {
     return (achievement['progress'] / achievement['target']).clamp(0.0, 1.0);
   }
 
-  // Method untuk change category
+  // METODE UNTUK MENGGANTI KATEGORI
   void changeCategory(String category) {
     selectedCategory.value = category;
   }
 
-  // Method untuk refresh achievements
+  // METODE UNTUK ME-REFRESH DATA ACHIEVEMENTS
   void refreshAchievements() {
     loadAchievements();
     Get.snackbar(

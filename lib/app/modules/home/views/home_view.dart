@@ -33,7 +33,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  // 1. Top Bar dengan Libroo dan tombol notifikasi - Updated with navigation
+  // TOP BAR DENGAN JUDUL DAN NOTIF
   Widget _buildTopBar() {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
@@ -60,7 +60,6 @@ class HomeView extends GetView<HomeController> {
                 size: 26,
               ),
               onPressed: () {
-                // Navigate to notification page
                 Get.toNamed('/notification');
               },
             ),
@@ -70,7 +69,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  // 2. Box Event yang menarik - Made responsive
+  // BOX EVENT
   Widget _buildEventBox() {
     return Container(
       width: double.infinity,
@@ -154,7 +153,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  // 3. Slideshow Rekomendasi Buku - Updated with navigation and bookmark notification
+  // SLIDESHOW REKOMENDASI BUKU
   Widget _buildRecommendedBooks() {
     final List<Map<String, dynamic>> books = [
       {
@@ -243,10 +242,10 @@ class HomeView extends GetView<HomeController> {
                       padding: const EdgeInsets.all(16.0),
                       child: Row(
                         children: [
-                          // Book cover with tap navigation
+                          // COVER BUKU DENGAN NAVIGASI
                           GestureDetector(
                             onTap: () {
-                              // Navigate to book detail
+                              // BIAR KE HALAMAN DETAIL BOLO
                               Get.toNamed(
                                 '/book-detail',
                                 arguments: books[index],
@@ -282,7 +281,6 @@ class HomeView extends GetView<HomeController> {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    // Navigate to book detail
                                     Get.toNamed(
                                       '/book-detail',
                                       arguments: books[index],
@@ -310,7 +308,7 @@ class HomeView extends GetView<HomeController> {
                                 SizedBox(height: 16),
                                 ElevatedButton(
                                   onPressed: () {
-                                    // Show bookmark notification
+                                    // TANDAI BUKU KE BOOKMARK
                                     _showBookmarkNotification(
                                       books[index]['title'],
                                     );
@@ -346,7 +344,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  // Method to show bookmark notification
+  // METODE UNTUK MENAMPILKAN NOTIFIKASI BOOKMARK
   void _showBookmarkNotification(String bookTitle) {
     Get.snackbar(
       'Berhasil Ditandai!',
@@ -374,7 +372,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  // 4. Grid 4 Buku Terbaik - Updated with navigation
+  // 4 GRID BUKU TERBAIK 
   Widget _buildBestChoices() {
     final List<Map<String, dynamic>> bestBooks = [
       {
@@ -469,11 +467,10 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  // Helper method to build individual book cards - Updated with navigation
+  // KARTU BUKU
   Widget _buildBookCard(Map<String, dynamic> book) {
     return GestureDetector(
       onTap: () {
-        // Navigate to book detail
         Get.toNamed('/book-detail', arguments: book);
       },
       child: AspectRatio(
@@ -566,7 +563,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  // Bottom Navigation Bar - Updated with working navigation
+  // BAR NAVIGASI BAWAH
   Widget _buildBottomNav() {
     return Container(
       decoration: BoxDecoration(
@@ -581,7 +578,7 @@ class HomeView extends GetView<HomeController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildNavItem(Icons.home_rounded, 'Home', true, () {
-              // Already on Home page, no action needed
+              // KOSONGAN BOLO
             }),
             _buildNavItem(Icons.explore_outlined, 'Explore', false, () {
               Get.toNamed('/explore');

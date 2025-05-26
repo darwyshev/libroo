@@ -36,7 +36,7 @@ class SettingsView extends GetView<SettingsController> {
     );
   }
 
-  // Top Bar
+  // TTOP BAR
   Widget _buildTopBar() {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
@@ -70,7 +70,7 @@ class SettingsView extends GetView<SettingsController> {
     );
   }
 
-  // Profile Section
+  // SESI PROFIL
   Widget _buildProfileSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +91,7 @@ class SettingsView extends GetView<SettingsController> {
           ),
           child: Column(
             children: [
-              // User Profile Display
+              // DISPLAY PROFIL USER
               Padding(
                 padding: EdgeInsets.all(16),
                 child: Row(
@@ -229,7 +229,7 @@ class SettingsView extends GetView<SettingsController> {
     );
   }
 
-  // Notification Section
+  // SESI NOTIF
   Widget _buildNotificationSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -311,7 +311,7 @@ class SettingsView extends GetView<SettingsController> {
     );
   }
 
-  // Recovery Section
+  // SESI RECOVERY
   Widget _buildRecoverySection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -570,7 +570,7 @@ class SettingsView extends GetView<SettingsController> {
     );
   }
 
-  // Edit Profile Dialog
+  // EDIT DIALOG PROFIL
   void _showEditProfileDialog() {
     final nameController = TextEditingController(text: controller.userName.value);
     final emailController = TextEditingController(text: controller.userEmail.value);
@@ -675,7 +675,7 @@ class SettingsView extends GetView<SettingsController> {
     );
   }
 
-  // Change Password Dialog
+  // GANTI PASSWORD DIALOG
   void _showChangePasswordDialog() {
     final currentPasswordController = TextEditingController();
     final newPasswordController = TextEditingController();
@@ -803,7 +803,7 @@ class SettingsView extends GetView<SettingsController> {
   }
 }
 
-// Custom ClipRounded widget for profile image
+// CLIP ROUNDED WIDGET
 class ClipRounded extends StatelessWidget {
   final Widget child;
   final BorderRadius borderRadius;

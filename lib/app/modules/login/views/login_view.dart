@@ -18,7 +18,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   void initState() {
     super.initState();
-    // Add listeners to text controllers to update UI when text changes
+    // addListener BUAT UPDATE UI SETELAH ADA INGPO
     emailOrUsernameController.addListener(() => setState(() {}));
     passwordController.addListener(() => setState(() {}));
   }
@@ -30,7 +30,7 @@ class _LoginViewState extends State<LoginView> {
     super.dispose();
   }
 
-  // Check if login form is valid
+  // CEK APAKAH LOGIN VALID
   bool _isFormValid() {
     return emailOrUsernameController.text.trim().isNotEmpty &&
            passwordController.text.trim().isNotEmpty;
@@ -43,7 +43,7 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void login() {
-    // Check if form is valid before proceeding
+    // CEK APAKAH LOGIN VALID
     if (!_isFormValid()) {
       Get.snackbar(
         "Error", 
@@ -58,21 +58,19 @@ class _LoginViewState extends State<LoginView> {
       _isLoading = true;
     });
     
-    // Simulasi proses login
     Future.delayed(Duration(seconds: 2), () {
       setState(() {
         _isLoading = false;
       });
       
-      // Tampilkan snackbar dan arahkan ke halaman home
+      // NOTIF BERHASIL LOGIN
       Get.snackbar(
         "Login", 
         "Berhasil login",
         backgroundColor: Colors.green,
         colorText: Color(0xFFF7F7F7),
       );
-      
-      // Navigasi ke halaman home
+
       Get.offAllNamed('/home');
     });
   }
@@ -115,7 +113,7 @@ class _LoginViewState extends State<LoginView> {
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Color(0xFFF7F7F7))
                 ),
-                // Add error styling when field is empty and user tries to proceed
+                // STYLE ERROR BORDER
                 errorBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.red)
                 ),

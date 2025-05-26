@@ -40,7 +40,7 @@ class CategoryView extends GetView<CategoryController> {
       padding: EdgeInsets.all(16),
       child: Column(
         children: [
-          // Top bar with back button and category name
+          // TOP BAR
           Row(
             children: [
               Container(
@@ -87,7 +87,7 @@ class CategoryView extends GetView<CategoryController> {
             ],
           ),
           SizedBox(height: 16),
-          // Category image banner
+          // GAMBAR BANNER KATEGORI
           if (controller.categoryData?['image'] != null)
             Container(
               height: 120,
@@ -162,7 +162,7 @@ class CategoryView extends GetView<CategoryController> {
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          // Filter chips
+          // FILTER CHIPS
           SizedBox(
             height: 40,
             child: ListView.builder(
@@ -200,7 +200,7 @@ class CategoryView extends GetView<CategoryController> {
             ),
           ),
           SizedBox(height: 12),
-          // Sort dropdown and view toggle
+          // DROPDOWN UNTUK SORTIR
           Row(
             children: [
               Expanded(
@@ -312,7 +312,6 @@ class CategoryView extends GetView<CategoryController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Book cover
             Expanded(
               flex: 4,
               child: Container(
@@ -329,7 +328,6 @@ class CategoryView extends GetView<CategoryController> {
                 ),
               ),
             ),
-            // Book info
             Expanded(
               flex: 3,
               child: Padding(
@@ -439,7 +437,6 @@ class CategoryView extends GetView<CategoryController> {
         ),
         child: Row(
           children: [
-            // Book cover
             Container(
               width: 80,
               height: 120,
@@ -452,7 +449,6 @@ class CategoryView extends GetView<CategoryController> {
               ),
             ),
             SizedBox(width: 16),
-            // Book info
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

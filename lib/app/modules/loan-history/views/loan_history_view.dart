@@ -40,7 +40,7 @@ class LoanHistoryView extends GetView<LoanHistoryController> {
     );
   }
 
-  // App Bar dengan tombol back
+  // APP BAR
   Widget _buildAppBar() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -76,7 +76,7 @@ class LoanHistoryView extends GetView<LoanHistoryController> {
     );
   }
 
-  // Search Bar
+  // SEARCH BAR
   Widget _buildSearchBar() {
     return Container(
       decoration: BoxDecoration(
@@ -113,7 +113,7 @@ class LoanHistoryView extends GetView<LoanHistoryController> {
     );
   }
 
-  // Summary Card dengan statistik peminjaman
+  // CARD SUMMARY 
   Widget _buildSummaryCard() {
     return Obx(() {
       final stats = controller.getSummaryStats();
@@ -201,7 +201,7 @@ class LoanHistoryView extends GetView<LoanHistoryController> {
     );
   }
 
-  // Filter Tabs
+  // TAB FILTER
   Widget _buildFilterTabs() {
     final filters = ['Semua', 'Aktif', 'Selesai', 'Terlambat'];
     
@@ -236,7 +236,7 @@ class LoanHistoryView extends GetView<LoanHistoryController> {
     ));
   }
 
-  // Loan History List
+  // LIST RIWAYAT PEMINJAMAN
   Widget _buildLoanHistory() {
     return Obx(() {
       final loans = controller.filteredLoanHistory;
@@ -385,7 +385,6 @@ class LoanHistoryView extends GetView<LoanHistoryController> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Book Cover
             Container(
               width: 60,
               height: 80,
@@ -408,7 +407,6 @@ class LoanHistoryView extends GetView<LoanHistoryController> {
                   : null,
             ),
             SizedBox(width: 16),
-            // Book Info
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -490,7 +488,6 @@ class LoanHistoryView extends GetView<LoanHistoryController> {
                       ),
                     ),
                   SizedBox(height: 12),
-                  // Status Badge
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
@@ -517,12 +514,12 @@ class LoanHistoryView extends GetView<LoanHistoryController> {
                       ],
                     ),
                   ),
-                  // Fine information
+                  // INGPO DENDA
                   if (fineWidget != null) fineWidget,
                 ],
               ),
             ),
-            // Action Button
+            // TOMBOL AKTIF
             if (loan['status'] == 'active')
               Container(
                 decoration: BoxDecoration(

@@ -23,7 +23,7 @@ class ExploreView extends GetView<ExploreController> {
                 _buildCategories(),
                 SizedBox(height: 24),
                 _buildNewBooks(),
-                // Add some padding at the bottom to ensure no overflow
+                // ANTI OVERFLOW OVERFLOW MAWON
                 SizedBox(height: 16),
               ],
             ),
@@ -34,7 +34,7 @@ class ExploreView extends GetView<ExploreController> {
     );
   }
 
-  // 1. Top Bar dengan Libroo dan tombol notifikasi
+  // TOP BAR 
   Widget _buildTopBar() {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
@@ -61,7 +61,6 @@ class ExploreView extends GetView<ExploreController> {
                 size: 26,
               ),
               onPressed: () {
-                // Navigate to search page
                 Get.toNamed('/search');
               },
             ),
@@ -71,7 +70,7 @@ class ExploreView extends GetView<ExploreController> {
     );
   }
 
-  // 2. "Kamu Mungkin Suka" Grid 4 Buku
+  // 4 GRID BUKU "KAMU MUNGKIN SUKA"
   Widget _buildYouMightLike() {
     final List<Map<String, dynamic>> recommendedBooks = [
       {
@@ -115,12 +114,12 @@ class ExploreView extends GetView<ExploreController> {
         Container(
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: Color(0xFF2A2E43), // Slightly lighter background
+            color: Color(0xFF2A2E43),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Column(
             children: [
-              // First row of books
+              // BARIS PERTAMA
               Row(
                 children: [
                   Expanded(child: _buildRecommendedBookCard(recommendedBooks[0])),
@@ -129,7 +128,7 @@ class ExploreView extends GetView<ExploreController> {
                 ],
               ),
               SizedBox(height: 16),
-              // Second row of books
+              // BARIS KEDUA
               Row(
                 children: [
                   Expanded(child: _buildRecommendedBookCard(recommendedBooks[2])),
@@ -144,11 +143,10 @@ class ExploreView extends GetView<ExploreController> {
     );
   }
 
-  // Helper method for recommended book cards
+  // METODE BUAT MEMBANGUN BUKU REKOMENDASI
   Widget _buildRecommendedBookCard(Map<String, dynamic> book) {
     return GestureDetector(
       onTap: () {
-        // Navigate to book detail page
         Get.toNamed('/book-detail', arguments: book);
       },
       child: Container(
@@ -159,7 +157,7 @@ class ExploreView extends GetView<ExploreController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Book cover image
+            // COVER BUKU
             ClipRRect(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12),
@@ -225,7 +223,7 @@ class ExploreView extends GetView<ExploreController> {
     );
   }
 
-  // 3. Categories - 10 box dengan gambar kategori
+  // KATEGORI BUKU
   Widget _buildCategories() {
     final List<Map<String, dynamic>> categories = [
       {'name': 'Kesusastraan', 'image': 'assets/category/bg-kesusastraan.webp'},
@@ -259,7 +257,7 @@ class ExploreView extends GetView<ExploreController> {
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            childAspectRatio: 16/9, // Changed to 16:9 aspect ratio
+            childAspectRatio: 16/9,
           ),
           itemCount: categories.length,
           itemBuilder: (context, index) {
@@ -270,11 +268,10 @@ class ExploreView extends GetView<ExploreController> {
     );
   }
 
-  // Helper method for category cards
+  // METODE BUAT CARD KATEGORI
   Widget _buildCategoryCard(Map<String, dynamic> category) {
     return GestureDetector(
       onTap: () {
-        // Navigate to category page
         Get.toNamed('/category', arguments: category);
       },
       child: Container(
@@ -285,7 +282,7 @@ class ExploreView extends GetView<ExploreController> {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            // Category image with gradient overlay
+            // GAMBAR KATEGORI DENGAN GRADIENT HITAMMM
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Stack(
@@ -310,7 +307,7 @@ class ExploreView extends GetView<ExploreController> {
                 ],
               ),
             ),
-            // Category name at bottom
+            // NAMA KATEGORI
             Positioned(
               bottom: 8,
               left: 0,
@@ -331,7 +328,7 @@ class ExploreView extends GetView<ExploreController> {
     );
   }
 
-  // 4. Slideshow "Buku Baru"
+  // SLIDESHOW BUKU BARU
   Widget _buildNewBooks() {
     final List<Map<String, dynamic>> newBooks = [
       {
@@ -367,14 +364,13 @@ class ExploreView extends GetView<ExploreController> {
         ),
         SizedBox(height: 16),
         SizedBox(
-          height: 200, //PERUBAHAN
+          height: 200,
           child: ListView.builder(
             scrollDirection: Axis.horizontal, 
             itemCount: newBooks.length,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  // Navigate to book detail page
                   Get.toNamed('/book-detail', arguments: newBooks[index]);
                 },
                 child: Container(
@@ -399,13 +395,13 @@ class ExploreView extends GetView<ExploreController> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(12.0), // Reduced from 16.0 to 12.0
+                        padding: const EdgeInsets.all(12.0),
                         child: Row(
                           children: [
-                            // Book cover image
+                            // COVER BUKU
                             Container(
-                              width: 100, // Reduced from 120 to 100
-                              height: 140, // Reduced from 160 to 140
+                              width: 100,
+                              height: 140,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
@@ -424,7 +420,7 @@ class ExploreView extends GetView<ExploreController> {
                                 ),
                               ),
                             ),
-                            SizedBox(width: 12), // Reduced from 16 to 12
+                            SizedBox(width: 12),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -445,34 +441,33 @@ class ExploreView extends GetView<ExploreController> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 8), // Reduced from 12 to 8
+                                  SizedBox(height: 8),
                                   Text(
                                     newBooks[index]['title'],
                                     style: TextStyle(
                                       color: Color(0xFFF7F7F7),
-                                      fontSize: 18, // Reduced from 20 to 18
+                                      fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                     ),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
-                                  SizedBox(height: 6), // Reduced from 8 to 6
+                                  SizedBox(height: 6),
                                   Text(
                                     'by ${newBooks[index]['author']}',
                                     style: TextStyle(
                                       color: Color(0xFFF7F7F7).withOpacity(0.8),
-                                      fontSize: 13, // Reduced from 14 to 13
+                                      fontSize: 13,
                                     ),
                                   ),
-                                  SizedBox(height: 12), // Reduced from 16 to 12
+                                  SizedBox(height: 12),
                                   ElevatedButton(
                                     onPressed: () {
-                                      // Navigate to book reader
                                       Get.toNamed('/book-reader', arguments: newBooks[index]);
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Color(0xFFF7F7F7),
-                                      padding: EdgeInsets.symmetric(vertical: 8), // Reduced from 10 to 8
+                                      padding: EdgeInsets.symmetric(vertical: 8),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(25),
                                       ),
@@ -482,7 +477,7 @@ class ExploreView extends GetView<ExploreController> {
                                       style: TextStyle(
                                         color: newBooks[index]['color'],
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 13, // Added font size
+                                        fontSize: 13,
                                       ),
                                     ),
                                   ),
@@ -503,7 +498,7 @@ class ExploreView extends GetView<ExploreController> {
     );
   }
 
-  // Bottom Navigation Bar - Now with working navigation
+  // NAVIGASI BAWAH
   Widget _buildBottomNav() {
     return Container(
       decoration: BoxDecoration(
@@ -525,7 +520,7 @@ class ExploreView extends GetView<ExploreController> {
               Get.offNamed('/home');
             }),
             _buildNavItem(Icons.explore_outlined, 'Explore', true, () {
-              // Already on explore page, do nothing
+              // GAK PERLU NAVIGASI KARENA SUDAH DI PAGE EXPLORE
             }),
             _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false, () {
               Get.offNamed('/bookmark');

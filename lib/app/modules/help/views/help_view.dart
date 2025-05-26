@@ -34,7 +34,7 @@ class HelpView extends GetView<HelpController> {
     );
   }
 
-  // Top Bar dengan title dan back button
+  // TOP BAR
   Widget _buildTopBar() {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
@@ -84,7 +84,7 @@ class HelpView extends GetView<HelpController> {
     );
   }
 
-  // Search Bar untuk mencari FAQ
+  // SEARCH BAR UNTUK FAQ
   Widget _buildSearchBar() {
     return Container(
       decoration: BoxDecoration(
@@ -116,7 +116,7 @@ class HelpView extends GetView<HelpController> {
     );
   }
 
-  // Quick Actions untuk akses cepat
+  // AKSI CEPAT
   Widget _buildQuickActions() {
     final quickActions = [
       {
@@ -206,7 +206,7 @@ class HelpView extends GetView<HelpController> {
     );
   }
 
-  // FAQ Section dengan daftar pertanyaan yang sering diajukan
+  // SESI FAQ DENGAN PERTANYAAN UMUM
   Widget _buildFAQSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -316,7 +316,7 @@ class HelpView extends GetView<HelpController> {
     );
   }
 
-  // Contact Section dengan berbagai cara menghubungi support
+  // SESI KONTAK
   Widget _buildContactSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -406,7 +406,7 @@ class HelpView extends GetView<HelpController> {
         ),
         SizedBox(height: 20),
         
-        // Support Hours Info
+        // JAM OPERASIONAL
         Container(
           width: double.infinity,
           padding: EdgeInsets.all(16),

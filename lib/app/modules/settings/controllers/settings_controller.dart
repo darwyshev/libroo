@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SettingsController extends GetxController {
-  // Observable variables untuk data user
+  // PROFIL DATA USER
   var userName = 'Klein Moretti Aseli'.obs;
   var userEmail = 'prayogadariusw@gmail.com'.obs;
   var profileImagePath = ''.obs;
   
-  // Notification settings
+  // PENGATURAN NOTIFIKASI
   var borrowNotification = true.obs;
   var returnNotification = true.obs;
   var overdueNotification = true.obs;
   var promotionNotification = false.obs;
   
-  // Recovery status
+  // STATUS PEMBAYARAN DAN PENGEMBALIAN
   var hasOverdueBooks = false.obs;
   var totalFine = 0.obs;
   var overdueCount = 0.obs;
   
-  // App info
+  // INFORMASI APP
   var appVersion = '1.0.0'.obs;
   var buildNumber = '1'.obs;
 
@@ -28,17 +28,16 @@ class SettingsController extends GetxController {
     loadSettingsData();
   }
 
-  // Load settings data
+  // LOAD DATA PENGATURAN
   void loadSettingsData() {
-    // Load from storage/API
     print('Loading settings data...');
-    // Simulate loading recovery status
+    // LOADING SEBELUM DATA DIAMBIL
     hasOverdueBooks.value = false;
     totalFine.value = 0;
     overdueCount.value = 0;
   }
 
-  // Update profile
+  // UPDATE PROFIL
   void updateProfile(String name, String email) {
     if (name.isEmpty || email.isEmpty) {
       Get.snackbar(
@@ -61,7 +60,7 @@ class SettingsController extends GetxController {
     );
   }
 
-  // Change password
+  // GANTI PASSWORD
   void changePassword(String currentPassword, String newPassword, String confirmPassword) {
     if (currentPassword.isEmpty || newPassword.isEmpty || confirmPassword.isEmpty) {
       Get.snackbar(
@@ -92,8 +91,7 @@ class SettingsController extends GetxController {
       );
       return;
     }
-    
-    // API call to change password
+
     Get.snackbar(
       'Berhasil',
       'Password berhasil diubah',
@@ -102,7 +100,7 @@ class SettingsController extends GetxController {
     );
   }
 
-  // Toggle notifications
+  // PENGATURAN NOTIFIKASI
   void toggleBorrowNotification(bool value) {
     borrowNotification.value = value;
     saveNotificationSettings();
@@ -124,7 +122,6 @@ class SettingsController extends GetxController {
   }
 
   void saveNotificationSettings() {
-    // Save to storage/API
     Get.snackbar(
       'Info',
       'Pengaturan notifikasi disimpan',
@@ -134,7 +131,7 @@ class SettingsController extends GetxController {
     );
   }
 
-  // Delete account
+  // HAPUS AKUN
   void deleteAccount() {
     Get.defaultDialog(
       title: 'Hapus Akun',
@@ -185,7 +182,7 @@ class SettingsController extends GetxController {
             onChanged: (value) {
               if (value == 'HAPUS') {
                 Get.back();
-                // Proceed with account deletion
+                // HAPUS AKUN LOGIKA
                 Get.snackbar(
                   'Berhasil',
                   'Akun berhasil dihapus',
@@ -203,7 +200,7 @@ class SettingsController extends GetxController {
     );
   }
 
-  // Logout
+  // LOGOUT
   void logout() {
     Get.defaultDialog(
       title: 'Logout',
@@ -219,10 +216,9 @@ class SettingsController extends GetxController {
       buttonColor: Color(0xFF6E40F3),
       onConfirm: () {
         Get.back();
-        // Clear user data
+        // BERSIHKAN DATA USER
         userName.value = '';
         userEmail.value = '';
-        // Navigate to login page
         Get.offAllNamed('/login');
       },
     );

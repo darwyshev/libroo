@@ -22,25 +22,25 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    // Fade animation controller
+    // ANIMASI FADE
     _fadeController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 800),
     );
 
-    // Scale animation controller
+    // SKALA ANIMASI
     _scaleController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 1000),
     );
 
-    // Pulse animation controller
+    // PULSE ANIMASI
     _pulseController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 1500),
     );
 
-    // Setup animations
+    // SETUP ANIMASI
     _fadeAnimation = Tween<double>(
       begin: 0.0, 
       end: 1.0
@@ -65,20 +65,20 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
       curve: Curves.easeInOut,
     ));
 
-    // Start animations sequence
+    // MULAI ANIMASI
     _startAnimations();
   }
 
   void _startAnimations() async {
-    // Start fade and scale simultaneously
+    // MULAI FADE DAN SKALA ANIMASI
     _fadeController.forward();
     _scaleController.forward();
     
-    // Wait a bit then start pulse animation
+    // TUNGGU SEBENTAR SEBELUM MEMULAI PULSE ANIMASI
     await Future.delayed(Duration(milliseconds: 600));
     _pulseController.repeat(reverse: true);
     
-    // Navigate after total 2.5 seconds
+    // NAVIGASI SETELAH TOAL 
     await Future.delayed(Duration(milliseconds: 1900));
     
     if (mounted) {

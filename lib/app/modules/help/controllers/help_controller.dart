@@ -3,16 +3,16 @@ import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 
 class HelpController extends GetxController {
-  // Observable untuk FAQ expanded state
+  // OBSERVABLE UNTUK MENANDAI FAQ YANG DILUAS
   var expandedFAQIndex = (-1).obs;
   
-  // Observable untuk search query
+  // OBSERVABLE UNTUK MENANDAI QUERY PENCARIAN
   var searchQuery = ''.obs;
   
-  // Controller untuk search text field
+  // CONTROLLER UNTUK PENCARIAN
   final searchController = TextEditingController();
   
-  // Daftar FAQ
+  // LIST FAQ
   final List<Map<String, String>> faqList = [
     {
       'question': 'Bagaimana cara meminjam buku?',
@@ -48,7 +48,7 @@ class HelpController extends GetxController {
     }
   ];
   
-  // Contact options
+  // OPSI KONTAK
   final List<Map<String, dynamic>> contactOptions = [
     {
       'title': 'Email Support',
@@ -87,7 +87,7 @@ class HelpController extends GetxController {
     super.onClose();
   }
 
-  // Toggle FAQ expansion
+  // AKSI UNTUK MENGAKTIFKAN ATAU MENONAKTIFKAN FAQ
   void toggleFAQ(int index) {
     if (expandedFAQIndex.value == index) {
       expandedFAQIndex.value = -1;
@@ -96,12 +96,12 @@ class HelpController extends GetxController {
     }
   }
 
-  // Search FAQ
+  // PENCARIAN FAQ
   void searchFAQ(String query) {
     searchQuery.value = query.toLowerCase();
   }
 
-  // Get filtered FAQ based on search
+  // FILTER FAQ BERDASARKAN QUERY
   List<Map<String, String>> get filteredFAQ {
     if (searchQuery.value.isEmpty) {
       return faqList;
@@ -112,7 +112,7 @@ class HelpController extends GetxController {
     ).toList();
   }
 
-  // Handle contact actions
+  // HANDLE AKSI KONTAK
   void handleContactAction(String action, String value) {
     switch (action) {
       case 'email':
@@ -148,7 +148,7 @@ class HelpController extends GetxController {
     );
   }
 
-  // Send feedback
+  // MENGIRIM FEEDBACK
   void sendFeedback(String feedback) {
     if (feedback.trim().isEmpty) {
       Get.snackbar(
@@ -160,8 +160,8 @@ class HelpController extends GetxController {
       return;
     }
 
-    // Simulate sending feedback
-    Get.back(); // Close dialog
+    // SIMULASI PENGIRIMAN FEEDBACK
+    Get.back(); // TUTUP DIALOG FEEDBACK
     Get.snackbar(
       'Terima Kasih',
       'Feedback Anda telah diterima dan akan segera kami tindaklanjuti',
@@ -172,7 +172,7 @@ class HelpController extends GetxController {
     );
   }
 
-  // Show feedback dialog
+  // TAMPILKAN DIALOG FEEDBACK
   void showFeedbackDialog() {
     final feedbackController = TextEditingController();
     

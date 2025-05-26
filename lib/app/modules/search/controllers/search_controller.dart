@@ -2,14 +2,14 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class SearchController extends GetxController {
-  // Observable variables
+  // VARIABEL
   final searchQuery = ''.obs;
   final isLoading = false.obs;
   final searchResults = <Map<String, dynamic>>[].obs;
   final recentSearches = <String>[].obs;
   final searchHistory = <String>[].obs;
   
-  // Sample data - in real app, this would come from API/database
+  // DATA SAMPLE BUKU
   final List<Map<String, dynamic>> allBooks = [
     {
       'title': 'Dawn',
@@ -138,9 +138,9 @@ class SearchController extends GetxController {
     loadSearchHistory();
   }
 
-  // Load search history from local storage (in real app)
+  // LOAD SEARCH HISTORY
   void loadSearchHistory() {
-    // Simulate loading from local storage
+    // SIMULASI LOADDING
     searchHistory.addAll([
       'Tere Liye',
       'Novel romantis',
@@ -148,7 +148,7 @@ class SearchController extends GetxController {
     ]);
   }
 
-  // Perform search
+  // SEARCH
   void performSearch(String query) {
     if (query.trim().isEmpty) {
       searchResults.clear();
@@ -158,7 +158,7 @@ class SearchController extends GetxController {
     isLoading.value = true;
     searchQuery.value = query;
 
-    // Add to search history if not already exists
+    // TAMBAH KE SEARCH HISTORY KALAU BELUM PERNAH
     if (!searchHistory.contains(query)) {
       searchHistory.insert(0, query);
       if (searchHistory.length > 10) {
@@ -166,9 +166,9 @@ class SearchController extends GetxController {
       }
     }
 
-    // Simulate API delay
+    // SIMULASI LOADING DENGAN DELAY
     Future.delayed(Duration(milliseconds: 500), () {
-      // Filter books based on search query
+      // FILTER BUKU BERDASARKAN QUERY
       final results = allBooks.where((book) {
         final titleMatch = book['title'].toString().toLowerCase().contains(query.toLowerCase());
         final authorMatch = book['author'].toString().toLowerCase().contains(query.toLowerCase());
@@ -183,34 +183,34 @@ class SearchController extends GetxController {
     });
   }
 
-  // Clear search
+  // CLEAR SEARCH
   void clearSearch() {
     searchQuery.value = '';
     searchResults.clear();
   }
 
-  // Remove from search history
+  // HAPUS DARI SEARCH HISTORY
   void removeFromHistory(String query) {
     searchHistory.remove(query);
   }
 
-  // Clear all search history
+  // HAPUS SEMUA SEARCH HISTORY
   void clearAllHistory() {
     searchHistory.clear();
   }
 
-  // Quick search with popular terms
+  // SEARCH CEPAT DENGAN QUERY
   void quickSearch(String query) {
     performSearch(query);
   }
 
-  // Get filtered suggestions based on current input
+  // DAPAT DAFTAR SUGGESTIONS
   List<String> getSearchSuggestions(String input) {
     if (input.isEmpty) return [];
     
     final suggestions = <String>[];
     
-    // Add matching books titles
+    // TAMBAHKAN SUGGESTIONS DARI JUDUL DAN PENULIS BUKU
     for (final book in allBooks) {
       if (book['title'].toString().toLowerCase().contains(input.toLowerCase())) {
         suggestions.add(book['title']);
@@ -220,14 +220,14 @@ class SearchController extends GetxController {
       }
     }
     
-    // Add matching popular searches
+    // TAMBAHKAN SUGGESTIONS DARI POPULAR SEARCHES
     for (final search in popularSearches) {
       if (search.toLowerCase().contains(input.toLowerCase())) {
         suggestions.add(search);
       }
     }
     
-    // Remove duplicates and limit to 5 suggestions
+    // HAPUS DUPLIKAT DAN BATASI KE 5 SUGGESTIONS
     return suggestions.toSet().take(5).toList();
   }
 

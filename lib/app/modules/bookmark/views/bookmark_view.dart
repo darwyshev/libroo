@@ -23,7 +23,6 @@ class BookmarkView extends GetView<BookmarkController> {
                 _buildRecentBookmarks(),
                 SizedBox(height: 24),
                 _buildAllBookmarks(),
-                // Add some padding at the bottom to ensure no overflow
                 SizedBox(height: 16),
               ],
             ),
@@ -34,7 +33,7 @@ class BookmarkView extends GetView<BookmarkController> {
     );
   }
 
-  // 1. Top Bar dengan judul dan tombol search
+  // TOP BAR
   Widget _buildTopBar() {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
@@ -61,7 +60,6 @@ class BookmarkView extends GetView<BookmarkController> {
                 size: 26,
               ),
               onPressed: () {
-                // Navigate to search bookmarks
                 Get.toNamed('/search');
               },
             ),
@@ -71,7 +69,7 @@ class BookmarkView extends GetView<BookmarkController> {
     );
   }
 
-  // 2. Stats Box - Statistik bookmark
+  // STATISTIK BOOKMARK
   Widget _buildBookmarkStats() {
     return Container(
       width: double.infinity,
@@ -138,7 +136,7 @@ class BookmarkView extends GetView<BookmarkController> {
     );
   }
 
-  // 3. Recent Bookmarks - Slideshow horizontal
+  // BOOKMARK TERKINI
   Widget _buildRecentBookmarks() {
     final List<Map<String, dynamic>> recentBooks = [
       {
@@ -184,7 +182,6 @@ class BookmarkView extends GetView<BookmarkController> {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  // Navigate to book detail page
                   Get.toNamed('/book-detail', arguments: recentBooks[index]);
                 },
                 child: Container(
@@ -212,7 +209,6 @@ class BookmarkView extends GetView<BookmarkController> {
                         padding: const EdgeInsets.all(12.0),
                         child: Row(
                           children: [
-                            // Book cover image
                             Container(
                               width: 100,
                               height: 140,
@@ -280,7 +276,6 @@ class BookmarkView extends GetView<BookmarkController> {
                                       Expanded(
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            // Navigate to book reader
                                             Get.toNamed('/book-detail', arguments: recentBooks[index]);
                                           },
                                           style: ElevatedButton.styleFrom(
@@ -308,7 +303,7 @@ class BookmarkView extends GetView<BookmarkController> {
                                         ),
                                         child: IconButton(
                                           onPressed: () {
-                                            // Remove from bookmark
+                                            // HAPUS DARI BOOKMARK
                                             _showRemoveBookmarkDialog(recentBooks[index]);
                                           },
                                           icon: Icon(
@@ -339,7 +334,7 @@ class BookmarkView extends GetView<BookmarkController> {
     );
   }
 
-  // 4. All Bookmarks - Grid layout
+  // GRID LAYOUT SEMUA BOOKMARK
   Widget _buildAllBookmarks() {
     final List<Map<String, dynamic>> allBookmarks = [
       {
@@ -402,7 +397,7 @@ class BookmarkView extends GetView<BookmarkController> {
             ),
             TextButton(
               onPressed: () {
-                // Sort or filter options
+                // OPSI FILTER
                 _showSortOptions();
               },
               child: Row(
@@ -436,12 +431,12 @@ class BookmarkView extends GetView<BookmarkController> {
               padding: const EdgeInsets.only(bottom: 16.0),
               child: Row(
                 children: [
-                  // First item in row
+                  // ITEM PERTAMA DI BARIS
                   Expanded(
                     child: _buildBookmarkCard(allBookmarks[rowIndex * 2]),
                   ),
                   SizedBox(width: 16),
-                  // Second item in row (if exists)
+                  // ITEM KEDUA DI BARIS
                   Expanded(
                     child: rowIndex * 2 + 1 < allBookmarks.length
                         ? _buildBookmarkCard(allBookmarks[rowIndex * 2 + 1])
@@ -456,11 +451,10 @@ class BookmarkView extends GetView<BookmarkController> {
     );
   }
 
-  // Helper method untuk bookmark card
+  // METODE UNTUK CARD BOOKMARK
   Widget _buildBookmarkCard(Map<String, dynamic> book) {
     return GestureDetector(
       onTap: () {
-        // Navigate to book detail
         Get.toNamed('/book-detail', arguments: book);
       },
       child: AspectRatio(
@@ -475,7 +469,6 @@ class BookmarkView extends GetView<BookmarkController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Book cover image
                   ClipRRect(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(16),
@@ -552,7 +545,6 @@ class BookmarkView extends GetView<BookmarkController> {
                 ],
               ),
             ),
-            // Bookmark badge
             Positioned(
               top: 10,
               right: 10,
@@ -569,7 +561,7 @@ class BookmarkView extends GetView<BookmarkController> {
                 ),
               ),
             ),
-            // Remove button (appears on long press)
+            // TOMBOL HAPUS
             Positioned(
               top: 10,
               left: 10,
@@ -597,7 +589,7 @@ class BookmarkView extends GetView<BookmarkController> {
     );
   }
 
-  // Dialog untuk konfirmasi hapus bookmark
+  // DIALOG KONFIRMASI HAPUS BOOKMARK
   void _showRemoveBookmarkDialog(Map<String, dynamic> book) {
     Get.dialog(
       AlertDialog(
@@ -620,7 +612,6 @@ class BookmarkView extends GetView<BookmarkController> {
           ),
           ElevatedButton(
             onPressed: () {
-              // Remove bookmark logic here
               Get.back();
               Get.snackbar(
                 'Berhasil',
@@ -642,7 +633,7 @@ class BookmarkView extends GetView<BookmarkController> {
     );
   }
 
-  // Dialog untuk opsi sort
+  // DIALOG OPSI SORT
   void _showSortOptions() {
     Get.bottomSheet(
       Container(
@@ -696,7 +687,7 @@ class BookmarkView extends GetView<BookmarkController> {
     );
   }
 
-  // Bottom Navigation Bar
+  // BAR NAVIGASI BAWAH
   Widget _buildBottomNav() {
     return Container(
       decoration: BoxDecoration(
@@ -721,7 +712,7 @@ class BookmarkView extends GetView<BookmarkController> {
               Get.offNamed('/explore');
             }),
             _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', true, () {
-              // Already on bookmark page, do nothing
+              // TERLANJUR DI PAGE BOOKMARK BOLO
             }),
             _buildNavItem(Icons.person_outline_rounded, 'Profile', false, () {
               Get.offNamed('/profile');

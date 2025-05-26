@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
-  // Observable variables untuk data user
+  // VARIABEL STATIS DATA USER
   var userName = 'Pembaca Setia'.obs;
   var userEmail = 'pembaca.setia@libroo.com'.obs;
   var membershipStatus = 'Member Premium'.obs;
   
-  // Stats observables
+  // DATA STATISTIK
   var booksRead = 42.obs;
   var pagesRead = 1247.obs;
   var bookmarks = 18.obs;
@@ -16,22 +16,20 @@ class ProfileController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Load user data when controller initializes
+    // LOAD DATA USER SAAT INISIALISASI
     loadUserData();
   }
 
-  // Method untuk load data user
+  // METODE UNTUK LOAD DATA USER
   void loadUserData() {
-    // Di sini nanti bisa connect ke API atau local storage
-    // Untuk sekarang pakai data dummy
+    // MASIH DUMMY BOLO
     print('Loading user profile data...');
   }
 
-  // Method untuk update profile
+  // METODE UNTUK UPDATE PROFIL USER
   void updateProfile(String name, String email) {
     userName.value = name;
     userEmail.value = email;
-    // Save to storage/API
     Get.snackbar(
       'Success',
       'Profile berhasil diupdate',
@@ -40,7 +38,7 @@ class ProfileController extends GetxController {
     );
   }
 
-  // Method untuk logout
+  // METODE UNTUK LOGOUT
   void logout() {
     Get.defaultDialog(
       title: 'Logout',
@@ -55,16 +53,15 @@ class ProfileController extends GetxController {
       buttonColor: Color(0xFF6E40F3),
       onConfirm: () {
         Get.back();
-        // Clear user data
+        // CLEAR DATA USER
         userName.value = '';
         userEmail.value = '';
-        // Navigate to login page
         Get.offAllNamed('/login');
       },
     );
   }
 
-  // Method untuk refresh data
+  // METODE UNTUK REFRESH PROFIL
   void refreshProfile() {
     loadUserData();
     Get.snackbar(

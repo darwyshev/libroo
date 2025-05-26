@@ -8,7 +8,7 @@ class BookDetailController extends GetxController {
   final userRating = 0.0.obs;
   final hasUserRated = false.obs;
   
-  // Book availability status
+  // STATUS KETERSEDIAAN BUKU
   final isAvailable = true.obs;
   final totalStock = 5.obs;
   final availableStock = 5.obs;
@@ -17,18 +17,18 @@ class BookDetailController extends GetxController {
   final borrowDate = DateTime.now().obs;
   final isCurrentUserBorrowing = false.obs;
   
-  // Sample book data - in real app this would come from API
+  // DATA BUKU
   final bookData = {}.obs;
   
   @override
   void onInit() {
     super.onInit();
-    // Get book data from arguments
+    // DAPATKAN DATA BUKU DARI ARGUMEN ATAU DEFAULT
     final args = Get.arguments;
     if (args != null && args is Map<String, dynamic>) {
       bookData.value = args;
     } else {
-      // Default book data if no arguments provided
+      // DEFAULT DATA BUKU
       bookData.value = {
         'title': 'Janji',
         'author': 'Tere Liye',
@@ -44,7 +44,7 @@ class BookDetailController extends GetxController {
       };
     }
     
-    // Simulate some books being borrowed
+    // KETIKA BEBERAPA BUKU SEDANG DIPINJAM
     if (bookData.value['title'] == 'Bumi') {
       isAvailable.value = false;
       availableStock.value = 2;
@@ -56,7 +56,7 @@ class BookDetailController extends GetxController {
   void toggleBookmark() {
     isBookmarked.value = !isBookmarked.value;
     
-    // Show snackbar notification
+    // TAMPILKAN NOTIF
     Get.snackbar(
       isBookmarked.value ? 'Ditambahkan ke Bookmark' : 'Dihapus dari Bookmark',
       isBookmarked.value 
@@ -172,7 +172,7 @@ class BookDetailController extends GetxController {
   }
   
   void _borrowBook() {
-    // Simulate borrowing process
+    // PROSES PEMINJAMAN BUKU
     isCurrentUserBorrowing.value = true;
     borrowDate.value = DateTime.now();
     availableStock.value = availableStock.value - 1;
@@ -201,7 +201,7 @@ class BookDetailController extends GetxController {
   void _showQRCode() {
     final borrowInfo = {
       'bookTitle': bookData.value['title'],
-      'borrower': 'User Name', // In real app, get from user session
+      'borrower': 'User Name',
       'borrowDate': borrowDate.value.toIso8601String(),
       'returnDate': returnDate.value.toIso8601String(),
       'qrId': 'QR${DateTime.now().millisecondsSinceEpoch}',

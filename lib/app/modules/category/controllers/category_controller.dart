@@ -1,20 +1,20 @@
 import 'package:get/get.dart';
 
 class CategoryController extends GetxController {
-  // Receive category data from arguments
+  // MENERIMA DATA KATEGORI DARI ARGUMENTS
   Map<String, dynamic>? categoryData;
   
-  // Observable list for books in this category
+  // LIST BUKU PER KATEGORI
   final RxList<Map<String, dynamic>> categoryBooks = <Map<String, dynamic>>[].obs;
   final RxList<Map<String, dynamic>> filteredBooks = <Map<String, dynamic>>[].obs;
   
-  // Loading state
+  // LOADING STATUS
   final RxBool isLoading = false.obs;
   
-  // View mode toggle (true = grid, false = list)
+  // TOOGLE VIEW MODE (GRID/LIST)
   final RxBool isGridView = true.obs;
   
-  // Filter options
+  // OPSI FILTER DAN SORT
   final RxString selectedFilter = 'Semua'.obs;
   final RxString selectedSort = 'Terbaru'.obs;
   
@@ -175,7 +175,7 @@ class CategoryController extends GetxController {
   void applyFiltersAndSort() {
     List<Map<String, dynamic>> books = List.from(categoryBooks);
     
-    // Apply filters
+    // TERAPKAN FILTER
     switch (selectedFilter.value) {
       case 'Terpopuler':
         books = books.where((book) => book['isPopular'] == true).toList();
@@ -188,11 +188,10 @@ class CategoryController extends GetxController {
         break;
       case 'Semua':
       default:
-        // Show all books
         break;
     }
     
-    // Apply sorting
+    // TERAPKAN SORTIR
     switch (selectedSort.value) {
       case 'Terbaru':
         books.sort((a, b) => int.parse(b['year']).compareTo(int.parse(a['year'])));

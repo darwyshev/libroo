@@ -105,7 +105,7 @@ class EventView extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Background pattern
+          // POLA BACKGROUND
           Positioned(
             right: -50,
             top: -50,
@@ -127,7 +127,7 @@ class EventView extends StatelessWidget {
               color: Color(0xFFF7F7F7).withOpacity(0.1),
             ),
           ),
-          // Content
+          // KONTEN
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(
@@ -742,7 +742,7 @@ class EventView extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     Get.back();
-                    Get.back(); // Back to home
+                    Get.back(); // KEMBALI KE HOME
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF6E40F3),
