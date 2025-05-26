@@ -18,9 +18,7 @@ A modern and elegant Flutter-based mobile application for book lovers, designed 
 - **Interactive Elements**: Engaging animations and visual feedback
 - **Indonesian Language Support**: Localized content for Indonesian readers
 
-<<<<<<< HEAD
 ## 🏗️ Architecture
-=======
 ## **Installation & Setup**
 ```bash
 # Clone the repository
