@@ -19,7 +19,6 @@ A modern and elegant Flutter-based mobile application for book lovers, designed 
 - **Indonesian Language Support**: Localized content for Indonesian readers
 
 ## 🏗️ Architecture
-<<<<<<< HEAD
 ## **Installation & Setup**
 ```bash
 # Clone the repository
@@ -28,6 +27,7 @@ cd libroo
 >>>>>>> 4f090003f7edbb24fcaeb10099f222a85276a93a
 =======
 >>>>>>> 7cc105f5cf2279dcdc505b198ea7a6cfcfd7ada0
+```
 
 This project follows the **GetX Pattern** architecture with a clean separation of concerns:
 
