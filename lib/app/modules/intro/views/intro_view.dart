@@ -11,7 +11,7 @@ class IntroView extends GetView<IntroController> {
   final List<Map<String, String>> introData = [
     {
       "image": "assets/image/intro-1.webp",
-      "title": "Selamat Datang Libroo",
+      "title": "Selamat Datang di Libroo",
       "desc": "Akses perpustakaan cuma dari smartphone kamu.",
     },
     {
