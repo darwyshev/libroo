@@ -41,7 +41,7 @@ class BookmarkView extends GetView<BookmarkController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Bookmark',
+            'Ditandai',
             style: TextStyle(
               color: Color(0xFFF7F7F7), 
               fontSize: 28, 
@@ -705,16 +705,16 @@ class BookmarkView extends GetView<BookmarkController> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildNavItem(Icons.home_rounded, 'Home', false, () {
+            _buildNavItem(Icons.home_rounded, 'Beranda', false, () {
               Get.offNamed('/home');
             }),
-            _buildNavItem(Icons.explore_outlined, 'Explore', false, () {
+            _buildNavItem(Icons.explore_outlined, 'Eksplor', false, () {
               Get.offNamed('/explore');
             }),
-            _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', true, () {
+            _buildNavItem(Icons.bookmark_border_rounded, 'Ditandai', true, () {
               // TERLANJUR DI PAGE BOOKMARK BOLO
             }),
-            _buildNavItem(Icons.person_outline_rounded, 'Profile', false, () {
+            _buildNavItem(Icons.person_outline_rounded, 'Profil', false, () {
               Get.offNamed('/profile');
             }),
           ],

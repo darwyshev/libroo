@@ -43,7 +43,7 @@ class ProfileView extends GetView<ProfileController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Profile',
+            'Profil',
             style: TextStyle(
               color: Color(0xFFF7F7F7), 
               fontSize: 28, 
@@ -414,16 +414,16 @@ class ProfileView extends GetView<ProfileController> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildNavItem(Icons.home_rounded, 'Home', false, () {
+            _buildNavItem(Icons.home_rounded, 'Beranda', false, () {
               Get.back();
             }),
-            _buildNavItem(Icons.explore_outlined, 'Explore', false, () {
+            _buildNavItem(Icons.explore_outlined, 'Eksplor', false, () {
               Get.toNamed('/explore');
             }),
-            _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false, () {
+            _buildNavItem(Icons.bookmark_border_rounded, 'Ditandai', false, () {
               Get.toNamed('/bookmark');
             }),
-            _buildNavItem(Icons.person_outline_rounded, 'Profile', true, () {
+            _buildNavItem(Icons.person_outline_rounded, 'Profil', true, () {
               // TERLANJUR DI HALAMAN INI BOLO
             }),
           ],

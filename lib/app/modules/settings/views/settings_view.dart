@@ -326,7 +326,7 @@ class SettingsView extends GetView<SettingsController> {
         ),
         SizedBox(height: 16),
         Obx(() => Container(
-          padding: EdgeInsets.all(30),
+          padding: EdgeInsets.all(50),
           decoration: BoxDecoration(
             color: controller.hasOverdueBooks.value 
                 ? Color(0xFFE57373).withOpacity(0.1)

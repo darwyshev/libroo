@@ -516,16 +516,16 @@ class ExploreView extends GetView<ExploreController> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildNavItem(Icons.home_rounded, 'Home', false, () {
+            _buildNavItem(Icons.home_rounded, 'Beranda', false, () {
               Get.offNamed('/home');
             }),
-            _buildNavItem(Icons.explore_outlined, 'Explore', true, () {
+            _buildNavItem(Icons.explore_outlined, 'Eksplor', true, () {
               // GAK PERLU NAVIGASI KARENA SUDAH DI PAGE EXPLORE
             }),
-            _buildNavItem(Icons.bookmark_border_rounded, 'Bookmarks', false, () {
+            _buildNavItem(Icons.bookmark_border_rounded, 'Ditandai', false, () {
               Get.offNamed('/bookmark');
             }),
-            _buildNavItem(Icons.person_outline_rounded, 'Profile', false, () {
+            _buildNavItem(Icons.person_outline_rounded, 'Profil', false, () {
               Get.offNamed('/profile');
             }),
           ],

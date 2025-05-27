@@ -577,21 +577,21 @@ class HomeView extends GetView<HomeController> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildNavItem(Icons.home_rounded, 'Home', true, () {
+            _buildNavItem(Icons.home_rounded, 'Beranda', true, () {
               // KOSONGAN BOLO
             }),
-            _buildNavItem(Icons.explore_outlined, 'Explore', false, () {
+            _buildNavItem(Icons.explore_outlined, 'Eksplor', false, () {
               Get.toNamed('/explore');
             }),
             _buildNavItem(
               Icons.bookmark_border_rounded,
-              'Bookmarks',
+              'Ditandai',
               false,
               () {
                 Get.toNamed('/bookmark');
               },
             ),
-            _buildNavItem(Icons.person_outline_rounded, 'Profile', false, () {
+            _buildNavItem(Icons.person_outline_rounded, 'Profil', false, () {
               Get.toNamed('/profile');
             }),
           ],
